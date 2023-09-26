@@ -1,6 +1,27 @@
 version: '3.3'
 services:
   web:
-    image: tubes-1:latest
+    container_name: nutrilife-web
+    build: .
     ports:
-      - 8008:80
+      - 3000:3000
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres-db
+      DB_USER: kelompokD
+      DB_PASSWORD: kelompokD
+      DB_NAME: nutrilife
+      DB_PORT: 5432
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres-db
+    restart: always
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_ROOT_PASSWORD: kelompokD
+      POSTGRES_DB: nutrilife
+      POSTGRES_USER: kelompokD
+      POSTGRES_PASSWORD: kelompokD
