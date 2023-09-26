@@ -23,21 +23,23 @@ class Database
 
         $create_table_user = pg_query($this->db, "CREATE TABLE IF NOT EXISTS 
                                       users(id SERIAL PRIMARY KEY, full_name VARCHAR(225),
-                                      phone_number VARCHAR(225), roles VARCHAR(10), email VARCHAR(225))
+                                      phone_number VARCHAR(225), roles VARCHAR(10), email VARCHAR(225),
+                                      createdAt TIME)
                                       ");
         if(!$create_table_user) {
             die("failed to create table user: " . pg_last_error());
         } else {
-            echo "table user successfully created";
+            echo "<script>console.log('table user successfully created')</script>";
         }
         $create_table_content = pg_query($this->db, "CREATE TABLE IF NOT EXISTS
                                         content(id SERIAL PRIMARY KEY, title VARCHAR(225),
-                                        body VARCHAR(5000), type_content VARCHAR(10), path VARCHAR(225))
+                                        body VARCHAR(5000), type_content VARCHAR(10), path VARCHAR(225),
+                                        createdAt TIME, updateAt TIME)
                                         ");
         if(!$create_table_content) {
             die("failed to create table content: " . pg_last_error());
         } else {
-            echo "table content successfully created";
+            echo "<script>console.log('table content successfully created')</script>";
         }
     }
 
