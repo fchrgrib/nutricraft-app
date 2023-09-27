@@ -12,14 +12,14 @@ class Content
         $this->db = new Database();
     }
 
-    public function Insert($title, $body, $type_content, $path){
+    public function Insert($title, $body, $id_file){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
         $insert_data = pg_query($conn, "INSERT INTO 
-                                content(title,body,type_content,path,createdAt,updateAt)
-                                VALUES($title,$body,$type_content,$path,$curr,$curr)");
+                                content(title,body,id_file,createdAt,updateAt)
+                                VALUES($title,$body,$id_file,$curr,$curr)");
 
         if (!$insert_data) die("failed to insert values: ".pg_last_error());
 
@@ -28,13 +28,13 @@ class Content
         $this->db->Disconnect();
     }
 
-    public function Update($id, $title, $body, $type_content, $path){
+    public function Update($id,$title, $body, $id_file){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
         $update_data = pg_query($conn, "UPDATE content
-                                SET title = $title, body = $body, type_content = $type_content, path = $path, updatedAt = $curr
+                                SET title = $title, body = $body, id_file = $id_file, updatedAt = $curr
                                 WHERE id = $id");
 
         if (!$update_data) die("failed to update values: ".pg_last_error());
