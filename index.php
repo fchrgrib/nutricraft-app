@@ -7,4 +7,4 @@ $db = new Database();
 $db->Connect();
 $check = $db->getDb();
 
-if ($check) echo "<script>console.log('success')</script>";
+if ($check) echo "<h1>eoifwegwoejgowiegowgenwo</h1>";
