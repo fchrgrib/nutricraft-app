@@ -32,7 +32,7 @@ class Database
         }
 
         $create_table_user = pg_query($this->db, "CREATE TABLE IF NOT EXISTS 
-                                      users(id SERIAL PRIMARY KEY, full_name VARCHAR(225),id_photo_profile SERIAL,
+                                      users(id SERIAL PRIMARY KEY, full_name VARCHAR(225), password VARCHAR(225),id_photo_profile SERIAL,
                                       phone_number VARCHAR(225), roles VARCHAR(10), email VARCHAR(225),
                                       createdAt TIME,
                                       FOREIGN KEY (id_photo_profile) REFERENCES file(id) ON DELETE SET NULL ON UPDATE CASCADE)
