@@ -56,4 +56,100 @@ class Content
 
         $this->db->Disconnect();
     }
+
+
+    public function FindAll(){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+
+        $exec = pg_query($conn, "SELECT * FROM content ORDER BY id");
+        $result = array();
+
+        while ($row = pg_fetch_assoc($exec)){
+            $result[] = array(
+                id => $row['id'],
+                title => $row['title'],
+                id_file => $row['id_file'],
+                body => $row['body'],
+                createdAt => $row['createdAt'],
+                updateAt => $row['updateAt']
+            );
+        }
+
+        $this->db->Disconnect();
+
+        return $result;
+    }
+
+    public function FindById($id){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+
+        $exec = pg_query($conn, "SELECT * FROM content WHERE id = $id ORDER BY id");
+        $result = array();
+
+        while ($row = pg_fetch_assoc($exec)){
+            $result[] = array(
+                id => $row['id'],
+                title => $row['title'],
+                id_file => $row['id_file'],
+                body => $row['body'],
+                createdAt => $row['createdAt'],
+                updateAt => $row['updateAt']
+            );
+        }
+
+        $this->db->Disconnect();
+
+        return $result;
+    }
+
+    public function FindByTitle($title){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+
+        $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '$title%' ORDER BY id");
+        $result = array();
+
+        while ($row = pg_fetch_assoc($exec)){
+            $result[] = array(
+                id => $row['id'],
+                title => $row['title'],
+                id_file => $row['id_file'],
+                body => $row['body'],
+                createdAt => $row['createdAt'],
+                updateAt => $row['updateAt']
+            );
+        }
+
+        $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '%$title%' ORDER BY id");
+
+        while ($row = pg_fetch_assoc($exec)){
+            $result[] = array(
+                id => $row['id'],
+                title => $row['title'],
+                id_file => $row['id_file'],
+                body => $row['body'],
+                createdAt => $row['createdAt'],
+                updateAt => $row['updateAt']
+            );
+        }
+
+        $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '$title%' ORDER BY id");
+
+        while ($row = pg_fetch_assoc($exec)){
+            $result[] = array(
+                id => $row['id'],
+                title => $row['title'],
+                id_file => $row['id_file'],
+                body => $row['body'],
+                createdAt => $row['createdAt'],
+                updateAt => $row['updateAt']
+            );
+        }
+
+        $this->db->Disconnect();
+
+        return $result;
+    }
 }

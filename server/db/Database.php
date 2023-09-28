@@ -54,6 +54,29 @@ class Database
         }
 
 
+        $create_table_ingredients = pg_query($this->db, "CREATE TABLE IF NOT EXISTS
+                                      ingredients(id SERIAL PRIMARY KEY, ingredient VARCHAR(225), description VARCHAR(225))
+                                      ");
+
+        if (!$create_table_ingredients){
+            die("failed to create table ingredients: " . pg_last_error());
+        } else {
+            echo "<script>console.log('table ingredients successfully created')</script>";
+        }
+
+        $create_table_meals = pg_query($this->db,"CREATE TABLE IF NOT EXISTS
+                                      meals(id SERIAL PRIMARY KEY, title VARCHAR(225), highlight VARCHAR(1000),
+                                      description VARCHAR(5000), id_ingredients SERIAL,
+                                      FOREIGN KEY (id_ingredients) REFERENCES ingredients(id) ON UPDATE CASCADE ON DELETE SET NULL)
+        ");
+
+        if (!$create_table_meals){
+            die("failed to create table meals: " . pg_last_error());
+        } else {
+            echo "<script>console.log('table meals successfully created')</script>";
+        }
+
+
     }
 
     public function Disconnect(){
