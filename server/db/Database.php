@@ -21,11 +21,11 @@ class Database
 
         if (!$this->db) die("Connection Failed: ". pg_last_error());
 
-        $create_table_photo = pg_query($this->db, "CREATE TABLE IF NOT EXISTS
+        $create_table_file = pg_query($this->db, "CREATE TABLE IF NOT EXISTS
                                         file(id SERIAL PRIMARY KEY, name VARCHAR(225),
-                                        path VARCHAR(225), url VARCHAR(225), type_content VARCHAR(225))");
+                                        path VARCHAR(225), url VARCHAR(225), type_content VARCHAR(225), created_at TIME, updated_at TIME)");
 
-        if (!$create_table_photo){
+        if (!$create_table_file){
             die("failed to create table file: " . pg_last_error());
         }else{
             echo "<script>console.log('table file successfully created')</script>";
@@ -34,7 +34,7 @@ class Database
         $create_table_user = pg_query($this->db, "CREATE TABLE IF NOT EXISTS 
                                       users(id SERIAL PRIMARY KEY, full_name VARCHAR(225), password VARCHAR(225),id_photo_profile SERIAL,
                                       phone_number VARCHAR(225), roles VARCHAR(10), email VARCHAR(225),
-                                      createdAt TIME,
+                                      created_at TIME, updated_at TIME,
                                       FOREIGN KEY (id_photo_profile) REFERENCES file(id) ON DELETE SET NULL ON UPDATE CASCADE)
                                       ");
         if(!$create_table_user) {
@@ -44,7 +44,7 @@ class Database
         }
         $create_table_content = pg_query($this->db, "CREATE TABLE IF NOT EXISTS
                                         content(id SERIAL PRIMARY KEY, title VARCHAR(225), id_file SERIAL,
-                                        body VARCHAR(5000),createdAt TIME, updateAt TIME,
+                                        body VARCHAR(5000),created_at TIME, updated_at TIME,
                                         FOREIGN KEY (id_file) REFERENCES file(id) ON DELETE SET NULL ON UPDATE CASCADE)
                                         ");
         if(!$create_table_content) {
@@ -66,7 +66,7 @@ class Database
 
         $create_table_meals = pg_query($this->db,"CREATE TABLE IF NOT EXISTS
                                       meals(id SERIAL PRIMARY KEY, title VARCHAR(225), highlight VARCHAR(1000),
-                                      description VARCHAR(5000), id_ingredients SERIAL,
+                                      description VARCHAR(5000), id_ingredients SERIAL, created_at TIME, updated_at TIME,
                                       FOREIGN KEY (id_ingredients) REFERENCES ingredients(id) ON UPDATE CASCADE ON DELETE SET NULL)
         ");
 

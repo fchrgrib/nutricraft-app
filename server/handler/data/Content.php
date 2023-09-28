@@ -4,6 +4,8 @@ namespace data;
 
 use Database;
 
+require_once "server/db/Database.php";
+
 class Content
 {
     private $db;
@@ -17,9 +19,9 @@ class Content
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
-        $insert_data = pg_query($conn, "INSERT INTO 
-                                content(title,body,id_file,createdAt,updateAt)
-                                VALUES($title,$body,$id_file,$curr,$curr)");
+        $insert_data = pg_query_params($conn, "INSERT INTO 
+                                content(title,body,id_file,created_at,updated_at)
+                                VALUES($1,$2,$3,$4,$5)",array($title,$body,$id_file,$curr,$curr));
 
         if (!$insert_data) die("failed to insert values: ".pg_last_error());
 
@@ -33,9 +35,9 @@ class Content
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
-        $update_data = pg_query($conn, "UPDATE content
-                                SET title = $title, body = $body, id_file = $id_file, updatedAt = $curr
-                                WHERE id = $id");
+        $update_data = pg_query_params($conn, "UPDATE content
+                                SET title = $2, body = $3, id_file = $4, updated_at = $5
+                                WHERE id = $1", array($id,$title, $body, $id_file, $curr));
 
         if (!$update_data) die("failed to update values: ".pg_last_error());
 
@@ -62,17 +64,17 @@ class Content
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query($conn, "SELECT * FROM content ORDER BY id");
+        $exec = pg_query($conn, "SELECT * FROM content ORDER BY created_at");
         $result = array();
 
         while ($row = pg_fetch_assoc($exec)){
             $result[] = array(
-                id => $row['id'],
-                title => $row['title'],
-                id_file => $row['id_file'],
-                body => $row['body'],
-                createdAt => $row['createdAt'],
-                updateAt => $row['updateAt']
+                'id' => $row['id'],
+                'title' => $row['title'],
+                'id_file' => $row['id_file'],
+                'body' => $row['body'],
+                'created_at' => $row['created_at'],
+                'updated_at' => $row['updated_at']
             );
         }
 
@@ -85,17 +87,17 @@ class Content
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query($conn, "SELECT * FROM content WHERE id = $id ORDER BY id");
+        $exec = pg_query_params($conn, "SELECT * FROM content WHERE id = $1 ORDER BY updated_at",array($id));
         $result = array();
 
         while ($row = pg_fetch_assoc($exec)){
             $result[] = array(
-                id => $row['id'],
-                title => $row['title'],
-                id_file => $row['id_file'],
-                body => $row['body'],
-                createdAt => $row['createdAt'],
-                updateAt => $row['updateAt']
+                'id' => $row['id'],
+                'title' => $row['title'],
+                'id_file' => $row['id_file'],
+                'body' => $row['body'],
+                'created_at' => $row['created_at'],
+                'updated_at' => $row['updated_at']
             );
         }
 
@@ -108,43 +110,17 @@ class Content
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '$title%' ORDER BY id");
         $result = array();
+        $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '%$title%' ORDER BY created_at");
 
         while ($row = pg_fetch_assoc($exec)){
             $result[] = array(
-                id => $row['id'],
-                title => $row['title'],
-                id_file => $row['id_file'],
-                body => $row['body'],
-                createdAt => $row['createdAt'],
-                updateAt => $row['updateAt']
-            );
-        }
-
-        $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '%$title%' ORDER BY id");
-
-        while ($row = pg_fetch_assoc($exec)){
-            $result[] = array(
-                id => $row['id'],
-                title => $row['title'],
-                id_file => $row['id_file'],
-                body => $row['body'],
-                createdAt => $row['createdAt'],
-                updateAt => $row['updateAt']
-            );
-        }
-
-        $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '$title%' ORDER BY id");
-
-        while ($row = pg_fetch_assoc($exec)){
-            $result[] = array(
-                id => $row['id'],
-                title => $row['title'],
-                id_file => $row['id_file'],
-                body => $row['body'],
-                createdAt => $row['createdAt'],
-                updateAt => $row['updateAt']
+                'id' => $row['id'],
+                'title' => $row['title'],
+                'id_file' => $row['id_file'],
+                'body' => $row['body'],
+                'created_at' => $row['created_at'],
+                'updated_at' => $row['updated_at']
             );
         }
 
