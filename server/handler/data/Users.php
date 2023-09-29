@@ -35,21 +35,21 @@ class Users
         $this->db->Disconnect();
     }
 
-    // public function Update($id, $name, $email, $phoneNumber){
-    //     $this->db->Connect();
-    //     $conn = $this->db->getDb();
-    //     $curr = date('Y-m-d H:i:s');
+    public function Update($id, $name, $email, $phoneNumber){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+        $curr = date('Y-m-d H:i:s');
 
-    //     $update_data = pg_query($conn, "UPDATE users
-    //                             SET full_name = $name, phone_number = $phoneNumber, email = $email
-    //                             WHERE id = $id");
+        $update_data = pg_query($conn, "UPDATE users
+                                SET full_name = '$name', phone_number = '$phoneNumber', email = '$email', updated_at = '$curr'
+                                WHERE id = $id");
 
-    //     if (!$update_data) die("failed to update values: ".pg_last_error());
+        if (!$update_data) die("failed to update values: ".pg_last_error());
 
-    //     echo "<script>console.log('successfully update users')</script>";
+        echo "<script>console.log('successfully update users')</script>";
 
-    //     $this->db->Disconnect();
-    // }
+        $this->db->Disconnect();
+    }
 
     public function Delete($id){
         $this->db->Connect();
@@ -64,82 +64,100 @@ class Users
         $this->db->Disconnect();
     }
 
-    // public function getUnamebyId($id){
-    //     $this->db->Connect();
-    //     $conn = $this->db->getDb();
+    public function FindAll(){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
 
-    //     $get_data = pg_query($conn, "SELECT full_name FROM users WHERE id = $id");
+        $exec = pg_query($conn, "SELECT * FROM users");
+        $result = array();
+        while ($row = pg_fetch_assoc($exec)) {
+            $result[] = array(
+                'id' => $row['id'],
+                'full_name' => $row['full_name'],
+                'email' => $row['email'],
+                'phone_number' => $row['phone_number'],
+                'roles' => $row['roles'],
+                'created_at' => $row['created_at']
+            );
+        }
 
-    //     if (!$get_data) die("failed to get values users: ".pg_last_error());
+        $this->db->Disconnect();
 
-    //     $this->db->Disconnect();
+        return $result;
+    }
 
-    //     return $get_data;
-    // }
+    public function FindById($id){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
 
-    // public function getIdbyUname($uname){
-    //     $this->db->Connect();
-    //     $conn = $this->db->getDb();
+        $exec = pg_query_params($conn, "SELECT * FROM users WHERE id = $1 ORDER BY created_at", array($id));
+        $result = array();
+        while ($row = pg_fetch_assoc($exec)) {
+            $result[] = array(
+                'id' => $row['id'],
+                'full_name' => $row['full_name'],
+                'email' => $row['email'],
+                'phone_number' => $row['phone_number'],
+                'roles' => $row['roles'],
+                'created_at' => $row['created_at']
+            );
+        }
 
-    //     $get_data = pg_query($conn, "SELECT id FROM users WHERE full_name = '$uname'");
+        $this->db->Disconnect();
 
-    //     if (!$get_data) die("failed to get values users: ".pg_last_error());
+        return $result;
+    }
 
-    //     $this->db->Disconnect();
+    public function FindUnamebyId($id){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
 
-    //     return $get_data;
-    // }
+        $exec = pg_query_params($conn, "SELECT full_name FROM users WHERE id = $1 ORDER BY created_at", array($id));
+        $result = array();
+        while ($row = pg_fetch_assoc($exec)) {
+            $result[] = array(
+                'full_name' => $row['full_name'],
+            );
+        }
 
-    // public function getAllUserNames(){
-    //     $this->db->Connect();
-    //     $conn = $this->db->getDb();
+        $this->db->Disconnect();
 
-    //     $get_data = pg_query($conn, "SELECT fullName FROM users");
+        return $result;
+    }
 
-    //     if (!$get_data) die("failed to get values users: ".pg_last_error());
 
-    //     $this->db->Disconnect();
+    public function isEmailExists($email){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
 
-    //     return $get_data;
-    // }
+        $get_data = pg_query($conn, "SELECT email FROM users WHERE email = '$email'");
 
-    // public function getAllUserEmails(){
-    //     $this->db->Connect();
-    //     $conn = $this->db->getDb();
+        if(pg_num_rows($get_data) > 0){
+            $this->db->Disconnect();
+            return true;
+        }
+        
+        $this->db->Disconnect();
+        echo "<script>console.log(false)</script>";
+        return false;
+    }
 
-    //     $get_data = pg_query($conn, "SELECT email FROM users");
+    public function isPhoneNumberExists($phoneNumber){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
 
-    //     if (!$get_data) die("failed to get values users: ".pg_last_error());
+        $get_data = pg_query($conn, "SELECT phone_number FROM users WHERE phone_number = '$phoneNumber'");
 
-    //     $this->db->Disconnect();
+        if(pg_num_rows($get_data) > 0){
+            $this->db->Disconnect();
+            return true;
+        }
+        
+        $this->db->Disconnect();
+        echo "<script>console.log(false)</script>";
+        return false;
+    }
 
-    //     return $get_data;
-    // }
 
-    // public function isEmailExists($email){
-    //     $this->db->Connect();
-    //     $conn = $this->db->getDb();
-
-    //     $get_data = pg_query($conn, "SELECT email FROM users WHERE email = '$email'");
-
-    //     // if (!$get_data) die("failed to get values users: ".pg_last_error());
-
-    //     $this->db->Disconnect();
-
-    //     return $get_data;
-    // }
-
-    // public function isUnameExists($uname){
-    //     $this->db->Connect();
-    //     $conn = $this->db->getDb();
-
-    //     $get_data = pg_query($conn, "SELECT full_name FROM users WHERE full_name = '$uname'");
-
-    //     // if (!$get_data) die("failed to get values users: ".pg_last_error());
-
-    //     $this->db->Disconnect();
-
-    //     return $get_data;
-    // }
 
 }
