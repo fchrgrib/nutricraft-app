@@ -15,6 +15,8 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: nutrilife
       DB_PORT: 5432
+    volumes:
+      - "./:/app"
 
   postgres:
     image: postgres:latest
