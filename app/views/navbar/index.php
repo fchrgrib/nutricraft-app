@@ -12,9 +12,15 @@
             <div id="buttons">
                 <button class="hamburger">&#9776;</button>
                 <img id="logo" src="../../../assets/NutriCraft.svg" alt="">
-                <button type="button" class="home">Home</button>
-                <button type="button" class="meals">Meals</button>
-                <button type="button" class="fact">Fact</button>
+                <a href="/?home">
+                    <button type="button" class="home">Home</button>
+                </a>
+                <a href="/?meals">
+                    <button type="button" class="meals">Meals</button>
+                </a>
+                <a href="/?fact">
+                    <button type="button" class="fact">Fact</button>
+                </a>
             </div>
             <div id="login">
                 <a href="/?login">
