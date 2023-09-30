@@ -168,6 +168,44 @@ body{
     font-size: 14px; /* Adjust the font size to your preference */
 }
 
+.phonenumbercontainer{
+    border: 1px solid #000000;
+    width: 300px;
+    border-radius: 10px;
+    transition: border-color 0.3s ease-in-out, transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 15px;
+}
+
+.phonenumbercontainer:hover{
+    border: 1px solid #288990;
+    transform: scale(1.001); /* Slightly scale up on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle shadow on hover */
+}
+
+.phonenumbercontainer:focus-within{
+    border: 1px solid #288990;
+    transform: scale(1.001); /* Slightly scale up on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle shadow on hover */
+}
+
+.phonenumbercontainer i{
+    margin-left: 5px;
+    margin-top: 5px;
+    color: #000000;
+}
+
+.phonenumberinput{
+    border: none;
+    width: 250px;
+    height: 20px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    font-size: 20px;
+    outline: none; 
+    transition: border-color 0.3s ease-in-out;
+    font-size: 14px;
+}
+
 .passwordcontainer{
     border: 1px solid #000000;
     width: 300px;

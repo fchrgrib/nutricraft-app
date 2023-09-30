@@ -77,6 +77,28 @@ class Database
         }
 
 
+        //Check if admin exist
+        $check_admin = pg_query($this->db, "SELECT * FROM users WHERE roles = 'admin'");
+        if(pg_num_rows($check_admin) == 0){
+            echo "<script>console.log('admin not exist')</script>";
+
+            //Create admin if not exist
+            $curr = date('Y-m-d H:i:s');
+            $insert_data = pg_query($this->db, "INSERT INTO 
+                                    users(full_name,password,id_photo_profile,phone_number,roles,email,created_at)
+                                    VALUES('admin','123',1,'111','admin','admin@gmail.com','$curr')");
+    
+            if (!$insert_data){
+                die("failed to insert admin: ".pg_last_error());
+            } else{
+                echo "<script>console.log('successfully insert user')</script>";
+            }
+        }else{
+            echo "<script>console.log('admin exist')</script>";
+        }
+
+
+
     }
 
     public function Disconnect(){

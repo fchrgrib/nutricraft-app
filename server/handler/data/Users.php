@@ -18,15 +18,14 @@ class Users
         return $this->db;
     }
 
-    public function Insert($name, $email, $phoneNumber, $password){
+    public function Insert($name, $email, $phoneNumber, $password, $roles){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
-        $rolessss = 'user';
 
         $insert_data = pg_query($conn, "INSERT INTO 
                                 users(full_name,password,id_photo_profile,phone_number,roles,email,created_at)
-                                VALUES('$name','$password',1,'$phoneNumber','$rolessss','$email','$curr')");
+                                VALUES('$name','$password',1,'$phoneNumber','$roles','$email','$curr')");
 
         if (!$insert_data) die("failed to insert values: ".pg_last_error());
 
@@ -102,9 +101,7 @@ class Users
                 'created_at' => $row['created_at']
             );
         }
-
         $this->db->Disconnect();
-
         return $result;
     }
 
@@ -123,6 +120,20 @@ class Users
         $this->db->Disconnect();
 
         return $result;
+    }
+
+    public function Login($email, $password){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+        echo "<script>console.log('$email $password')</script>";
+
+        $exec = pg_query_params($conn, "SELECT * FROM users WHERE email = $1 AND password = $2", array($email, $password));
+        if(pg_num_rows($exec) > 0){
+            $this->db->Disconnect();
+            return true;
+        }
+        $this->db->Disconnect();
+        return false;
     }
 
 
@@ -157,7 +168,6 @@ class Users
         echo "<script>console.log(false)</script>";
         return false;
     }
-
 
 
 }

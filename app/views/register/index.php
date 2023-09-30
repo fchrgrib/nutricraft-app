@@ -16,24 +16,29 @@
                 <h5>Already have an account? <a href="/?login">Login</a></h5>
             </div>
             <div class="forms">
-            <form action="">
+            <form action="../../../api/auth/Register.php" method="POST">
             <h4>Name</h4>
             <div class="namecontainer">
                 <i class="fas fa-user"></i>
-                <input class="nameinput" type="text" placeholder="Email">
+                <input class="nameinput" type="text" placeholder="Name" name="uname" required>
             </div>
             <h4>Email</h4>
             <div class="emailcontainer">
                 <i class="fas fa-envelope"></i>
-                <input class="emailinput" type="text" placeholder="Email">
+                <input class="emailinput" type="text" placeholder="Email" name="email"required>
+            </div>
+            <h4>Phone Number</h4>
+            <div class="phonenumbercontainer">
+                <i class="fas fa-phone"></i>
+                <input class="phonenumberinput" type="text" placeholder="Phone Number" name="phoneNumber" required>
             </div>
             <h4>Password</h4>
             <div class="passwordcontainer">
                 <i class="fas fa-lock"></i>
-                <input class="passwordinput" type="text" placeholder="Password">
+                <input class="passwordinput" type="password" placeholder="Password" name="psw" required>
             </div>
+            <button type="submit" class="register">Register</button>
             </form>
-            <button type="button" class="register">Register</button>
             </div>
         </div> 
     </div>
