@@ -57,7 +57,7 @@ class File
 
         if (!$delete_data) die("failed to delete values: ".pg_last_error());
 
-        echo "<script>console.log('successfully delete content')</script>";
+        echo "<script>console.log('successfully delete file')</script>";
 
         $this->db->Disconnect();
     }
