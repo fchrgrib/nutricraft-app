@@ -105,6 +105,18 @@ class Users
         return $result;
     }
 
+    public function FindIdByEmail($email){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+
+        $exec = pg_query_params($conn, "SELECT id FROM users WHERE email = $1 ORDER BY created_at", array($email));
+        $result = pg_fetch_assoc($exec);
+
+        $this->db->Disconnect();
+
+        return $result['id'];
+    }
+
     public function FindUnamebyId($id){
         $this->db->Connect();
         $conn = $this->db->getDb();

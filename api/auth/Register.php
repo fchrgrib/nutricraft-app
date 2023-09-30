@@ -26,6 +26,8 @@ if (isset($_POST['uname']) && isset($_POST['psw']) && isset($_POST['email']) && 
     $email = $_POST['email'];
     $phoneNumber = $_POST['phoneNumber'];
     $user->Insert($username, $email, $phoneNumber, $password,"user");
+    $id = $user->FindIdByEmail($email);
+    mkdir("../../assets/user/$id",0777,true);
     echo "<script>alert('registrasi berhasil')</script>";
     echo "<script>location.href='../../index.php'</script>";
 }
