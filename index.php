@@ -1,30 +1,29 @@
 <?php
+if(!session_id()) session_start();
 
-//use data\Content;
-//
-//require_once "server/handler/data/Content.php";
-//require_once "server/db/Database.php";
-//
-//
-//$test = new Content();
-//$db = new Database();
-//$curr = date('Y-m-d H:i:s');
-//
-//$db->Connect();
-//$conn = $db->getDb();
-//
-//
-//pg_query_params($conn,"INSERT INTO file(name,path,url,type_content,created_at,updated_at) VALUES($1,$2,$3,$4,$5,$6)",array("sgdfgfdgd","sgdfdhd","dhdfhfdh","drhdfhdhf",$curr,$curr));
-//
-//$test->Insert("aku","gatau",1);
-//$test->Insert("aku selama ini","aaaaaaaaaa",1);
-//$test->Insert("selama aku ini","aaaaaaaaaa",1);
-//$test->Insert("ini selama aku","aaaaaaaaaa",1);
-//$test->Delete(3);
-//$check = $test->FindByTitle("aku");
-//
-//for ($i = 0;$i<sizeof($check);$i++){
-//    $ress = $check[$i];
-//    echo "id: ".$ress['id']." title: ".$ress['title']." body: ".$ress['body']." id_file: ".$ress['id_file']." created_at: ".$ress['created_at']." updated_at: ".$ress['updated_at']."<br>";
-//}
+require_once 'app/init.php';
+$app = new App;
 
+?>
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NutriCraft</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+</html>
