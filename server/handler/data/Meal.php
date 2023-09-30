@@ -6,42 +6,46 @@ use Database;
 
 require_once "server/db/Database.php";
 
-class Content
+class Meal
 {
+
     private $db;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new Database();
     }
 
-    public function Insert($title, $body, $id_file){
+    public function Insert($title, $highlight, $description, $id_ingredients){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
         $insert_data = pg_query_params($conn, "INSERT INTO 
-                                content(title,body,id_file,created_at,updated_at)
-                                VALUES($1,$2,$3,$4,$5)",array($title,$body,$id_file,$curr,$curr));
+                                    meals(title,highlight,description,id_ingerdients,created_at,updated_at)
+                                    VALUES($1,$2,$3,$4,$5,%6)
+                                    ", array($title,$highlight,$description,$id_ingredients,$curr,$curr));
 
         if (!$insert_data) die("failed to insert values: ".pg_last_error());
 
-        echo "<script>console.log('successfully insert content')</script>";
+        echo "<script>console.log('successfully insert meal')</script>";
 
         $this->db->Disconnect();
     }
 
-    public function Update($id,$title, $body, $id_file){
+    public function Update($id, $title, $highlight, $description, $id_ingredients){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
-        $update_data = pg_query_params($conn, "UPDATE content
-                                SET title = $2, body = $3, id_file = $4, updated_at = $5
-                                WHERE id = $1", array($id,$title, $body, $id_file, $curr));
+        $update_data = pg_query_params($conn, "UPDATE meals SET title = $2,
+                                      highlight = $3, description = $4, id_ingredients = $5, updated_at = $6
+                                      WHERE id = $1
+                                      ", array($id,$title,$highlight,$description,$id_ingredients,$curr));
 
         if (!$update_data) die("failed to update values: ".pg_last_error());
 
-        echo "<script>console.log('successfully update content')</script>";
+        echo "<script>console.log('successfully update meals')</script>";
 
         $this->db->Disconnect();
     }
@@ -50,29 +54,29 @@ class Content
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $delete_data = pg_query($conn, "DELETE FROM content WHERE id = $id");
+        $delete_data = pg_query_params($conn, "DELETE FROM meals WHERE id = $1", array($id));
 
         if (!$delete_data) die("failed to delete values: ".pg_last_error());
 
-        echo "<script>console.log('successfully delete content')</script>";
+        echo "<script>console.log('successfully delete meal')</script>";
 
         $this->db->Disconnect();
     }
-
 
     public function FindAll(){
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query($conn, "SELECT * FROM content ORDER BY created_at");
+        $exec = pg_query($conn, "SELECT * FROM meals ORDER BY updated_at");
+
         $result = array();
 
         while ($row = pg_fetch_assoc($exec)){
             $result[] = array(
                 'id' => $row['id'],
                 'title' => $row['title'],
-                'id_file' => $row['id_file'],
-                'body' => $row['body'],
+                'highlight' => $row['highlight'],
+                'description' => $row['description'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
@@ -87,15 +91,16 @@ class Content
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query_params($conn, "SELECT * FROM content WHERE id = $1 ORDER BY updated_at",array($id));
+        $exec = pg_query_params($conn, "SELECT * FROM meals WHERE id = $1 ORDER BY updated_at", array($id));
+
         $result = array();
 
         while ($row = pg_fetch_assoc($exec)){
             $result[] = array(
                 'id' => $row['id'],
                 'title' => $row['title'],
-                'id_file' => $row['id_file'],
-                'body' => $row['body'],
+                'highlight' => $row['highlight'],
+                'description' => $row['description'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
@@ -110,15 +115,16 @@ class Content
         $this->db->Connect();
         $conn = $this->db->getDb();
 
+        $exec = pg_query($conn, "SELECT * FROM meals WHERE title LIKE '%$title%' ORDER BY updated_at");
+
         $result = array();
-        $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '%$title%' ORDER BY created_at");
 
         while ($row = pg_fetch_assoc($exec)){
             $result[] = array(
                 'id' => $row['id'],
                 'title' => $row['title'],
-                'id_file' => $row['id_file'],
-                'body' => $row['body'],
+                'highlight' => $row['highlight'],
+                'description' => $row['description'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
