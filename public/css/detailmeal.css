@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+*{
+    font-family: 'Nunito', sans-serif;
+}
+
+.content {
+    margin: auto;
+    width: 80%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+}
+
+.foodimage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.foodimage img {
+    margin-left: 50px;
+    width: 75%;
+    height: 70%;
+    margin-bottom: 20px;
+}
+
+.foodimage h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.nutritionfacts {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-bottom : 20px;
+    /* drop shadow */
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.nutritionfacts div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    width: 80px;
+    height: 75px;
+    border-radius: 20px;
+    border : 1px solid #BA540B;
+    padding-bottom: 5px;
+    
+}
+
+.nutritionfacts div h5 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #BA540B;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.nutritionfacts div p {
+    font-size: 12px;
+    font-weight: 300;
+    color: #000000;
+    margin-top: 0;
+
+    padding: 0;
+}
+
+.foodcontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+    max-width: 475.43;
+}
+
+.foodcontent p, .foodcontent h3 {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.foodtitle h3 {
+    margin: 0;
+    color: #BA540B;
+}
+
+.foodtitle h1 {
+    margin: 0;
+}
+
+.ingredients li{
+    margin-bottom: 5px;
+}
