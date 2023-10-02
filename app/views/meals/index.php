@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script defer src="../../../public/js/meals.js"></script>
     <title>NutriCraft</title>
 </head>
+
 <body>
     <div>
         <div class="content">
@@ -24,75 +26,92 @@
                     <button type="button" class="dinner">Dinner</button>
                 </div>
                 <script>
-                    // Get all the buttons
-                    const buttons = document.querySelectorAll('.buttons button');
+                // Get all the buttons
+                const buttons = document.querySelectorAll('.buttons button');
 
-                    // Add click event listeners to each button
-                    buttons.forEach(button => {
-                        button.addEventListener('click', () => {
-                            // Remove the 'selected' id from the currently selected button
-                            const currentlySelectedButton = document.querySelector('#selected');
-                            currentlySelectedButton.removeAttribute('id');
+                // Add click event listeners to each button
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Remove the 'selected' id from the currently selected button
+                        const currentlySelectedButton = document.querySelector('#selected');
+                        currentlySelectedButton.removeAttribute('id');
 
-                            // Add the 'selected' id to the clicked button
-                            button.id = 'selected';
+                        // Add the 'selected' id to the clicked button
+                        button.id = 'selected';
 
-                            // Optionally, you can add a CSS class to style the selected button
-                            buttons.forEach(btn => btn.classList.remove('selected'));
-                            button.classList.add('selected');
-                        });
+                        // Optionally, you can add a CSS class to style the selected button
+                        buttons.forEach(btn => btn.classList.remove('selected'));
+                        button.classList.add('selected');
                     });
+                });
                 </script>
             </div>
-        <div class="cardmeal" id="meal-card">
-            <div class="cardmealimage">
-                <img src="../../../assets/meal.jpg" alt="">
+            <?php
+                // meals/index.php
+
+                // Assuming $data is an array of meal data returned from the controller
+                foreach ($data as $meal) {
+                    echo "Meal ID: " . $meal['id'] . "<br>";
+                    echo "Title: " . $meal['title'] . "<br>";
+                    echo "Highlight: " . $meal['highlight'] . "<br>";
+                    echo "Description: " . $meal['description'] . "<br>";
+                    echo "Type: " . $meal['type'] . "<br>";
+                    echo "Calorie: " . $meal['calorie'] . "<br>";
+                    echo "Created At: " . $meal['created_at'] . "<br>";
+                    echo "Updated At: " . $meal['updated_at'] . "<br>";
+                    echo "<hr>";
+                }
+            ?>
+
+            <div class="cardmeal" id="meal-card">
+                <div class="cardmealimage">
+                    <img src="../../../assets/meal.jpg" alt="">
+                </div>
+                <div class="card-meal__content">
+                    <div class="card-meal__content__title">
+                        <h3>Chicken Salad</h3>
+                    </div>
+                    <div class="card-meal__content__description">
+                        <p>Chicken, Lettuce, Tomato, Onion, Cucumber, Olive Oil, Salt, Pepper</p>
+                    </div>
+                    <div class="card-meal__content__calories">
+                        <p>Calories: 300</p>
+                    </div>
+                </div>
             </div>
-            <div class="card-meal__content">
-                <div class="card-meal__content__title">
-                    <h3>Chicken Salad</h3>
+            <div class="cardmeal" id="meal-card">
+                <div class="cardmealimage">
+                    <img src="../../../assets/meal.jpg" alt="">
                 </div>
-                <div class="card-meal__content__description">
-                    <p>Chicken, Lettuce, Tomato, Onion, Cucumber, Olive Oil, Salt, Pepper</p>
+                <div class="card-meal__content">
+                    <div class="card-meal__content__title">
+                        <h3>Chicken Salad</h3>
+                    </div>
+                    <div class="card-meal__content__description">
+                        <p>Chicken, Lettuce, Tomato, Onion, Cucumber, Olive Oil, Salt, Pepper</p>
+                    </div>
+                    <div class="card-meal__content__calories">
+                        <p>Calories: 300</p>
+                    </div>
                 </div>
-                <div class="card-meal__content__calories">
-                    <p>Calories: 300</p>
+            </div>
+            <div class="cardmeal" id="meal-card">
+                <div class="cardmealimage">
+                    <img src="../../../assets/meal.jpg" alt="">
+                </div>
+                <div class="card-meal__content">
+                    <div class="card-meal__content__title">
+                        <h3>Chicken Salad</h3>
+                    </div>
+                    <div class="card-meal__content__description">
+                        <p>Chicken, Lettuce, Tomato, Onion, Cucumber, Olive Oil, Salt, Pepper</p>
+                    </div>
+                    <div class="card-meal__content__calories">
+                        <p>Calories: 300</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="cardmeal" id="meal-card">
-            <div class="cardmealimage">
-                <img src="../../../assets/meal.jpg" alt="">
-            </div>
-            <div class="card-meal__content">
-                <div class="card-meal__content__title">
-                    <h3>Chicken Salad</h3>
-                </div>
-                <div class="card-meal__content__description">
-                    <p>Chicken, Lettuce, Tomato, Onion, Cucumber, Olive Oil, Salt, Pepper</p>
-                </div>
-                <div class="card-meal__content__calories">
-                    <p>Calories: 300</p>
-                </div>
-            </div>
-        </div>
-        <div class="cardmeal" id="meal-card">
-            <div class="cardmealimage">
-                <img src="../../../assets/meal.jpg" alt="">
-            </div>
-            <div class="card-meal__content">
-                <div class="card-meal__content__title">
-                    <h3>Chicken Salad</h3>
-                </div>
-                <div class="card-meal__content__description">
-                    <p>Chicken, Lettuce, Tomato, Onion, Cucumber, Olive Oil, Salt, Pepper</p>
-                </div>
-                <div class="card-meal__content__calories">
-                    <p>Calories: 300</p>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
     <div class="filtersort">
         <div class="sort">
@@ -100,15 +119,15 @@
                 <img src="../../../assets/sort.png" alt="">
                 <h3>Sort</h3>
             </div>
-            <div class= "sortmenus">
+            <div class="sortmenus">
                 <div class="selectcontainer">
-                <label for="sorttitle">Sort By</label>
+                    <label for="sorttitle">Sort By</label>
                 </div>
-                    <select name="sortby" id="pet-select">
-                        <option value="Alphabet" class="alpha">Alphabet</option>
-                        <option value="Calories: low to high">Calories: low to high</option>
-                        <option value="Calories: high to low">Calories: high to low</option>
-                    </select>
+                <select name="sortby" id="pet-select">
+                    <option value="Alphabet" class="alpha">Alphabet</option>
+                    <option value="Calories: low to high">Calories: low to high</option>
+                    <option value="Calories: high to low">Calories: high to low</option>
+                </select>
             </div>
         </div>
         <div class="filter">
@@ -119,21 +138,24 @@
             <div class="range_container">
                 <div class="range_container__title">Calories</div>
                 <div class="sliders_control">
-                    <input id="fromSlider" type="range" value="10" min="0" max="1600"/>
-                    <input id="toSlider" type="range" value="10000" min="0" max="1600"/>
+                    <input id="fromSlider" type="range" value="10" min="0" max="1600" />
+                    <input id="toSlider" type="range" value="10000" min="0" max="1600" />
                 </div>
                 <div class="form_control">
                     <div class="form_control_container">
                         <div class="form_control_container__time">Min</div>
-                        <input class="form_control_container__time__input" type="number" id="fromInput" value="10" min="0" max="1600"/>
+                        <input class="form_control_container__time__input" type="number" id="fromInput" value="10"
+                            min="0" max="1600" />
                     </div>
                     <div class="form_control_container">
                         <div class="form_control_container__time">Max</div>
-                        <input class="form_control_container__time__input" type="number" id="toInput" value="1600" min="0" max="1600"/>
+                        <input class="form_control_container__time__input" type="number" id="toInput" value="1600"
+                            min="0" max="1600" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>

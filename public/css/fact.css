@@ -103,6 +103,10 @@
 }
 
 .video-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
@@ -112,5 +116,5 @@
 .video-content iframe {
     width: 95%;
     height: 30vw;
-    margin: 23px;
+    /* margin: 23px; */
 }

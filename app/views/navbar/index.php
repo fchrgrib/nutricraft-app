@@ -24,17 +24,34 @@
                 </a>
             </div>
             <div id="login">
-                <?php
-                    if (isset($_SESSION['email'])) {
-                        echo '<a href="/logout">
-                                <button type="button" class="logout">Logout</button>
-                            </a>';
-                    } else {
-                        echo '<a href="/?login">
-                                    <button type="button" class="login">Login</button>
-                                </a>';
-                    }
-                ?>
+            <?php
+// Check if the "user" cookie is set
+if (isset($_COOKIE['user'])) {
+    // Get the "user" cookie value
+    $userCookie = $_COOKIE['user'];
+
+    // Attempt to decode the JSON data from the cookie
+    $userData = json_decode($userCookie);
+
+    // Check if the JSON decoding was successful and if it's an array
+    if ($userData !== null && is_array($userData) && count($userData) > 0) {
+        // Access the "full_name" field from the decoded JSON
+        $fullName = $userData[0]->full_name;
+
+        // Display the full name
+        echo '<span>Welcome, ' . $fullName . '</span>
+        <img s';
+    } else {
+        // Handle the case where the cookie doesn't contain valid JSON or is empty
+        echo '<span>Invalid user data</span>';
+    }
+} else {
+    // Handle the case where the "user" cookie is not set
+    echo '<span>User not logged in</span>';
+}
+?>
+
+
             </div>
         </div>
         <div id="mobile-menu" class="hidden">
