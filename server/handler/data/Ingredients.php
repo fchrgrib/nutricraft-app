@@ -6,6 +6,8 @@ use Database;
 
 require_once "server/db/Database.php";
 
+/**TODO INSERT UPDATE FOREIGN KEY TO ID MEALS**/
+
 class Ingredients
 {
     private $db;

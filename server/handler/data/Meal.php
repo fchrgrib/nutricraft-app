@@ -6,6 +6,8 @@ use Database;
 
 require_once "server/db/Database.php";
 
+/**TODO DELETE ALL ID MEALS**/
+
 class Meal
 {
 

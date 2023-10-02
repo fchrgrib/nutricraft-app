@@ -43,9 +43,10 @@ class Database
             echo "<script>console.log('table user successfully created')</script>";
         }
         $create_table_content = pg_query($this->db, "CREATE TABLE IF NOT EXISTS
-                                        content(id SERIAL PRIMARY KEY, title VARCHAR(225), id_file SERIAL,
-                                        body VARCHAR(5000),created_at TIME, updated_at TIME,
-                                        FOREIGN KEY (id_file) REFERENCES file(id) ON DELETE SET NULL ON UPDATE CASCADE)
+                                        content(id SERIAL PRIMARY KEY, title VARCHAR(225), id_file SERIAL, id_photo_highlight SERIAL,
+                                        body VARCHAR(5000),highlight VARCHAR(2000),created_at TIME, updated_at TIME,
+                                        FOREIGN KEY (id_file) REFERENCES file(id) ON DELETE SET NULL ON UPDATE CASCADE,
+                                        FOREIGN KEY (id_photo_highlight) REFERENCES file(id) ON DELETE SET NULL ON UPDATE CASCADE)
                                         ");
         if(!$create_table_content) {
             die("failed to create table content: " . pg_last_error());
@@ -54,20 +55,10 @@ class Database
         }
 
 
-        $create_table_ingredients = pg_query($this->db, "CREATE TABLE IF NOT EXISTS
-                                      ingredients(id SERIAL PRIMARY KEY, ingredient VARCHAR(225), description VARCHAR(225))
-                                      ");
-
-        if (!$create_table_ingredients){
-            die("failed to create table ingredients: " . pg_last_error());
-        } else {
-            echo "<script>console.log('table ingredients successfully created')</script>";
-        }
 
         $create_table_meals = pg_query($this->db,"CREATE TABLE IF NOT EXISTS
                                       meals(id SERIAL PRIMARY KEY, title VARCHAR(225), highlight VARCHAR(1000),
-                                      description VARCHAR(5000), type VARCHAR(225),calorie int, id_ingredients SERIAL, created_at TIME, updated_at TIME,
-                                      FOREIGN KEY (id_ingredients) REFERENCES ingredients(id) ON UPDATE CASCADE ON DELETE SET NULL)
+                                      description VARCHAR(5000), type VARCHAR(225),calorie int, created_at TIME, updated_at TIME,)
         ");
 
         if (!$create_table_meals){
@@ -76,6 +67,16 @@ class Database
             echo "<script>console.log('table meals successfully created')</script>";
         }
 
+        $create_table_ingredients = pg_query($this->db, "CREATE TABLE IF NOT EXISTS
+                                      ingredients(id SERIAL PRIMARY KEY, ingredient VARCHAR(225), description VARCHAR(225), id_meals SERIAL,
+                                      FOREIGN KEY (id_meals) REFERENCES meals(id) ON UPDATE CASCADE ON DELETE SET NULL)
+                                      ");
+
+        if (!$create_table_ingredients){
+            die("failed to create table ingredients: " . pg_last_error());
+        } else {
+            echo "<script>console.log('table ingredients successfully created')</script>";
+        }
 
         $check_file = pg_query($this->db, "SELECT * FROM file WHERE name = 'default' AND type_content = 'photo'");
         if (pg_num_rows($check_file) == 0){
