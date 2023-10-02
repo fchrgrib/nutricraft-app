@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="NutriCraft" content="width=device-width, initial-scale=1.0">
     <!-- include css -->
+
     <link rel="stylesheet" href="../../../public/css/home.css">
     <title>NutriCraft</title>
 </head>
@@ -22,6 +23,5 @@
             </div>
         </div>
     </div>
-    
 </body>
 </html>

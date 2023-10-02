@@ -4,6 +4,10 @@
     font-family: 'Nunito', sans-serif;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 .homecontent{
     margin-top: 20px;
     display: flex;
@@ -52,12 +56,45 @@
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 }
 
-.image{
-    display: absolute;
+
+.image img {
+    width: 700px;
+    height: 400px;
+    transform: rotate(30deg);
+    transition: transform 4s;
 }
 
-.image img{
-    width:  700px;
-    height: 400px;
-    transform: rotate(10deg);
+.image:hover img {
+    animation: rotateBackAndForth 4s ease infinite alternate;
 }
+
+@keyframes rotateBackAndForth {
+    0% {
+        transform: rotate(30deg);
+    }
+    100% {
+        transform: rotate(-45deg);
+    }
+}
+
+@media (max-width: 668px) {
+    /* hide image */
+    .image img {
+        display: none;
+    }
+    /* margin tagline set */
+    .tagline{
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
+
+
+
+
+
+
+
+
+

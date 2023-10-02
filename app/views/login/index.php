@@ -16,17 +16,16 @@
                 <h5>Don't have an account? <a href="/?register">Register</a></h5>
             </div>
             <div class="forms">
-                <form action="../../../api/auth/Login.php" method="POST">
-                <h4>Email</h4>
-                <div class="emailcontainer">
-                    <i class="fas fa-envelope"></i>
-                    <input class="emailinput" type="text" placeholder="Email" name="emailLog" required>
-                </div>
-                <h4>Password</h4>
-                <div class="passwordcontainer">
-                    <i class="fas fa-lock"></i>
-                    <input class="passwordinput" type="text" placeholder="Password" name="passLog" required>
-                </div>
+            <form action="../../../server/controller/auth/Login.php" method="POST">
+            <h4>Email</h4>
+            <div class="emailcontainer">
+                <i class="fas fa-envelope"></i>
+                <input class="emailinput" type="text" placeholder="Email" name="emailLog" required>
+            </div>
+            <h4>Password</h4>
+            <div class="passwordcontainer">
+                <i class="fas fa-lock"></i>
+                <input class="passwordinput" type="text" placeholder="Password" name="passLog" required>
             </div>
             <button type="submit" class="login">Login</button>
             </form>

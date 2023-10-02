@@ -14,15 +14,15 @@ class File
         $this->db = new Database();
     }
 
-    public function Insert($name, $path, $url, $type_content){
+    public function Insert($name, $path, $type_content){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
         $insert_data = pg_query_params($conn, "INSERT INTO
-                                file(name,path,url,type_content,created_at,updated_at)
-                                VALUES ($1,$2,$3,$4,$5,$6)",
-                                array($name,$path,$url,$type_content,$curr,$curr)
+                                file(name,path,type_content,created_at,updated_at)
+                                VALUES ($1,$2,$3,$4,$5)",
+                                array($name,$path,$type_content,$curr,$curr)
         );
 
         if (!$insert_data) die("failed to insert values: ".pg_last_error());
@@ -32,15 +32,15 @@ class File
         $this->db->Disconnect();
     }
 
-    public function Update($id, $name, $path, $url, $type_content){
+    public function Update($id, $name, $path, $type_content){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
         $update_data = pg_query_params($conn, "UPDATE file SET name = $2,
-                                    path = $3, url = $4, type_content = $5, updated_at = $6
+                                    path = $3, type_content = $4, updated_at = $5
                                     WHERE id = $1
-                                    ", array($id,$name,$path,$url,$type_content,$curr));
+                                    ", array($id,$name,$path,$type_content,$curr));
 
         if (!$update_data) die("failed to update values: ".pg_last_error());
 
@@ -74,7 +74,6 @@ class File
                 'id' => $row['id'],
                 'name' => $row['name'],
                 'path' => $row['path'],
-                'url' => $row['url'],
                 'type_content' => $row['type_content'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
@@ -98,7 +97,6 @@ class File
                 'id' => $row['id'],
                 'name' => $row['name'],
                 'path' => $row['path'],
-                'url' => $row['url'],
                 'type_content' => $row['type_content'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']

@@ -105,6 +105,8 @@ class Users
         return $result;
     }
 
+    
+
     public function FindIdByEmail($email){
         $this->db->Connect();
         $conn = $this->db->getDb();
@@ -115,6 +117,18 @@ class Users
         $this->db->Disconnect();
 
         return $result['id'];
+    }
+
+    public function FindRoleByEmail($email){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+
+        $exec = pg_query_params($conn, "SELECT roles FROM users WHERE email = $1 ORDER BY created_at", array($email));
+        $result = pg_fetch_assoc($exec);
+
+        $this->db->Disconnect();
+
+        return $result['roles'];
     }
 
     public function FindUnamebyId($id){
