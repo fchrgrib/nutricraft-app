@@ -37,9 +37,9 @@
                 <i class="fas fa-lock"></i>
                 <input class="passwordinput" type="password" placeholder="Password" name="psw" required>
             </div>
-            <button type="submit" class="register">Register</button>
-            </form>
-            </div>
+        </div>
+        <button type="submit" class="register">Register</button>
+        </form>
         </div> 
     </div>
 </body>

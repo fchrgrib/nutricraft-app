@@ -93,7 +93,7 @@ const mealCard = document.getElementById("meal-card");
 mealCard.addEventListener("click", function() {
     // Handle the click event here
     // For example, you can perform an action when the card is clicked
-    window.location.href = "/?login";
+    window.location.href = "/?detailmeal";
 });
 
 

@@ -27,10 +27,9 @@
                 <i class="fas fa-lock"></i>
                 <input class="passwordinput" type="text" placeholder="Password" name="passLog" required>
             </div>
-            <button type="submit" class="login">Login</button>
-            </form>
-            </div>
         </div> 
+        <button type="submit" class="login">Login</button>
+        </form>
     </div>
 </body>
 </html>
