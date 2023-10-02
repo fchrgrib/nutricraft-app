@@ -89,15 +89,19 @@ class Users
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query_params($conn, "SELECT * FROM users WHERE id = $1 ORDER BY created_at", array($id));
+        $exec = pg_query_params($conn, "SELECT
+                                u.id as user_id, u.full_name as full_name, u.email as email,
+                                u.phone_number as phone_number, u.roles as roles, f.path as photo_profile, u.created_at as created_at
+                                FROM users u JOIN file f ON f.id = u.id_photo_profile WHERE u.id = $1 ORDER BY u.created_at", array($id));
         $result = array();
         while ($row = pg_fetch_assoc($exec)) {
             $result[] = array(
-                'id' => $row['id'],
+                'id' => $row['user_id'],
                 'full_name' => $row['full_name'],
                 'email' => $row['email'],
                 'phone_number' => $row['phone_number'],
                 'roles' => $row['roles'],
+                'photo_profile' =>$row['photo_profile'],
                 'created_at' => $row['created_at']
             );
         }
