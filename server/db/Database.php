@@ -23,7 +23,7 @@ class Database
 
         $create_table_file = pg_query($this->db, "CREATE TABLE IF NOT EXISTS
                                         file(id SERIAL PRIMARY KEY, name VARCHAR(225),
-                                        path VARCHAR(225), url VARCHAR(225), type_content VARCHAR(225), created_at TIME, updated_at TIME)");
+                                        path VARCHAR(225), type_content VARCHAR(225), created_at TIME, updated_at TIME)");
 
         if (!$create_table_file){
             die("failed to create table file: " . pg_last_error());
@@ -76,6 +76,17 @@ class Database
             echo "<script>console.log('table meals successfully created')</script>";
         }
 
+
+        $check_file = pg_query($this->db, "SELECT * FROM file WHERE name = 'default' AND type_content = 'photo'");
+        if (pg_num_rows($check_file) == 0){
+            $curr = date('Y-m-d H:i:s');
+            $insert_data = pg_query($this->db, "INSERT INTO file VALUES(DEFAULT,'default','../../assets/user/default/default.svg','photo','$curr','$curr')");
+            if (!$insert_data){
+                die("failed to init photo profile");
+            }else{
+                echo "<script>console.log('successfully init photo profile')</script>";
+            }
+        }
 
         //Check if admin exist
         $check_admin = pg_query($this->db, "SELECT * FROM users WHERE roles = 'admin'");

@@ -16,7 +16,7 @@
                 <h5>Already have an account? <a href="/?login">Login</a></h5>
             </div>
             <div class="forms">
-            <form action="../../../api/auth/Register.php" method="POST">
+            <form action="../../../server/controller/auth/Register.php" method="POST">
             <h4>Name</h4>
             <div class="namecontainer">
                 <i class="fas fa-user"></i>

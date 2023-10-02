@@ -16,7 +16,7 @@
                 <h5>Don't have an account? <a href="/?register">Register</a></h5>
             </div>
             <div class="forms">
-            <form action="../../../api/auth/Login.php" method="POST">
+            <form action="../../../server/controller/auth/Login.php" method="POST">
             <h4>Email</h4>
             <div class="emailcontainer">
                 <i class="fas fa-envelope"></i>
