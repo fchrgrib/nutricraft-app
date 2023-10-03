@@ -22,15 +22,19 @@ class File
 
         $insert_data = pg_query_params($conn, "INSERT INTO
                                 file(name,path,type_content,created_at,updated_at)
-                                VALUES ($1,$2,$3,$4,$5)",
+                                VALUES ($1,$2,$3,$4,$5) RETURNING id",
                                 array($name,$path,$type_content,$curr,$curr)
         );
 
         if (!$insert_data) die("failed to insert values: ".pg_last_error());
 
+        $id = pg_fetch_assoc($insert_data);
+
         echo "<script>console.log('successfully insert file')</script>";
 
         $this->db->Disconnect();
+
+        return $id['id'];
     }
 
     public function Update($id, $name, $path, $type_content){

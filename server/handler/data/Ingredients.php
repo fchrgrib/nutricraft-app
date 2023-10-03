@@ -6,7 +6,6 @@ use Database;
 
 require_once "server/db/Database.php";
 
-/**TODO INSERT UPDATE FOREIGN KEY TO ID MEALS**/
 
 class Ingredients
 {
@@ -17,21 +16,25 @@ class Ingredients
     }
 
 
-    public function Insert($ingredient, $description){
+    public function Insert($ingredient, $description, $id_meals){
         $this->db->Connect();
         $conn = $this->db->getDb();
 
         $insert_data = pg_query_params($conn, "INSERT INTO
-                                ingredients(ingredient,description)
-                                VALUES ($1,$2)",
-            array($ingredient, $description)
+                                ingredients(id,ingredient,description,id_meals)
+                                VALUES (DEFAULT,$1,$2,$3) RETURNING id",
+            array($ingredient, $description, $id_meals)
         );
 
         if (!$insert_data) die("failed to insert values: ".pg_last_error());
 
+        $id = pg_fetch_assoc($insert_data);
+
         echo "<script>console.log('successfully insert ingredients')</script>";
 
         $this->db->Disconnect();
+
+        return $id['id'];
     }
 
     public function Update($id, $ingredient, $description){
@@ -88,6 +91,26 @@ class Ingredients
         $conn = $this->db->getDb();
 
         $exec = pg_query_params($conn, "SELECT * FROM ingredients WHERE id = $1 ORDER BY created_at", array($id));
+        $result = array();
+
+        while($row = pg_fetch_assoc($exec)){
+            $result[] = array(
+                'id' => $row['id'],
+                'ingredient' => $row['ingredient'],
+                'description' => $row['description']
+            );
+        }
+
+        $this->db->Disconnect();
+
+        return $result;
+    }
+
+    public function FindByMeals($idMeals){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+
+        $exec = pg_query_params($conn, "SELECT * FROM ingredients WHERE id_meals = $1 ORDER BY created_at", array($idMeals));
         $result = array();
 
         while($row = pg_fetch_assoc($exec)){

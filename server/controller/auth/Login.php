@@ -12,7 +12,7 @@ if(isset($_POST['emailLog']) && isset($_POST['passLog'])){
     $password = $_POST['passLog'];
     echo "<script>console.log('$email, $password')</script>";
     $temp = $user->FindById($user->FindIdByEmail($email));
-    $ini = json_encode($temp[0]);
+    $ini = json_encode($temp);
     
     if($user->Login($email, $password)){
         $temp = $user->FindById($user->FindIdByEmail($email));
