@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../public/css/register.css">
+    <script src="../../../public/js/register.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Register: create account NutriCraft</title>
 </head>
@@ -23,22 +24,24 @@
                 <input class="nameinput" type="text" placeholder="Name" name="uname" required>
             </div>
             <h4>Email</h4>
-            <div class="emailcontainer">
+            <div class="emailcontainer" id="emailcontainer">
                 <i class="fas fa-envelope"></i>
-                <input class="emailinput" type="text" placeholder="Email" name="email"required>
+                <input class="emailinput" type="email" placeholder="Email" name="email" id="email" onchange=validateEmail() required>
             </div>
+            <p id="emailInvalid"></p>
             <h4>Phone Number</h4>
-            <div class="phonenumbercontainer">
+            <div class="phonenumbercontainer" id="phonenumbercontainer">
                 <i class="fas fa-phone"></i>
-                <input class="phonenumberinput" type="text" placeholder="Phone Number" name="phoneNumber" required>
+                <input class="phonenumberinput" type="text" placeholder="Phone Number" name="phoneNumber" id="phoneNumber" onchange=validatePhoneNumber() required>
             </div>
+            <p id="phoneNumberInvalid"></p>
             <h4>Password</h4>
             <div class="passwordcontainer">
                 <i class="fas fa-lock"></i>
-                <input class="passwordinput" type="password" placeholder="Password" name="psw" required>
+                <input class="passwordinput" type="password" placeholder="Password" name="psw"  required>
             </div>
         </div>
-        <button type="submit" class="register">Register</button>
+        <button type="submit" class="register" id="registerButton">Register</button>
         </form>
         </div> 
     </div>

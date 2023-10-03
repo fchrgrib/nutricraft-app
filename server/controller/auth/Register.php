@@ -6,19 +6,25 @@ use data\Users;
 require_once('../../handler/data/Users.php');
 require_once('../../db/Database.php');
 
+$data = json_decode(file_get_contents("php://input"),true);
 $user = new Users();
 
-if($user->isEmailExists($_POST['email'])){
-    echo "<script>alert('email sudah terdaftar')</script>";
-    echo "<script>location.href='/?home'</script>";
-    die();
+if(isset($data['email'])){
+    if($user->isEmailExists($data['email'])){
+        echo json_encode(array('status'=>'ERROR','message' => 'Email sudah terdaftar'));
+    }else{
+        echo json_encode(array('status'=>'OK','message' => 'Email tersedia'));
+    }
 }
 
-if($user->isPhoneNumberExists($_POST['phoneNumber'])){
-    echo "<script>alert('nomor telepon sudah terdaftar')</script>";
-    echo "<script>location.href='/?home'</script>";
-    die();
+if(isset($data['phoneNumber'])){
+    if($user->isPhoneNumberExists($data['phoneNumber'])){
+        echo json_encode(array('status'=>'ERROR','message' => 'Nomer telepon sudah terdaftar'));
+    }else{
+        echo json_encode(array('status'=>'OK','message' => 'Nomor telepon tersedia'));
+    }
 }
+
 
 if (isset($_POST['uname']) && isset($_POST['psw']) && isset($_POST['email']) && isset($_POST['phoneNumber'])) {
     $username = $_POST['uname'];
