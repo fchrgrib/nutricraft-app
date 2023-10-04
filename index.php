@@ -10,8 +10,8 @@ use data\Users;
 require_once 'server/db/Database.php';
 require_once 'server/handler/data/File.php';
 require_once 'server/handler/data/Users.php';
-//$db = new Database;
-//$db->Connect();
+$db = new Database;
+$db->Connect();
 //$file = new File;
 //if($file->FindById(1) == null){
 //  $file->Insert("defaultPhoto","assets/user/defaultPhoto.png","www.poto.com","png");

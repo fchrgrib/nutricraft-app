@@ -15,9 +15,15 @@
         <div class="content">
             <div class="header">
                 <h1>Meals</h1>
-                <div class="searchcontainer">
-                    <i class="fas fa-search"></i>
-                    <input class="searchinput" type="text" placeholder="Search">
+                <div class="filtersearch">
+                    <button type="button" class="filterbutton" id="toggleSidebar">
+                        <img src="../../../assets/filter.png" alt="">
+                        <h3>Filter</h3>
+                    </button>
+                    <div class="searchcontainer">
+                        <i class="fas fa-search"></i>
+                        <input class="searchinput" type="text" placeholder="Search">
+                    </div>
                 </div>
                 <div class="buttons">
                     <button type="button" class="all" id="selected">All</button>
@@ -51,69 +57,35 @@
 
                 // Assuming $data is an array of meal data returned from the controller
                 foreach ($data as $meal) {
-                    echo "Meal ID: " . $meal['id'] . "<br>";
-                    echo "Title: " . $meal['title'] . "<br>";
-                    echo "Highlight: " . $meal['highlight'] . "<br>";
-                    echo "Description: " . $meal['description'] . "<br>";
-                    echo "Type: " . $meal['type'] . "<br>";
-                    echo "Calorie: " . $meal['calorie'] . "<br>";
-                    echo "Created At: " . $meal['created_at'] . "<br>";
-                    echo "Updated At: " . $meal['updated_at'] . "<br>";
-                    echo "<hr>";
+                    echo "<div class='cardmeal' id='meal-card'>
+                            <div class='cardmealimage'>
+                                <img src='../../../assets/meal.jpg' alt=''>
+                            </div>
+                            <div class='card-meal__content'>
+                                <div class='card-meal__content__title'>
+                                    <h3>$meal[title]</h3>
+                                </div>
+                                <div class='card-meal__content__description'>
+                                    <p>$meal[highlight]</p>
+                                </div>
+                                <div class='card-meal__content__calories'>
+                                    <p>Calories: $meal[calorie]</p>
+                                </div>
+                            </div>
+                        </div>";
                 }
             ?>
 
-            <div class="cardmeal" id="meal-card">
-                <div class="cardmealimage">
-                    <img src="../../../assets/meal.jpg" alt="">
-                </div>
-                <div class="card-meal__content">
-                    <div class="card-meal__content__title">
-                        <h3>Chicken Salad</h3>
-                    </div>
-                    <div class="card-meal__content__description">
-                        <p>Chicken, Lettuce, Tomato, Onion, Cucumber, Olive Oil, Salt, Pepper</p>
-                    </div>
-                    <div class="card-meal__content__calories">
-                        <p>Calories: 300</p>
-                    </div>
-                </div>
-            </div>
-            <div class="cardmeal" id="meal-card">
-                <div class="cardmealimage">
-                    <img src="../../../assets/meal.jpg" alt="">
-                </div>
-                <div class="card-meal__content">
-                    <div class="card-meal__content__title">
-                        <h3>Chicken Salad</h3>
-                    </div>
-                    <div class="card-meal__content__description">
-                        <p>Chicken, Lettuce, Tomato, Onion, Cucumber, Olive Oil, Salt, Pepper</p>
-                    </div>
-                    <div class="card-meal__content__calories">
-                        <p>Calories: 300</p>
-                    </div>
-                </div>
-            </div>
-            <div class="cardmeal" id="meal-card">
-                <div class="cardmealimage">
-                    <img src="../../../assets/meal.jpg" alt="">
-                </div>
-                <div class="card-meal__content">
-                    <div class="card-meal__content__title">
-                        <h3>Chicken Salad</h3>
-                    </div>
-                    <div class="card-meal__content__description">
-                        <p>Chicken, Lettuce, Tomato, Onion, Cucumber, Olive Oil, Salt, Pepper</p>
-                    </div>
-                    <div class="card-meal__content__calories">
-                        <p>Calories: 300</p>
-                    </div>
-                </div>
-            </div>
+                
         </div>
     </div>
     <div class="filtersort">
+        <div class="headerclose">
+            <button type="button" class="close" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+            <h1>Filter & Sort</h1>
+        </div>
         <div class="sort">
             <div class="sortheader">
                 <img src="../../../assets/sort.png" alt="">
