@@ -18,15 +18,15 @@ class Meal
         $this->db = new Database();
     }
 
-    public function Insert($title, $highlight, $description, $type, $calorie){
+    public function Insert($title, $highlight, $description, $type, $calorie, $id_file){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
         $insert_data = pg_query_params($conn, "INSERT INTO 
-                                    meals(title,highlight,description,type,calorie,created_at,updated_at)
-                                    VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING id
-                                    ", array($title,$highlight,$description,$type,$calorie,$curr,$curr));
+                                    meals(title,highlight,description,type,calorie,id_file,created_at,updated_at)
+                                    VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id
+                                    ", array($title,$highlight,$description,$type,$calorie,$id_file,$curr,$curr));
 
         if (!$insert_data) die("failed to insert values: ".pg_last_error());
 
@@ -39,15 +39,15 @@ class Meal
         return $id['id'];
     }
 
-    public function Update($id, $title, $highlight, $description, $type, $calorie){
+    public function Update($id, $title, $highlight, $description, $type, $calorie, $id_file){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
         $update_data = pg_query_params($conn, "UPDATE meals SET title = $2,
-                                      highlight = $3, description = $4, type = $5, calorie = $6, updated_at = $7
+                                      highlight = $3, description = $4, type = $5, calorie = $6, id_file = $7, updated_at = $8
                                       WHERE id = $1
-                                      ", array($id,$title,$highlight,$description,$type,$calorie,$curr));
+                                      ", array($id,$title,$highlight,$description,$type,$calorie,$id_file,$curr));
 
         if (!$update_data) die("failed to update values: ".pg_last_error());
 
@@ -69,16 +69,24 @@ class Meal
         $this->db->Disconnect();
     }
 
-    public function FindAll($sort, $kiri, $kanan){
+    public function FindAll($sort, $left, $right){
         $this->db->Connect();
         $conn = $this->db->getDb();
 
         if($sort == "Alphabet"){
-            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' ORDER BY title ASC");
+            $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
+                                            (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
+                                            m.created_at created_at, m.updated_at updated_at
+                                            FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' ORDER BY m.title ASC");
         }else if($sort == "Calories: low to high"){
-            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' ORDER BY calorie ASC");
+            $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
+                                            (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
+                                            m.created_at created_at, m.updated_at updated_at FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' ORDER BY m.calorie ASC");
         }else{
-            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' ORDER BY calorie DESC");
+            $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
+                                            (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
+                                            m.created_at created_at, m.updated_at updated_at
+                                            FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' ORDER BY m.calorie DESC");
         }
         $result = array();
 
@@ -90,6 +98,7 @@ class Meal
                 'description' => $row['description'],
                 'type' => $row['type'],
                 'calorie' => $row['calorie'],
+                'path_photo'=>$row['path_photo'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
@@ -104,7 +113,10 @@ class Meal
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query_params($conn, "SELECT * FROM meals WHERE id = $1 ORDER BY updated_at", array($id));
+        $exec = pg_query_params($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
+                                            (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
+                                            m.created_at created_at, m.updated_at updated_at
+                                            FROM meals m WHERE m.id = $1 ORDER BY m.updated_at", array($id));
 
         $result = array();
 
@@ -116,6 +128,7 @@ class Meal
                 'description' => $row['description'],
                 'type' => $row['type'],
                 'calorie' => $row['calorie'],
+                'path_photo'=>$row['path_photo'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
@@ -130,7 +143,10 @@ class Meal
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query($conn, "SELECT * FROM meals WHERE title LIKE '%$title%' ORDER BY updated_at");
+        $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
+                                        (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
+                                        m.created_at created_at, m.updated_at updated_at
+                                        FROM meals m WHERE m.title LIKE '%$title%' ORDER BY m.updated_at");
 
         $result = array();
 
@@ -142,6 +158,7 @@ class Meal
                 'description' => $row['description'],
                 'type' => $row['type'],
                 'calorie' => $row['calorie'],
+                'path_photo'=>$row['path_photo'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
@@ -152,17 +169,27 @@ class Meal
         return $result;
     }
 
-    public function FindByType($type){
+    public function FindByType($type, $sort, $left, $right){
         $this->db->Connect();
         $conn = $this->db->getDb();
 
         if($sort == "Alphabet"){
-            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' AND type = '$type' ORDER BY title ASC");
+            $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
+                                            (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
+                                            m.created_at created_at, m.updated_at updated_at
+                                            FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' AND m.type = '$type' ORDER BY m.title ASC");
         }else if($sort == "Calories: low to high"){
-            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' AND type = '$type' ORDER BY calorie ASC");
+            $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
+                                            (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
+                                            m.created_at created_at, m.updated_at updated_at
+                                            FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' AND m.type = '$type' ORDER BY m.calorie ASC");
         }else{
-            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' AND type = '$type' ORDER BY calorie DESC");
-        }$exec = pg_query($conn, "SELECT * FROM meals WHERE type = '%$type%' ORDER BY updated_at");
+            $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
+                                            (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
+                                            m.created_at created_at, m.updated_at updated_at
+                                            FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' AND m.type = '$type' ORDER BY m.calorie DESC");
+        }
+
 
         $result = array();
 
@@ -174,6 +201,7 @@ class Meal
                 'description' => $row['description'],
                 'type' => $row['type'],
                 'calorie' => $row['calorie'],
+                'path_photo'=>$row['path_photo'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
@@ -199,7 +227,10 @@ class Meal
             $sdc = "ASC";
         }
 
-        $exec = pg_query($conn, "SELECT * FROM meals ORDER BY $sort $sdc");
+        $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
+                                        (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
+                                        m.created_at created_at, m.updated_at updated_at
+                                        FROM meals m ORDER BY $sort $sdc");
 
         $result = array();
 
@@ -211,6 +242,7 @@ class Meal
                 'description' => $row['description'],
                 'type' => $row['type'],
                 'calorie' => $row['calorie'],
+                'path_photo'=>$row['path_photo'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );

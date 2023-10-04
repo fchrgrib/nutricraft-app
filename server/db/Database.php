@@ -61,7 +61,8 @@ class Database
 
         $create_table_meals = pg_query($this->db,"CREATE TABLE IF NOT EXISTS
                                       meals(id SERIAL PRIMARY KEY, title VARCHAR(225), highlight VARCHAR(1000),
-                                      description VARCHAR(5000), type VARCHAR(225),calorie int, created_at TIMESTAMP, updated_at TIMESTAMP)
+                                      description VARCHAR(5000), type VARCHAR(225),calorie int, id_file SERIAL, created_at TIMESTAMP, updated_at TIMESTAMP,
+                                      FOREIGN KEY (id_file) REFERENCES file(id) ON DELETE SET NULL ON UPDATE CASCADE)
         ");
 
         if (!$create_table_meals){

@@ -42,9 +42,9 @@ function check_init_database($conn,$is_file, $is_content, $is_meals, $is_ingredi
         $meals = $init->getMeals();
         foreach ($meals as $meal){
             $insert_data = pg_query_params($conn, "INSERT INTO 
-                                    meals(title,highlight,description,type,calorie,created_at,updated_at)
-                                    VALUES($1,$2,$3,$4,$5,$6,$7)
-                                    ", array($meal['title'],$meal['highlight'],$meal['description'],$meal['type'],$meal['calorie'],$meal['created_at'],$meal['updated_at']));
+                                    meals(title,highlight,description,type,calorie,id_file,created_at,updated_at)
+                                    VALUES($1,$2,$3,$4,$5,$6,$7,$8)
+                                    ", array($meal['title'],$meal['highlight'],$meal['description'],$meal['type'],$meal['calorie'],$meal['id_file'],$meal['created_at'],$meal['updated_at']));
 
             if (!$insert_data) die("failed to insert values: ".pg_last_error());
         }

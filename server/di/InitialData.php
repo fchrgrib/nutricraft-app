@@ -143,6 +143,7 @@ class InitialData
                                   Cuci bersih, lalu campur semua bahan sayur. Kemudian sisihkan terlebih dahulu. Aduk rata semua bahan saus, lalu sajikan di wadah terpisah atau langsung tuang ke salad sayuran. Salad jagung siap disajikan sebagai makanan ringan. Santap selagi sayuran masih renyah dan belum layu.",
                 'type' => 'breakfast',
                 'calorie' => 70,
+                'id_file' =>9,
                 'created_at' => $curr,
                 'updated_at' => $curr
             ),
@@ -153,6 +154,7 @@ class InitialData
                                   Oles tipis-tipis permukaan roti dengan margarin, kemudian potong dadu.Panaskan minyak goreng, kemudian tumis bawang putih hingga harum. Masukkan potongan roti, lalu aduk rata hingga berwarna agak kecokelatan. Setelah itu angkat crouton dan sisihkan terlebih dahulu.Cara Membuat Salad Dressing:Kocok kuning telur hingga berwarna pucat. Tuang minyak zaitun sedikit demi sedikit sambil terus diaduk hingga kental.Tuangkan air lemon, garam, merica, gula pasir, capers, dan anchovy. Aduk rata, kemudian sisihkan terlebih dahulu.Penyajian:Aduk romaine lettuce dengan saus secukupnya saja.Taburi crouton, daging asap, dan telur rebus. Setelah itu taburi dengan keju parmesan parut.Sajikan caesar salad selagi romain lettuce masih segar dan renyah.",
                 'type' => 'breakfast',
                 'calorie' => 77,
+                'id_file' =>8,
                 'created_at' => $curr,
                 'updated_at' => $curr
             ),
@@ -164,6 +166,7 @@ class InitialData
                                   Sajikan summer rolls dalam keadaan utuh atau dipotong-potong dengan saus asam manis.",
                 'type' => 'breakfast',
                 'calorie' => 74,
+                'id_file' =>10,
                 'created_at' => $curr,
                 'updated_at' => $curr
             ),
@@ -174,6 +177,7 @@ class InitialData
                                   Siapkan ulekan dan semua bahan. Ulek cabai rawit dan bawang putih bersamaan. Tambahkan gula pasir, kacang panjang, dan tomat. Aduk perlahan hingga rata. Peras lemon dan aduk rata airnya bersama kecap ikan. Tambahkan irisan pepaya, wortel, ebi, dan kacang ke dalam campuran air lemon dan kecap ikan. Aduk hingga rata. Tunggu hingga bumbu meresap ke dalam pepaya dan wortel. Setelah itu, hidangkan.",
                 'type' => 'breakfast',
                 'calorie' => 73,
+                'id_file' =>11,
                 'created_at' => $curr,
                 'updated_at' => $curr
             ),
