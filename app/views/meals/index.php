@@ -25,7 +25,7 @@
                         <input class="searchinput" type="text" placeholder="Search">
                     </div>
                 </div>
-                <div class="buttons">
+                <div class="buttons" onclick=type()>
                     <button type="button" class="all" id="selected">All</button>
                     <button type="button" class="breakfast">Breakfast</button>
                     <button type="button" class="lunch">Lunch</button>
@@ -52,29 +52,7 @@
                 });
                 </script>
             </div>
-            <?php
-                // meals/index.php
-
-                // Assuming $data is an array of meal data returned from the controller
-                foreach ($data as $meal) {
-                    echo "<div class='cardmeal' id='meal-card'>
-                            <div class='cardmealimage'>
-                                <img src='../../../assets/meal.jpg' alt=''>
-                            </div>
-                            <div class='card-meal__content'>
-                                <div class='card-meal__content__title'>
-                                    <h3>$meal[title]</h3>
-                                </div>
-                                <div class='card-meal__content__description'>
-                                    <p>$meal[highlight]</p>
-                                </div>
-                                <div class='card-meal__content__calories'>
-                                    <p>Calories: $meal[calorie]</p>
-                                </div>
-                            </div>
-                        </div>";
-                }
-            ?>
+            <div id="mealsContent" class="content"></div>
 
                 
         </div>
@@ -95,7 +73,7 @@
                 <div class="selectcontainer">
                     <label for="sorttitle">Sort By</label>
                 </div>
-                <select name="sortby" id="pet-select">
+                <select name="sortby" id="pet-select" onclick=type()>
                     <option value="Alphabet" class="alpha">Alphabet</option>
                     <option value="Calories: low to high">Calories: low to high</option>
                     <option value="Calories: high to low">Calories: high to low</option>
@@ -107,22 +85,22 @@
                 <img src="../../../assets/filter.png" alt="">
                 <h3>Filter</h3>
             </div>
-            <div class="range_container">
+            <div class="range_container" >
                 <div class="range_container__title">Calories</div>
-                <div class="sliders_control">
-                    <input id="fromSlider" type="range" value="10" min="0" max="1600" />
-                    <input id="toSlider" type="range" value="10000" min="0" max="1600" />
+                <div class="sliders_control" >
+                    <input id="fromSlider" type="range" value="10" min="0" max="1600" onclick=type()/>
+                    <input id="toSlider" type="range" value="10000" min="0" max="1600" onclick=type()/>
                 </div>
                 <div class="form_control">
                     <div class="form_control_container">
                         <div class="form_control_container__time">Min</div>
                         <input class="form_control_container__time__input" type="number" id="fromInput" value="10"
-                            min="0" max="1600" />
+                            min="0" max="1600" onclick=type()/>
                     </div>
                     <div class="form_control_container">
                         <div class="form_control_container__time">Max</div>
                         <input class="form_control_container__time__input" type="number" id="toInput" value="1600"
-                            min="0" max="1600" />
+                            min="0" max="1600" onclick=type()/>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ namespace data;
 
 use Database;
 
-require_once "server/db/Database.php";
+// require_once "server/db/Database.php";
 
 
 
@@ -69,12 +69,17 @@ class Meal
         $this->db->Disconnect();
     }
 
-    public function FindAll(){
+    public function FindAll($sort, $kiri, $kanan){
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query($conn, "SELECT * FROM meals ORDER BY updated_at");
-
+        if($sort == "Alphabet"){
+            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' ORDER BY title ASC");
+        }else if($sort == "Calories: low to high"){
+            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' ORDER BY calorie ASC");
+        }else{
+            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' ORDER BY calorie DESC");
+        }
         $result = array();
 
         while ($row = pg_fetch_assoc($exec)){
@@ -151,7 +156,13 @@ class Meal
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query($conn, "SELECT * FROM meals WHERE type = '%$type%' ORDER BY updated_at");
+        if($sort == "Alphabet"){
+            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' AND type = '$type' ORDER BY title ASC");
+        }else if($sort == "Calories: low to high"){
+            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' AND type = '$type' ORDER BY calorie ASC");
+        }else{
+            $exec = pg_query($conn, "SELECT * FROM meals WHERE calorie <= '$kanan' AND calorie >= '$kiri' AND type = '$type' ORDER BY calorie DESC");
+        }$exec = pg_query($conn, "SELECT * FROM meals WHERE type = '%$type%' ORDER BY updated_at");
 
         $result = array();
 
