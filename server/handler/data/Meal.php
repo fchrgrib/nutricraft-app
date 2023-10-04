@@ -6,7 +6,7 @@ use Database;
 
 require_once "server/db/Database.php";
 
-/**TODO DELETE ALL ID MEALS**/
+
 
 class Meal
 {
@@ -25,14 +25,18 @@ class Meal
 
         $insert_data = pg_query_params($conn, "INSERT INTO 
                                     meals(title,highlight,description,type,calorie,created_at,updated_at)
-                                    VALUES($1,$2,$3,$4,$5,$6,%7)
+                                    VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING id
                                     ", array($title,$highlight,$description,$type,$calorie,$curr,$curr));
 
         if (!$insert_data) die("failed to insert values: ".pg_last_error());
 
+        $id = pg_fetch_assoc($insert_data);
+
         echo "<script>console.log('successfully insert meal')</script>";
 
         $this->db->Disconnect();
+
+        return $id['id'];
     }
 
     public function Update($id, $title, $highlight, $description, $type, $calorie){

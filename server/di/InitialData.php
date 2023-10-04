@@ -277,5 +277,52 @@ class InitialData
             ),
         );
 
+
+        $this->nutritionFact = array();
+        $calorie = array(70,77,74,73);
+
+        for ($i = 0; $i < 4; $i++) {
+            $subArray = array(
+                'calorie' => $calorie[$i] . ' cal',
+                'carbo' => rand(10, 30) . 'g',
+                'protein' => rand(40, 80) . 'g',
+                'fat' => rand(0, 5) . 'g',
+                'sugar' => rand(0, 10) . 'g',
+                'id_meals' => $i+1
+            );
+
+            $this->nutritionFact[] = $subArray;
+        }
+
+    }
+
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+
+    public function getIngredients()
+    {
+        return $this->ingredients;
+    }
+
+
+    public function getMeals()
+    {
+        return $this->meals;
+    }
+
+
+    public function getNutritionFact()
+    {
+        return $this->nutritionFact;
     }
 }

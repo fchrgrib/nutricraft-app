@@ -22,19 +22,15 @@ class Ingredients
 
         $insert_data = pg_query_params($conn, "INSERT INTO
                                 ingredients(id,ingredient,description,id_meals)
-                                VALUES (DEFAULT,$1,$2,$3) RETURNING id",
+                                VALUES (DEFAULT,$1,$2,$3)",
             array($ingredient, $description, $id_meals)
         );
 
         if (!$insert_data) die("failed to insert values: ".pg_last_error());
 
-        $id = pg_fetch_assoc($insert_data);
-
         echo "<script>console.log('successfully insert ingredients')</script>";
 
         $this->db->Disconnect();
-
-        return $id['id'];
     }
 
     public function Update($id, $ingredient, $description){
