@@ -59,28 +59,28 @@ const showAll = () => {
         let response = this.response;
         const startIndex = response.indexOf('[');
         const jsonStr = response.substring(startIndex);
-        // const jsonObject = JSON.parse(jsonStr);
+        const jsonObject = JSON.parse(jsonStr);
         console.log(jsonStr);
 
 
-        // const parentElement = document.getElementById("isicontent");
+        const parentElement = document.getElementById("isicontent");
 
-        // let html = "";
-        // for (let i = 0; i < jsonObject.length; i++) {
-        // const content = jsonObject[i];
-        // html += `
-        //     <div class="video-card" onclick="toggleVideo(this)">
-        //     <div class="cardcontent">
-        //         <img src="../../../assets/thumbnail.png" alt="">
-        //         <div class="card-title">
-        //         <h3>${content.title}</h3>
-        //         <p>${content.highlight}</p>
-        //         </div>
-        //     </div>
-        //     </div>
-        // `;
-        // }
-        // parentElement.innerHTML = html;        
+        let html = "";
+        for (let i = 0; i < jsonObject.length; i++) {
+        const content = jsonObject[i];
+        html += `
+            <div class="video-card" onclick="toggleVideo(this)">
+            <div class="cardcontent">
+                <img src="../../../assets/thumbnail.png" alt="">
+                <div class="card-title">
+                <h3>${content.title}</h3>
+                <p>${content.highlight}</p>
+                </div>
+            </div>
+            </div>
+        `;
+        }
+        parentElement.innerHTML = html;        
     };  
     xhttp.send(JSON.stringify({show : show}));
 
