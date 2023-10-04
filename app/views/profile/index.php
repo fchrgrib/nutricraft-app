@@ -7,6 +7,7 @@ if(isset($_COOKIE['user'])){
         $fullName = $userData[0]->full_name;
         $email = $userData[0]->email;
         $phone = $userData[0]->phone_number;
+        $photo = $userData[0]->photo_profile;
     }
 }
 
@@ -28,44 +29,45 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
 </head>
 <body>
    
-    <div class="profileContainer">
-        <div class="boxKiri">
-            <div class="photoContainer">
-                <img src="assets\user\1\defaultPP.jpg" alt="defaultProfPic" class="photoProfile">
-                <input type="file" name="file" id="file">
-                <button class="editPhotoButton">Edit Profile Picture</button>
+    <form action="../../../server/controller/auth/Profile.php" method="POST" enctype="multipart/form-data">
+        <div class="profileContainer">
+            <div class="boxKiri">
+                <div class="photoContainer">
+                    <img src=<?php echo $photo?> alt="defaultProfPic" class="photoProfile">
+                    <div class="editPhotoButton">
+                        <label for="file" class="fileLabel">Choose a Photo</label>
+                        <input type="file" name="file" id="file" class="file" accept="image/*">
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="boxKanan">
-            <form action="">
+            <div class="boxKanan">
                 <p class="labelProfile">Name</p>
                 <div>
-                    <input type="text" placeholder=<?php echo $fullName ?> class="textField" id="editNama" disabled>
+                    <input type="text" placeholder=<?php echo $fullName ?> class="textField" id="editNama" name="fullName" disabled>
                     <i class="fas fa-edit editIcon" onclick=enableName() ></i>
                 </div>
                 <hr>
                 <p class="labelProfile">Email</p>
                 <div>
-                    <input type="email" placeholder=<?php echo $email ?> class="textField" id="editEmail" disabled>
+                    <input type="email" placeholder=<?php echo $email ?> class="textField" id="editEmail" name="email" disabled>
                     <i class="fas fa-edit editIcon" onclick=enableEmail() ></i>
                 </div>
                 <hr>
                 <p class="labelProfile">Phone Number</p>
                 <div>
-                    <input type="text" placeholder=<?php echo $phone ?> class="textField" id="editPhone" disabled>
+                    <input type="text" placeholder=<?php echo $phone ?> class="textField" id="editPhone" name="phone" disabled>
                     <i class="fas fa-edit editIcon" onclick=enablePhoneNumber()></i>
                 </div>
                 <hr>
                 <p class="labelProfile">Password</p>
                 <div>
-                    <input type="password" placeholder="" class="textField" id="editPassword" disabled>
+                    <input type="password" placeholder="" class="textField" id="editPassword"  name="password" disabled>
                     <i class="fas fa-edit editIcon" onclick= enablePassword()></i>
                 </div>
                 <hr>
-                <!-- <input type="file"> -->
-                <button type="submit" class="submitButton">Save Change</button>
-            </form>
+                <button type="submit" class="submitButton" name="submit">Save Change</button>
+            </div>
         </div>
-    </div>
+    </form>
 </body>
 </html>

@@ -34,13 +34,28 @@ class Users
         $this->db->Disconnect();
     }
 
-    public function Update($id, $name, $email, $phoneNumber){
+    public function UpdateUsers($id, $name, $email, $phoneNumber){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
         $update_data = pg_query($conn, "UPDATE users
-                                SET full_name = '$name', phone_number = '$phoneNumber', email = '$email', updated_at = '$curr'
+                                SET full_name = '$name', phone_number = '$phoneNumber', id_photo_profile='$id', email = '$email', updated_at = '$curr'
+                                WHERE id = $id");
+
+        if (!$update_data) die("failed to update values: ".pg_last_error());
+
+        echo "<script>console.log('successfully update users')</script>";
+
+        $this->db->Disconnect();
+    }
+    public function UpdateWithPassword($id, $name, $email, $phoneNumber, $password){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+        $curr = date('Y-m-d H:i:s');
+
+        $update_data = pg_query($conn, "UPDATE users
+                                SET full_name = '$name', phone_number = '$phoneNumber', email = '$email', id_photo_profile='$id', password='$password' ,updated_at = '$curr'
                                 WHERE id = $id");
 
         if (!$update_data) die("failed to update values: ".pg_last_error());

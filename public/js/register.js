@@ -14,8 +14,6 @@ const validateEmail = () => {
         document.getElementById('emailcontainer').style.borderColor = 'red';
         document.getElementById('emailInvalid').innerHTML = 'Invalid email address';
     } else {
-        document.getElementById('emailcontainer').style.borderColor = 'black';
-        document.getElementById('emailInvalid').innerHTML = '';
         const xhttp = new XMLHttpRequest();
         xhttp.open('POST', "../../server/controller/auth/Register.php", true);
         xhttp.onload = function() {
