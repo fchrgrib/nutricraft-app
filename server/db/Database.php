@@ -1,7 +1,7 @@
 <?php
 
 
-require_once "server/utils/Utils.php";
+require_once (__DIR__."/../utils/Utils.php");
 
 class Database
 {

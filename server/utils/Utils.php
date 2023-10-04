@@ -1,18 +1,21 @@
 <?php
 
-require_once "server/handler/data/Content.php";
-require_once "server/handler/data/File.php";
-require_once "server/handler/data/Ingredients.php";
-require_once "server/handler/data/Meal.php";
-require_once "server/handler/data/Nutrition.php";
-require_once "server/di/InitialData.php";
 
-use data\Content;
-use data\File;
-use data\Ingredients;
-use data\Meal;
-use data\Nutrition;
 use di\InitialData;
+
+
+// require_once "server/handler/data/Content.php";
+// require_once "server/handler/data/File.php";
+// require_once "server/handler/data/Ingredients.php";
+// require_once "server/handler/data/Meal.php";
+// require_once "server/handler/data/Nutrition.php";
+require_once (__DIR__."/../di/InitialData.php");
+
+// use data\Content;
+// use data\File;
+// use data\Ingredients;
+// use data\Meal;
+// use data\Nutrition;
 
 function check_init_database($conn,$is_file, $is_content, $is_meals, $is_ingredients, $is_nutrition)
 {
