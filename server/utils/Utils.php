@@ -4,18 +4,8 @@
 use di\InitialData;
 
 
-// require_once "server/handler/data/Content.php";
-// require_once "server/handler/data/File.php";
-// require_once "server/handler/data/Ingredients.php";
-// require_once "server/handler/data/Meal.php";
-// require_once "server/handler/data/Nutrition.php";
 require_once (__DIR__."/../di/InitialData.php");
 
-// use data\Content;
-// use data\File;
-// use data\Ingredients;
-// use data\Meal;
-// use data\Nutrition;
 
 function check_init_database($conn,$is_file, $is_content, $is_meals, $is_ingredients, $is_nutrition)
 {
@@ -40,7 +30,7 @@ function check_init_database($conn,$is_file, $is_content, $is_meals, $is_ingredi
         foreach ($contents as $content){
             $insert_data = pg_query_params($conn, "INSERT INTO 
                                 content(title,body,id_file,id_photo_highlight,highlight,created_at,updated_at)
-                                VALUES($1,$2,$3,$4,$5,$6,$7)",array($content['title'],$content['body'],$content['id_file'],$content['id_photo_highlight'],$content['highlight'],$content['created_at'],$contents['updated_at']));
+                                VALUES($1,$2,$3,$4,$5,$6,$7)",array($content['title'],$content['body'],$content['id_file'],$content['id_photo_highlight'],$content['highlight'],$content['created_at'],$content['updated_at']));
 
             if (!$insert_data) die("failed to insert values: ".pg_last_error());
 

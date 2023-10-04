@@ -117,7 +117,7 @@ class InitialData
                 'updated_at' =>$curr
             ),
             array(
-                'title' => 'Manfaat perilaku hidup sehat',
+                'title' => 'Manfaat Perilaku Hidup Sehat',
                 'id_file' => 7,
                 'id_photo_highlight' => 6,
                 'body' =>"Perilaku hidup sehat adalah pilihan gaya hidup yang berfokus pada keputusan dan tindakan yang mendukung kesehatan fisik dan mental yang optimal. Ini mencakup berbagai aspek, termasuk pola makan seimbang, berolahraga secara teratur, tidur yang cukup, menghindari kebiasaan merokok dan konsumsi alkohol yang berlebihan, serta mengelola stres dengan baik. Berikut adalah beberapa manfaat dari mengadopsi perilaku hidup sehat:\n\n
