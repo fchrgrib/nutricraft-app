@@ -62,11 +62,12 @@ body {
     height: 400px;
     transform: rotate(30deg);
     transition: transform 4s;
-}
-
-.image:hover img {
     animation: rotateBackAndForth 4s ease infinite alternate;
 }
+
+/* .image:hover img {
+    
+} */
 
 @keyframes rotateBackAndForth {
     0% {

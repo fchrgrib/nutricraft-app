@@ -36,7 +36,7 @@
                 </div>
                 <div class="video-content">
                     <!-- Embed your video here (e.g., using an <iframe> or <video> tag) -->
-                    <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/52skDTgIgaQ?si=PrEG6iUG1plt8YFY" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="video-card" onclick="toggleVideo(this)">
@@ -49,7 +49,7 @@
                 </div>
                 <div class="video-content">
                     <!-- Embed your video here (e.g., using an <iframe> or <video> tag) -->
-                    <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/heGHEkdQKsw?si=nl8Xm7LLv3h3zAJr" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="video-card" onclick="toggleVideo(this)">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="video-content">
                     <!-- Embed your video here (e.g., using an <iframe> or <video> tag) -->
-                    <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/heGHEkdQKsw?si=nl8Xm7LLv3h3zAJr" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="video-card" onclick="toggleVideo(this)">
@@ -75,7 +75,7 @@
                 </div>
                 <div class="video-content">
                     <!-- Embed your video here (e.g., using an <iframe> or <video> tag) -->
-                    <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/heGHEkdQKsw?si=nl8Xm7LLv3h3zAJr" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="video-card" onclick="toggleVideo(this)">

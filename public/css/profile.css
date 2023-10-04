@@ -29,8 +29,7 @@ body{
 }
 
 .photoProfile{
-    width: 275px;
-    height: 275px;
+    height: 20vw;
 }
 
 .editPhotoButton{
@@ -102,7 +101,7 @@ body{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
-    width: 500px;
+    width: 33vw;
     border-radius: 10px;
     border-width: 1px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -126,3 +125,34 @@ body{
     text-decoration: none;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
+
+@media screen and (max-width: 768px) {
+    .profileContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .boxKanan{
+        width: 80vw;
+    }
+
+    .photoContainer{
+        margin-right: 0px;
+    }
+
+    .photoProfile{
+        height: 40vw;
+    }
+
+    .editPhotoButton{
+        width: 80vw;
+    }
+
+    .textField{
+        width: 80vw;
+    }
+
+    .submitButton{
+        width: 80vw;
+    }
+}  

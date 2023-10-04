@@ -38,16 +38,23 @@ if (isset($_COOKIE['user'])) {
         // Access the "full_name" field from the decoded JSON
         $fullName = $userData[0]->full_name;
         $picture = $userData[0]->photo_profile;
+        $roles = $userData[0]->roles;
 
         // Display the full name
         echo '<div class="dropdown">
-                    <button class="dropbtn">' . $fullName .'</button>
-                    <div class="dropdown-content">
-                    <a href="/?profile">Profile</a>
-                    <a href="" id="logoutbtn">Logout</a>
-                    </div>
+                <button class="dropbtn">' . $fullName .'</button>
+                <div class="dropdown-content">
+                    <a href="/?profile">Profile</a>';
+    
+    // Check if the user has an "admin" role
+    if ($roles === "admin") {
+        echo '<a href="/?cms">CMS</a>'; // Add the CMS link for admin users
+    }
+    
+    echo '<a href="/home" id="logoutbtn">Logout</a>
                 </div>
-                <img id="profile" src="' . $picture . '" alt="">';
+            </div>
+            <img id="profile" src="' . $picture . '" alt="">';
     } else {
         // Handle the case where the cookie doesn't contain valid JSON or is empty
         echo '<span>Invalid user data</span>';
