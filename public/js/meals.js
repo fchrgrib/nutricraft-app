@@ -96,6 +96,33 @@ mealCard.addEventListener("click", function() {
     window.location.href = "/?detailmeal";
 });
 
+// Get the button and sidebar elements
+const toggleButton = document.getElementById('toggleSidebar');
+const filtersort = document.querySelector('.filtersort');
+
+// Function to toggle the sidebar
+toggleButton.addEventListener('click', () => {
+  // Get the current value of the sidebar's left property
+  const currentLeft = parseInt(window.getComputedStyle(filtersort).getPropertyValue('left'));
+  
+  // Check if the sidebar is currently hidden or partially hidden
+  if (currentLeft < 0) {
+      filtersort.style.left = '0px'; // Show the filtersort
+  } else {
+      filtersort.style.left = '-300px'; // Hide the filtersort
+  }
+});
+
+const closeButton = document.getElementById('closeSidebar');
+closeButton.addEventListener('click', () => {
+  filtersort.style.left = '-300px';
+});
+
+
+
+
+
+
 
 
 

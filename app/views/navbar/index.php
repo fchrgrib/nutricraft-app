@@ -37,17 +37,24 @@ if (isset($_COOKIE['user'])) {
     if ($userData !== null && is_array($userData) && count($userData) > 0) {
         // Access the "full_name" field from the decoded JSON
         $fullName = $userData[0]->full_name;
+        $picture = $userData[0]->photo_profile;
 
         // Display the full name
-        echo '<span>Welcome, ' . $fullName . '</span>
-        <img s';
+        echo '<div class="dropdown">
+                    <button class="dropbtn">' . $fullName .'</button>
+                    <div class="dropdown-content">
+                    <a href="/?profile">Profile</a>
+                    <a href="" id="logoutbtn">Logout</a>
+                    </div>
+                </div>
+                <img id="profile" src="' . $picture . '" alt="">';
     } else {
         // Handle the case where the cookie doesn't contain valid JSON or is empty
         echo '<span>Invalid user data</span>';
     }
 } else {
     // Handle the case where the "user" cookie is not set
-    echo '<span>User not logged in</span>';
+    echo '<a href ="/?login"><button type="button" class="login">Login</button></a>';
 }
 ?>
 

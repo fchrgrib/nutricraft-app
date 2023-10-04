@@ -25,7 +25,7 @@
             <h4>Password</h4>
             <div class="passwordcontainer">
                 <i class="fas fa-lock"></i>
-                <input class="passwordinput" type="text" placeholder="Password" name="passLog" required>
+                <input class="passwordinput" type="password" placeholder="Password" name="passLog" required>
             </div>
         </div> 
         <button type="submit" class="login">Login</button>
