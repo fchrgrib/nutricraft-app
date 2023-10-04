@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../../public/css/fact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script defer src="../../../public/js/fact.js"></script>
+    <script>window.onload = function() {showAll();};</script>
     <title>NutriCraft</title>
 </head>
 <body>
@@ -15,82 +16,18 @@
             <div class="searchsort">
                 <div class="searchcontainer">
                     <i class="fas fa-search"></i>
-                    <input class="searchinput" type="text" placeholder="Search">
+                    <input class="searchinput" id="searchinput" type="text" placeholder="Search" onkeyup=searchDebounce()>
                 </div>
                 <div class="sortcontainer">
                     <img src="../../../assets/sort.png" alt="">
-                    <select name="sortby" id="pet-select">
+                    <select name="sortby" id="pet-select" onclick=Search()>
                         <option value="Alphabet" class="alpha">Alphabet</option>
                         <option value="Newest">Newest</option>
                         <option value="Oldest">Oldest</option>
                     </select>
                 </div>
             </div>
-            <div class="video-card" onclick="toggleVideo(this)">
-                <div class="cardcontent">
-                    <img src="../../../assets/thumbnail.png" alt="">
-                    <div class="card-title">
-                        <h3>Chicken Salad Recipe</h3>
-                        <p>Learn how to make the best chicken salad from our chef, Chef Jono.</p>
-                    </div>
-                </div>
-                <div class="video-content">
-                    <!-- Embed your video here (e.g., using an <iframe> or <video> tag) -->
-                    <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="video-card" onclick="toggleVideo(this)">
-                <div class="cardcontent">
-                    <img src="../../../assets/thumbnail.png" alt="">
-                    <div class="cardtitle">
-                        <h3>Chicken Salad Recipe</h3>
-                        <p>Learn how to make the best chicken salad from our chef, Chef Jono.</p>
-                    </div>
-                </div>
-                <div class="video-content">
-                    <!-- Embed your video here (e.g., using an <iframe> or <video> tag) -->
-                    <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="video-card" onclick="toggleVideo(this)">
-                <div class="cardcontent">
-                    <img src="../../../assets/thumbnail.png" alt="">
-                    <div class="card-title">
-                        <h3>Chicken Salad Recipe</h3>
-                        <p>Learn how to make the best chicken salad from our chef, Chef Jono.</p>
-                    </div>
-                </div>
-                <div class="video-content">
-                    <!-- Embed your video here (e.g., using an <iframe> or <video> tag) -->
-                    <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="video-card" onclick="toggleVideo(this)">
-                <div class="cardcontent">
-                    <img src="../../../assets/thumbnail.png" alt="">
-                    <div class="card-title">
-                        <h3>Chicken Salad Recipe</h3>
-                        <p>Learn how to make the best chicken salad from our chef, Chef Jono.</p>
-                    </div>
-                </div>
-                <div class="video-content">
-                    <!-- Embed your video here (e.g., using an <iframe> or <video> tag) -->
-                    <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="video-card" onclick="toggleVideo(this)">
-                <div class="cardcontent">
-                    <img src="../../../assets/thumbnail.png" alt="">
-                    <div class="card-title">
-                        <h3>Chicken Salad Recipe</h3>
-                        <p>Learn how to make the best chicken salad from our chef, Chef Jono.</p>
-                    </div>
-                </div>
-                <div class="video-content">
-                    <!-- Embed your video here (e.g., using an <iframe> or <video> tag) -->
-                    <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
+            <div id="isicontent" class="content"></div>
         </div>
     </div>
 </body>

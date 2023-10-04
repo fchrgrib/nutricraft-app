@@ -4,7 +4,7 @@ namespace data;
 
 use Database;
 
-require_once "server/db/Database.php";
+// require_once "server/db/Database.php";
 
 class Content
 {
@@ -60,11 +60,19 @@ class Content
     }
 
 
-    public function FindAll(){
+    public function FindAll($select){
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query($conn, "SELECT * FROM content ORDER BY created_at");
+        if($select == 'Alphabet'){
+            $exec = pg_query($conn, "SELECT * FROM content ORDER BY title ASC");
+        }else if($select){
+            $exec = pg_query($conn, "SELECT * FROM content ORDER BY created_at DESC");
+        }else{
+            $exec = pg_query($conn, "SELECT * FROM content ORDER BY created_at ASC");
+        }
+
+        // $exec = pg_query($conn, "SELECT * FROM content ORDER BY created_at");
         $result = array();
 
         while ($row = pg_fetch_assoc($exec)){
@@ -73,6 +81,7 @@ class Content
                 'title' => $row['title'],
                 'id_file' => $row['id_file'],
                 'body' => $row['body'],
+                'highlight'=> $row['highlight'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
@@ -106,12 +115,20 @@ class Content
         return $result;
     }
 
-    public function FindByTitle($title){
+    public function FindByTitle($title, $select){
         $this->db->Connect();
         $conn = $this->db->getDb();
 
+        if($select == 'Alphabet'){
+            $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '%$title%' ORDER BY title ASC");
+        }else if($select == 'Newest'){
+            $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '%$title%' ORDER BY created_at DESC");
+        }else{
+            $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '%$title%' ORDER BY created_at ASC");
+        }
+
         $result = array();
-        $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '%$title%' ORDER BY created_at");
+
 
         while ($row = pg_fetch_assoc($exec)){
             $result[] = array(
@@ -119,6 +136,7 @@ class Content
                 'title' => $row['title'],
                 'id_file' => $row['id_file'],
                 'body' => $row['body'],
+                'highlight'=> $row['highlight'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
