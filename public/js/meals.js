@@ -149,7 +149,7 @@ const type = () =>{
     http+=`
     <div class='cardmeal' id='meal-card'>
     <div class='cardmealimage'>
-    <img src='../../../assets/meal.jpg' alt=''>
+    <img src="${content['path_photo']}" alt=''>
     </div>
     <a href="/?detailmeal&id=${content['id']}">
         <div class='card-meal__content'>

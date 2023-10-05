@@ -354,7 +354,6 @@ select {
   }
   
   input[type=range]::-moz-range-thumb {
-    -webkit-appearance: none;
     pointer-events: all;
     width: 16px;
     height: px;
@@ -450,6 +449,14 @@ select {
 
     .searchcontainer {
         width: 25vw;
+    }
+
+    .cardmeal {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        padding: 10px;
     }
     
 
