@@ -14,7 +14,7 @@
             <img src="../../../assets/Nopict.png" alt="defaultProfPic" class="photoProfile">
             <div class="editPhotoButton">
                 <label for="file" class="labelFile">Upload Photo</label>
-                <input type="file" name="file" id="file" class="file" accept="image/*">
+                <input type="file" name="file" id="file" class="file" accept="image/*,video/*">
             </div>
         </div>
         <div class="editcontainer">
@@ -23,14 +23,15 @@
                 <div class="nametype">
                     <div class="name-container">
                         <div class="factname">
-                            <p class="labelname">URL link</p>
-                            <input type="text" placeholder="URL link" class="inputurl" id="editurl" name="facturl">
+                            <p class="labelname">Video File</p>
+                                <label for="file" class="labelFile">Upload Video</label>
+                                <input type="file" name="videofile" id="videofile" class="videofile" accept="image/*,video/*">
                         </div>
                     </div>
                 </div>
                 <div class="videotitle">
                     <p class="labeldescription">Video Title</p>
-                    <textarea name="videotitle" id="videotitle"class="inputtitle" placeholder="Title"></textarea>
+                    <input type="text" placeholder="Title" class="inputtitle" id="edittitle" name="facttitle">
                 </div>
                 <div class="factdescription">
                     <p class="labeldescription">Fact Description</p>
