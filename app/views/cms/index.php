@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../public/css/cms.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="../../../public/js/cms/meals.js"></script>
+    <script src="../../../public/js/cms/fact.js"></script>
+    <script>window.onload = function() {loadMealsData();};</script>
     <title>NutriCraft</title>
 </head>
 <body>
@@ -32,7 +35,7 @@
             </div>
 
             <script>
-                loadMealsData(<?php echo json_encode($data['meals']); ?>);
+                // loadMealsData();
                 // Get all the buttons
                 const buttons = document.querySelectorAll('.buttons button');
                 const addBtn = document.querySelector('.addbtn');
@@ -55,80 +58,19 @@
                         // Determine which button is selected and call the appropriate function
                         if (button.classList.contains('mealsbtn')) {
                             // Handle Meals button click
-                            loadMealsData(<?php echo json_encode($data['meals']); ?>);
+                            loadMealsData();
                             addBtn.textContent = "Add Meal";
                             addHref.href = "/?addmeal";
                         } else if (button.classList.contains('factsbtn')) {
                             // Handle Facts button click
-                            loadFactsData(<?php echo json_encode($data['facts']); ?>);
+                            loadFactsData();
                             addBtn.textContent = "Add Fact";
                             addHref.href = "/?addfact";
                         }
                     });
                 });
 
-                // Function to load Meals data
-                function loadMealsData(data) {
-                    console.log(data);
-
-                    const content = document.querySelector('.card-meal_content');
-                    content.innerHTML = "<h1>Meals</h1>";
-
-                    data.forEach(meal => {
-                        const mealHTML = `
-                            <div class='cardmeal' id='meal-card'>
-                                <div class='cardmealimage'>
-                                    <img src='../../../assets/meal.jpg' alt=''>
-                                </div>
-                                <div class='card-meal__content'>
-                                <div class='card-meal__content__title'>
-                                <h3>${meal.title}</h3>
-                                </div>
-                                <div class='card-meal__content__description'>
-                                <p>${meal.highlight}</p>
-                                </div>
-                                <div class='card-meal__content__calories'>
-                                <p>Calories: ${meal.calorie}</p>
-                                </div>
-                                </div>
-                                <div class='card-meal__content__edit'>
-                                <a href="/?editmeal&id=${meal.id}">
-                                <button type='button' class='editbtn'>Edit</button>
-                                </a>
-                                    <button type='button' class='deletebtn'>Delete</button>
-                                </div>
-                            </div>`;
-                        content.innerHTML += mealHTML;
-                    });
-                }
-
-                // Function to load Facts data
-                function loadFactsData(data) {
-                    const content = document.querySelector('.card-meal_content');
-                    content.innerHTML = "<h1>Facts</h1>";
-
-                    data.forEach(fact => {
-                        const factHTML = `
-                            <div class='cardmeal' id='meal-card'>
-                                <div class='cardmealimage'>
-                                    <img src='../../../assets/meal.jpg' alt=''>
-                                </div>
-                                <div class='card-meal__content'>
-                                    <div class='card-meal__content__title'>
-                                        <h3>${fact.title}</h3>
-                                    </div>
-                                    <div class='card-meal__content__description'>
-                                        <p>${fact.content}</p>
-                                    </div>
-                                </div>
-                                <div class='card-meal__content__edit'>
-                                    <button type='button' class='editbtn'>Edit</button>
-                                    <button type='button' class='deletebtn'>Delete</button>
-                                </div>
-                            </div>`;
-                        content.innerHTML += factHTML;
-                    });
-                }
             </script>
+
 </body>
 </html>
