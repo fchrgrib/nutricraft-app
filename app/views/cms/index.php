@@ -79,18 +79,20 @@
                                     <img src='../../../assets/meal.jpg' alt=''>
                                 </div>
                                 <div class='card-meal__content'>
-                                    <div class='card-meal__content__title'>
-                                        <h3>${meal.title}</h3>
-                                    </div>
-                                    <div class='card-meal__content__description'>
-                                        <p>${meal.highlight}</p>
-                                    </div>
-                                    <div class='card-meal__content__calories'>
-                                        <p>Calories: ${meal.calorie}</p>
-                                    </div>
+                                <div class='card-meal__content__title'>
+                                <h3>${meal.title}</h3>
+                                </div>
+                                <div class='card-meal__content__description'>
+                                <p>${meal.highlight}</p>
+                                </div>
+                                <div class='card-meal__content__calories'>
+                                <p>Calories: ${meal.calorie}</p>
+                                </div>
                                 </div>
                                 <div class='card-meal__content__edit'>
-                                    <button type='button' class='editbtn'>Edit</button>
+                                <a href="/?editmeal&id=${meal.id}">
+                                <button type='button' class='editbtn'>Edit</button>
+                                </a>
                                     <button type='button' class='deletebtn'>Delete</button>
                                 </div>
                             </div>`;

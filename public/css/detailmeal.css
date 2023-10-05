@@ -24,8 +24,7 @@
 
 .foodimage img {
     margin-left: 50px;
-    width: 75%;
-    height: 70%;
+    height: 20vw;
     margin-bottom: 20px;
 }
 
@@ -68,8 +67,8 @@
 }
 
 .nutritionfacts div p {
-    font-size: 12px;
-    font-weight: 300;
+    font-size: 15px;
+    font-weight: 600;
     color: #000000;
     margin-top: 0;
 
@@ -101,4 +100,53 @@
 
 .ingredients li{
     margin-bottom: 5px;
+}
+
+.ingredients {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        gap: 50px;
+        
+    }
+
+    .foodimage {
+        align-items: center;
+    }
+
+    .foodimage img {
+        margin-left: 0;
+        height: 40vw;
+    }
+
+    .foodcontent {
+        max-width: 100%;
+    }
+
+    .nutritionfacts {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+    }
+
+    .nutritionfacts div {
+        width: 65px;
+        height: 60px;
+    }
+
+    .nutritionfacts div h5 {
+        font-size: 16px;
+    }
+
+    .nutritionfacts div p {
+        font-size: 12px;
+    }
+    .ingredients {
+        margin-bottom: 20px;
+    }
+
+    
 }

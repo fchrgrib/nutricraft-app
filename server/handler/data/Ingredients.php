@@ -4,7 +4,6 @@ namespace data;
 
 use Database;
 
-require_once "server/db/Database.php";
 
 
 class Ingredients
@@ -66,7 +65,7 @@ class Ingredients
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query($conn, "SELECT * FROM ingredients ORDER BY created_at");
+        $exec = pg_query($conn, "SELECT * FROM ingredients ");
         $result = array();
 
         while($row = pg_fetch_assoc($exec)){
@@ -86,7 +85,7 @@ class Ingredients
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query_params($conn, "SELECT * FROM ingredients WHERE id = $1 ORDER BY created_at", array($id));
+        $exec = pg_query_params($conn, "SELECT * FROM ingredients WHERE id = $1 ", array($id));
         $result = array();
 
         while($row = pg_fetch_assoc($exec)){
@@ -106,7 +105,7 @@ class Ingredients
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query_params($conn, "SELECT * FROM ingredients WHERE id_meals = $1 ORDER BY created_at", array($idMeals));
+        $exec = pg_query_params($conn, "SELECT * FROM ingredients WHERE id_meals = $1 ", array($idMeals));
         $result = array();
 
         while($row = pg_fetch_assoc($exec)){

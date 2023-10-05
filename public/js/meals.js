@@ -164,7 +164,7 @@ const type = () =>{
             </div>
         </div>
         </a>
-      </div>;`
+      </div>`;
     }
 
     parentElement.innerHTML = http;
