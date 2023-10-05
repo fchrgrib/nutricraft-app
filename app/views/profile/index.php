@@ -25,6 +25,7 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- include js -->
     <script src="../../../public/js/profile.js"></script>
+    <script src="../../../public/js/register.js"></script>
     <title>NutriCraft</title>
 </head>
 <body>
@@ -48,15 +49,17 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
                 </div>
                 <hr>
                 <p class="labelProfile">Email</p>
-                <div>
-                    <input type="email" placeholder=<?php echo $email ?> class="textField" id="editEmail" name="email" disabled>
+                <div id="emailcontainer">
+                    <input type="email" placeholder=<?php echo $email ?> class="textField" id="email" name="email" onchange=validateEmail() disabled>
                     <i class="fas fa-edit editIcon" onclick=enableEmail() ></i>
+                    <p id="emailInvalid"></p>
                 </div>
                 <hr>
                 <p class="labelProfile">Phone Number</p>
-                <div>
-                    <input type="text" placeholder=<?php echo $phone ?> class="textField" id="editPhone" name="phone" disabled>
+                <div id="phonenumbercontainer">
+                    <input type="text" placeholder=<?php echo $phone ?> class="textField" id="phoneNumber" name="phone" onchange=validatePhoneNumber() disabled>
                     <i class="fas fa-edit editIcon" onclick=enablePhoneNumber()></i>
+                    <p id="phoneNumberInvalid"></p>
                 </div>
                 <hr>
                 <p class="labelProfile">Password</p>
@@ -65,7 +68,7 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
                     <i class="fas fa-edit editIcon" onclick= enablePassword()></i>
                 </div>
                 <hr>
-                <button type="submit" class="submitButton" name="submit">Save Change</button>
+                <button type="submit" class="submitButton" name="submit" id="submitButton">Save Change</button>
             </div>
         </div>
     </form>

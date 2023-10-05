@@ -19,10 +19,11 @@
             <div class="forms">
             <form action="../../../server/controller/auth/Register.php" method="POST">
             <h4>Name</h4>
-            <div class="namecontainer">
+            <div class="namecontainer" id="namecontainer">
                 <i class="fas fa-user"></i>
-                <input class="nameinput" type="text" placeholder="Name" name="uname" required>
+                <input class="nameinput" type="text" placeholder="Name" name="uname" id="uname" onchange=validateUname() required>
             </div>
+            <p id="unameInvalid"></p>
             <h4>Email</h4>
             <div class="emailcontainer" id="emailcontainer">
                 <i class="fas fa-envelope"></i>
@@ -36,12 +37,13 @@
             </div>
             <p id="phoneNumberInvalid"></p>
             <h4>Password</h4>
-            <div class="passwordcontainer">
+            <div class="passwordcontainer" id="passwordcontainer">
                 <i class="fas fa-lock"></i>
-                <input class="passwordinput" type="password" placeholder="Password" name="psw"  required>
+                <input class="passwordinput" type="password" placeholder="Password" name="psw" id="password" onchange=validatePassword() required>
             </div>
+            <p id="passwordInvalid"></p>
         </div>
-        <button type="submit" class="register" id="registerButton">Register</button>
+        <button type="submit" class="register" id="submitButton">Register</button>
         </form>
         </div> 
     </div>

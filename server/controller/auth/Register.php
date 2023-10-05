@@ -1,16 +1,13 @@
 
 <?php 
 
-use data\File;
 use data\Users;
 
 require_once('../../handler/data/Users.php');
-require_once('../../handler/data/File.php');
 require_once('../../db/Database.php');
 
 $data = json_decode(file_get_contents("php://input"),true);
 $user = new Users();
-$file = new File();
 
 if(isset($data['email'])){
     if($user->isEmailExists($data['email'])){
@@ -40,9 +37,6 @@ if (isset($_POST['uname']) && isset($_POST['psw']) && isset($_POST['email']) && 
         echo "<script>('create folder')</script>";
         mkdir("../../../assets/user/$id",0777,true);    
     }
-    //create default photo profile
-    // $file->Insert("default.png", "../../assets/user/default/default.png", "photo");
-
     echo "<script>alert('registrasi berhasil')</script>";
     echo "<script>location.href='/?home'</script>";
 }

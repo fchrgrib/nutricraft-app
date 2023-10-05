@@ -9,6 +9,8 @@ require_once('../../db/Database.php');
 $user = new Users();
 $file = new File();
 
+$data = json_decode(file_get_contents("php://input"),true);
+
 if(isset($_COOKIE['user'])){
     $userCookie = $_COOKIE['user'];
     $userData = json_decode($userCookie);
