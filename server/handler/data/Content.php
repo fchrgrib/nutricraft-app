@@ -4,7 +4,7 @@ namespace data;
 
 use Database;
 
-require_once "server/db/Database.php";
+// require_once "server/db/Database.php";
 
 class Content
 {
@@ -60,19 +60,48 @@ class Content
     }
 
 
-    public function FindAll(){
+    public function FindAll($select){
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query($conn, "SELECT * FROM content ORDER BY created_at");
+        if($select == 'Alphabet'){
+            $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
+                            (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
+                            (SELECT p.path FROM file p WHERE c.id_file = p.id) as path_file,
+                            (SELECT p.type_content FROM file p WHERE c.id_file = p.id) as type_file,
+                            c.created_at as created_at,
+                            c.updated_at as updated_at
+                            FROM content c ORDER BY c.title ASC");
+        }else if($select){
+            $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
+                            (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
+                            (SELECT p.path FROM file p WHERE c.id_file = p.id) as path_file,
+                            (SELECT p.type_content FROM file p WHERE c.id_file = p.id) as type_file,
+                            c.created_at as created_at,
+                            c.updated_at as updated_at
+                            FROM content c ORDER BY c.created_at DESC");
+        }else{
+            $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
+                            (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
+                            (SELECT p.path FROM file p WHERE c.id_file = p.id) as path_file,
+                            (SELECT p.type_content FROM file p WHERE c.id_file = p.id) as type_file,
+                            c.created_at as created_at,
+                            c.updated_at as updated_at
+                            FROM content c ORDER BY c.created_at ASC");
+        }
+
+        // $exec = pg_query($conn, "SELECT * FROM content ORDER BY created_at");
         $result = array();
 
         while ($row = pg_fetch_assoc($exec)){
             $result[] = array(
                 'id' => $row['id'],
                 'title' => $row['title'],
-                'id_file' => $row['id_file'],
                 'body' => $row['body'],
+                'highlight'=> $row['highlight'],
+                'path_photo'=>$row['path_photo'],
+                'path_file'=>$row['path_file'],
+                'type_file' =>$row['type_file'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
@@ -87,15 +116,25 @@ class Content
         $this->db->Connect();
         $conn = $this->db->getDb();
 
-        $exec = pg_query_params($conn, "SELECT * FROM content WHERE id = $1 ORDER BY updated_at",array($id));
+        $exec = pg_query_params($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
+                            (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
+                            (SELECT p.path FROM file p WHERE c.id_file = p.id) as path_file,
+                            (SELECT p.type_content FROM file p WHERE c.id_file = p.id) as type_file,
+                            c.created_at as created_at,
+                            c.updated_at as updated_at
+                            FROM content c WHERE c.id = $1 ORDER BY c.updated_at",array($id));
+
         $result = array();
 
         while ($row = pg_fetch_assoc($exec)){
             $result[] = array(
                 'id' => $row['id'],
                 'title' => $row['title'],
-                'id_file' => $row['id_file'],
                 'body' => $row['body'],
+                'highlight'=> $row['highlight'],
+                'path_photo'=>$row['path_photo'],
+                'path_file'=>$row['path_file'],
+                'type_file' =>$row['type_file'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
@@ -106,19 +145,48 @@ class Content
         return $result;
     }
 
-    public function FindByTitle($title){
+    public function FindByTitle($title, $select){
         $this->db->Connect();
         $conn = $this->db->getDb();
 
+        if($select == 'Alphabet'){
+            $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
+                            (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
+                            (SELECT p.path FROM file p WHERE c.id_file = p.id) as path_file,
+                            (SELECT p.type_content FROM file p WHERE c.id_file = p.id) as type_file,
+                            c.created_at as created_at,
+                            c.updated_at as updated_at
+                            FROM content c WHERE c.title LIKE '%$title%' ORDER BY c.title ASC");
+        }else if($select == 'Newest'){
+            $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
+                            (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
+                            (SELECT p.path FROM file p WHERE c.id_file = p.id) as path_file,
+                            (SELECT p.type_content FROM file p WHERE c.id_file = p.id) as type_file,
+                            c.created_at as created_at,
+                            c.updated_at as updated_at
+                            FROM content c WHERE c.title LIKE '%$title%' ORDER BY c.created_at DESC");
+        }else{
+            $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
+                            (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
+                            (SELECT p.path FROM file p WHERE c.id_file = p.id) as path_file,
+                            (SELECT p.type_content FROM file p WHERE c.id_file = p.id) as type_file,
+                            c.created_at as created_at,
+                            c.updated_at as updated_at
+                            FROM content c WHERE c.title LIKE '%$title%' ORDER BY c.created_at ASC");
+        }
+
         $result = array();
-        $exec = pg_query($conn, "SELECT * FROM content WHERE title LIKE '%$title%' ORDER BY created_at");
+
 
         while ($row = pg_fetch_assoc($exec)){
             $result[] = array(
                 'id' => $row['id'],
                 'title' => $row['title'],
-                'id_file' => $row['id_file'],
                 'body' => $row['body'],
+                'highlight'=> $row['highlight'],
+                'path_photo'=>$row['path_photo'],
+                'path_file'=>$row['path_file'],
+                'type_file' =>$row['type_file'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );

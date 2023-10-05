@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../public/css/detailmeal.css">
+    <script defer src="../../../public/js/detailmeal.js"></script>
     <title>NutriCraft</title>
 </head>
 <body>
+    <?php
+        $id = $_GET['id'];
+    ?>
+    <script>
+        window.onload = function() {loadpage(<?php echo $id; ?>);};
+
+    </script>
     <div class="back">
         <div class="content">
             <div class="foodimage">
                 <img src="../../../assets/meal.jpg" alt="">
                 <div class="nutritionfacts">
-                    <h3>Nutrition Facts</h3>
+                    <h3><?php echo $id ?></h3>
                     <div class="calories">
                         <h5>300 cal</h5>
                         <p>Calories</p>
@@ -36,12 +44,12 @@
                 </div>
             </div>
             <div class="foodcontent">
-                <div class="foodtitle">
-                    <h1>Chicken Salad</h1>
-                    <h3>Lunch</h3>
+                <div class="foodtitle" id="foodtitle">
+                    <h1 id="title"></h1>
+                    <h3 id="type"></h3>
                 </div>
                 <div class="fooddescription">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget molestie tellus. Nunc a euismod est. In finibus tellus et efficitur cursus...</p>
+                    <p id="description"></p>
                 </div>
                 <div class="ingredients">
                     <h3>Ingredients</h3>

@@ -9,12 +9,16 @@ class App {
     {
       // Redirect to 'Home'
       $url = $this->parse_url();
-      if (file_exists('app/controllers/' . $url[0] . '.php')) {
-        $this->controller = $url[0];
+      $path = explode("&", $url[0])[0];
+      if (file_exists('app/controllers/' . $path . '.php')) {
+        $this->controller = $path;
         unset($url[0]);
       }
       else if ($url[0] == '') {
         $this->controller = 'home';
+      }
+      else {
+        $this->controller = 'error404';
       }
       // else {
       //   $this->controller = 'Error404';

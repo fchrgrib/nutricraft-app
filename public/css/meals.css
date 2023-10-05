@@ -14,7 +14,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 25px;
 }
 
 .header {
@@ -149,6 +148,37 @@ body {
     border-radius: 20px;
     margin-right: 20px;
 }
+
+a {
+    text-decoration: none;
+}
+
+.card-link {
+    /* turn of the styling of the text */
+    text-decoration: none;
+    color: #000000;
+}
+
+/* Style the container to center its children */
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Additional styles for the content container */
+}
+
+.card-meal__content h3, .card-meal__content p {
+    /* turn of underline */
+    text-decoration: none;
+    color: #000000;
+}
+
+
+
+
+
+
+
 
 .headerclose {
     display: none;

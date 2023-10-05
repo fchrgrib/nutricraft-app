@@ -87,14 +87,14 @@ fromInput.oninput = () => controlFromInput(fromSlider, fromInput, toInput, toSli
 toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
 
 
-const mealCard = document.getElementById("meal-card");
+// const mealCard = document.getElementById("meal-card");
 
-// Add a click event listener to the cardmeal div
-mealCard.addEventListener("click", function() {
-    // Handle the click event here
-    // For example, you can perform an action when the card is clicked
-    window.location.href = "/?detailmeal";
-});
+// // Add a click event listener to the cardmeal div
+// mealCard.addEventListener("click", function() {
+//     // Handle the click event here
+//     // For example, you can perform an action when the card is clicked
+//     window.location.href = "/?detailmeal";
+// });
 
 // Get the button and sidebar elements
 const toggleButton = document.getElementById('toggleSidebar');
@@ -121,9 +121,55 @@ closeButton.addEventListener('click', () => {
 
 
 
+const fun = () => {
+  console.log(toInput.value);
+  console.log(fromInput.value);
+};
 
 
+const type = () =>{
+  const typeMeals = document.querySelectorAll('#selected')[0].textContent;
+  const lowRange = fromInput.value;
+  const highRange = toInput.value;
+  const sort = document.getElementById('pet-select').value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('POST', "../../server/controller/auth/Meals.php", true);
+  xhttp.onload = function() {
+    let response = this.response;
+    // console.log(response);
+    const startIndex = response.indexOf('[');
+    const jsonStr = response.substring(startIndex);
+    const jsonObject = JSON.parse(jsonStr);
+    console.log(jsonObject);
+
+    const parentElement = document.getElementById("mealsContent");
+    let http = '';
+    for (let i = 0; i < jsonObject.length; i++) {
+    const content = jsonObject[i];
+    http+=`
+    <div class='cardmeal' id='meal-card'>
+    <div class='cardmealimage'>
+    <img src='../../../assets/meal.jpg' alt=''>
+    </div>
+    <a href="/?detailmeal&id=${content['id']}">
+        <div class='card-meal__content'>
+            <div class='card-meal__content__title'>
+                <h3>${content['title']}</h3>
+            </div>
+            <div class='card-meal__content__description'>
+                <p>${content['highlight']}</p>
+            </div>
+            <div class='card-meal__content__calories'>
+                <p>Calories: ${content['calorie']}</p>
+            </div>
+        </div>
+        </a>
+      </div>;`
+    }
+
+    parentElement.innerHTML = http;
+  };
+  xhttp.send(JSON.stringify({typeMeals: typeMeals, lowRange: lowRange, highRange: highRange, sort: sort}));
 
 
-
-
+}
