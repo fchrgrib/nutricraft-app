@@ -28,6 +28,10 @@
                 </div>
             </div>
             <div id="isicontent" class="content"></div>
+            <div id="pagination" class="pagination">
+                <button class="prev" onclick=prevPage()>&laquo;</button>
+                <div id="numberpage" class="page"></div>
+                <button class="next" onclick=nextPage()>&raquo;</button>
         </div>
     </div>
 </body>
