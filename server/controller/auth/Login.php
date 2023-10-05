@@ -5,6 +5,16 @@ use data\Users;
 require_once('../../handler/data/Users.php');
 require_once('../../db/Database.php');
 $user = new Users();
+$data = json_decode(file_get_contents("php://input"),true);
+
+
+if(isset($data['email'])){
+    if(!$user->isEmailExists($data['email'])){
+        echo json_encode(array('status'=>'ERROR','message' => 'Email not registered'));
+    }else{
+        echo json_encode(array('status'=>'OK','message' => 'Email tersedia'));
+    }
+}
 
 
 if(isset($_POST['emailLog']) && isset($_POST['passLog'])){
@@ -29,9 +39,10 @@ if(isset($_POST['emailLog']) && isset($_POST['passLog'])){
         if($user->isEmailExists($email)){
             echo "<script>alert('password salah')</script>";
             echo "<script>location.href='/?home'</script>";
-        }else{
-            echo "<script>alert('email tidak terdaftar')</script>";
-            echo "<script>location.href='/?home'</script>";
         }
+        // else{
+        //     echo "<script>alert('email tidak terdaftar')</script>";
+        //     echo "<script>location.href='/?home'</script>";
+        // }
     }
 }
