@@ -67,30 +67,47 @@ const validatePhoneNumber = () => {
     validateAll();
 }
 
-// const validateUname = () => {
-//     const uname = document.getElementById('uname').value;
-//     if (uname.length < 3) {
-//         document.getElementById('unamecontainer').style.borderColor = 'black';
-//         document.getElementById('unameInvalid').innerHTML = '';
-//     } else {
-//         document.getElementById('unamecontainer').style.borderColor = 'red';
-//         document.getElementById('unameInvalid').innerHTML = 'Invalid username';
-//     }
-//     validateAll();
-// };
+const validateUname = () => {
+    const uname = document.getElementById('uname').value;
+    if (uname.length < 5) {
+        document.getElementById('namecontainer').style.borderColor = 'red';
+        document.getElementById('unameInvalid').innerHTML = 'Invalid username';
+    } else {
+        document.getElementById('namecontainer').style.borderColor = 'black';
+        document.getElementById('unameInvalid').innerHTML = '';
+    }
+    validateAll();
+};
+
+const validatePassword = () => {
+    const password = document.getElementById('password').value;
+    if (password.length < 8) {
+        document.getElementById('passwordcontainer').style.borderColor = 'red';
+        document.getElementById('passwordInvalid').innerHTML = 'Password must be at least 8 characters';
+    } else {
+        document.getElementById('passwordcontainer').style.borderColor = 'black';
+        document.getElementById('passwordInvalid').innerHTML = '';
+    }
+    validateAll();
+}
 
 
 const validateAll = () => {
     const email = document.getElementById('emailcontainer').style.borderColor=='black';
-    const phoneNumber = document.getElementById('phonenumbercontainer').style.borderColor!='red';
-    // const uname = document.getElementById('unamecontainer').style.borderColor=='black';
+    const phoneNumber = document.getElementById('phonenumbercontainer').style.borderColor=='black';
+    const uname = document.getElementById('namecontainer').style.borderColor=='black';
+    const password = document.getElementById('passwordcontainer').style.borderColor=='black';
     console.log(email);
     console.log(phoneNumber);
+    console.log(uname);
+    console.log(password);
 
-    if(email && phoneNumber){
-        document.getElementById('registerButton').disabled = false;
+
+    if(email && phoneNumber && uname && password){
+        document.getElementById('submitButton').disabled = false;
         console.log('enabled register button');
     }else{
-        document.getElementById('registerButton').disabled = true;
+        document.getElementById('submitButton').disabled = true;
     }
 };
+

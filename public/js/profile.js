@@ -4,11 +4,11 @@ const enableName= () => {
 }
 
 const enableEmail= () => {
-    document.getElementById('editEmail').disabled = false;
+    document.getElementById('email').disabled = false;
 }
 
 const enablePhoneNumber= () => {
-    document.getElementById('editPhone').disabled = false;
+    document.getElementById('phoneNumber').disabled = false;
 }
 
 const enablePassword= () => {

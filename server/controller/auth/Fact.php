@@ -6,21 +6,25 @@ require_once('../../db/Database.php');
 
 $content = new Content();
 
-$data = json_decode(file_get_contents("php://input"),true);
 
-if(isset($data['select'])){
-    $select = $data['select'];
-    if(isset($data['search'])){
-        $search = $data['search'];
-        $result = $content->FindByTitle($search, $select);
+if(isset($_GET['select'])){
+    $select = $_GET['select'];
+    $page = $_GET['page'];
+    $page = ($page-1)*2;
+    if(isset($_GET['search'])){
+        $search = $_GET['search'];
+        $result = $content->FindByTitle($search, $select, $page);
     }else{
-        $result = $content->FindAll($select);
+        $result = $content->FindAll($select, $page);
     }
     
     echo json_encode($result);
 }
 
-if(isset($data['show'])){
-    $result = $content->FindByTitle($search, $select);
+if(isset($_GET['show'])){
+    $page = $_GET['page'];
+    $page = ($page-1)*2;
+    $select = $_GET['Select'];
+    $result = $content->FindAllPaging($select, $page);
     echo json_encode($result);
 }
