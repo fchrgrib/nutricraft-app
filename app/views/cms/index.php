@@ -69,6 +69,8 @@
 
                 // Function to load Meals data
                 function loadMealsData(data) {
+                    console.log(data);
+
                     const content = document.querySelector('.card-meal_content');
                     content.innerHTML = "<h1>Meals</h1>";
 
