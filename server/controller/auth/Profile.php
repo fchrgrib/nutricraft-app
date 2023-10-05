@@ -17,24 +17,50 @@ if(isset($_COOKIE['user'])){
         $fullName = $userData[0]->full_name;
         $email = $userData[0]->email;
         $phone = $userData[0]->phone_number;
+        $pathPhoto = $userData[0]->photo_profile;
+        $idPhoto = $userData[0]->id_photo_profile;
     }
 }
 
 if(isset($_POST['submit'])){
     if(!empty($_FILES['file']['name'])){
+        echo "<script>console.log('masuk')</script>";
         $targetDirectory = "../../../assets/user/$id/";
         if(is_dir($targetDirectory) == false){
             mkdir($targetDirectory,0777,true);    
         }
+
+        // DELETE OLD PROF PIC
+        $files = glob($targetDirectory . "*");
+        foreach($files as $f){
+            if(is_file($f)) 
+                unlink($f); 
+        }
+
+
         $writeDirectory = "../../assets/user/$id/";
         $file_name =  $_FILES['file']['name'];
         $tmp_name = $_FILES['file']['tmp_name'];
-        $file_up_name = time();
+        $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+        $file_up_name = time().".".$extension;
         move_uploaded_file($tmp_name, $targetDirectory.$file_up_name);
-        $file->Update($id, $file_name, $writeDirectory.$file_up_name, 'photo');
+        
+        if($idPhoto == 1 && $id!=1){
+            //INSERT FOR USERS
+            $idPhoto = $file->Insert($file_name, $writeDirectory.$file_up_name, 'photo');
+        }else if($idPhoto == 1 && $id==1){
+            //UPDATE FOR ADMIN
+            $file->Update($idPhoto, $file_name, $writeDirectory.$file_up_name, 'photo');
+        }else{
+            //UPDATE FOR USERS
+            echo "<script>console.log('masuk',$id,$idPhoto)</script>";
+            $file->Update($idPhoto, $file_name, $writeDirectory.$file_up_name, 'photo');
+        }
+
         echo "<script>console.log('$file_name')</script>";
         echo "<script>console.log('$tmp_name')</script>";
         echo "<script>console.log('$file_up_name')</script>";
+        echo "<script>console.log('$extension')</script>";
     }
     if(isset($_POST['fullName'])){
         $fullName = $_POST['fullName'];
@@ -50,9 +76,9 @@ if(isset($_POST['submit'])){
 
     if(isset($_POST['password'])){
         $password = $_POST['password'];
-        $user->UpdateWithPassword($id, $fullName, $email, $phone, $password);
+        $user->UpdateWithPassword($id, $fullName, $email, $phone, $password, $idPhoto);
     }else{
-        $user->UpdateUsers($id, $fullName, $email, $phone);
+        $user->UpdateUsers($id, $fullName, $email, $phone, $idPhoto);
     }
 
     $temp = $user->FindById($id);

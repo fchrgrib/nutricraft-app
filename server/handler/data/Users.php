@@ -34,13 +34,13 @@ class Users
         $this->db->Disconnect();
     }
 
-    public function UpdateUsers($id, $name, $email, $phoneNumber){
+    public function UpdateUsers($id, $name, $email, $phoneNumber,$photoId){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
         $update_data = pg_query($conn, "UPDATE users
-                                SET full_name = '$name', phone_number = '$phoneNumber', id_photo_profile='$id', email = '$email', updated_at = '$curr'
+                                SET full_name = '$name', phone_number = '$phoneNumber', id_photo_profile='$photoId', email = '$email', updated_at = '$curr'
                                 WHERE id = $id");
 
         if (!$update_data) die("failed to update values: ".pg_last_error());
@@ -49,13 +49,13 @@ class Users
 
         $this->db->Disconnect();
     }
-    public function UpdateWithPassword($id, $name, $email, $phoneNumber, $password){
+    public function UpdateWithPassword($id, $name, $email, $phoneNumber, $password, $photoId){
         $this->db->Connect();
         $conn = $this->db->getDb();
         $curr = date('Y-m-d H:i:s');
 
         $update_data = pg_query($conn, "UPDATE users
-                                SET full_name = '$name', phone_number = '$phoneNumber', email = '$email', id_photo_profile='$id', password='$password' ,updated_at = '$curr'
+                                SET full_name = '$name', phone_number = '$phoneNumber', email = '$email', id_photo_profile='$photoId', password='$password' ,updated_at = '$curr'
                                 WHERE id = $id");
 
         if (!$update_data) die("failed to update values: ".pg_last_error());
@@ -106,7 +106,7 @@ class Users
 
         $exec = pg_query_params($conn, "SELECT
                                 u.id as user_id, u.full_name as full_name, u.email as email,
-                                u.phone_number as phone_number, u.roles as roles, f.path as photo_profile, u.created_at as created_at
+                                u.phone_number as phone_number, u.roles as roles, f.path as photo_profile, u.created_at as created_at, u.id_photo_profile as id_photo_profile
                                 FROM users u JOIN file f ON f.id = u.id_photo_profile WHERE u.id = $1 ORDER BY u.created_at", array($id));
         $result = array();
         while ($row = pg_fetch_assoc($exec)) {
@@ -117,7 +117,8 @@ class Users
                 'phone_number' => $row['phone_number'],
                 'roles' => $row['roles'],
                 'photo_profile' =>$row['photo_profile'],
-                'created_at' => $row['created_at']
+                'created_at' => $row['created_at'],
+                'id_photo_profile' => $row['id_photo_profile']
             );
         }
         $this->db->Disconnect();

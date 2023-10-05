@@ -41,7 +41,7 @@ if (isset($_POST['uname']) && isset($_POST['psw']) && isset($_POST['email']) && 
         mkdir("../../../assets/user/$id",0777,true);    
     }
     //create default photo profile
-    $file->Insert("default.png", "../../assets/user/default/default.png", "photo");
+    // $file->Insert("default.png", "../../assets/user/default/default.png", "photo");
 
     echo "<script>alert('registrasi berhasil')</script>";
     echo "<script>location.href='/?home'</script>";

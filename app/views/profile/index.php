@@ -33,10 +33,10 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
         <div class="profileContainer">
             <div class="boxKiri">
                 <div class="photoContainer">
-                    <img src=<?php echo $photo?> alt="defaultProfPic" class="photoProfile">
+                    <img src=<?php echo $photo?> alt="photoProfile" class="photoProfile" id="photoProfile">
                     <div class="editPhotoButton">
                         <label for="file" class="fileLabel">Choose a Photo</label>
-                        <input type="file" name="file" id="file" class="file" accept="image/*">
+                        <input type="file" name="file" id="file" class="file" accept="image/*" onchange="updatePhoto()">
                     </div>
                 </div>
             </div>
