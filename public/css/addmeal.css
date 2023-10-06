@@ -138,6 +138,21 @@
     outline: none;
 }
 
+.mealhighlight {
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #EF4800;
+    margin-right: 25px;
+}
+
+.inputhighlight {
+    width: 575px;
+    height: 20px;
+    border: none;
+    padding-left: 10px;
+    outline: none;
+}
+
 li input{
     margin-right: 10px;
     border: none;

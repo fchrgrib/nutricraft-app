@@ -45,6 +45,7 @@ if(isset($_POST['submit'])){
         $tmp_name = $_FILES['file']['tmp_name'];
         $extension = pathinfo($file_name, PATHINFO_EXTENSION);
         $file_up_name = time().".".$extension;
+        echo "<script>console.log('$file_name')</script>";
         move_uploaded_file($tmp_name, $targetDirectory.$file_up_name);
         
         if($idPhoto == 1 && $id!=1){

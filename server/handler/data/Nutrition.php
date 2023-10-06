@@ -30,8 +30,6 @@ class Nutrition
         echo "<script>console.log('successfully insert nutrition')</script>";
 
         $this->db->Disconnect();
-
-        return $id['id'];
     }
 
     public function Update($id, $calorie, $carbo, $protein, $fat, $sugar, $id_meals){
