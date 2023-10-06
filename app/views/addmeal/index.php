@@ -50,7 +50,7 @@
                         <ul id="ingredientList">
                             <!-- Existing list items go here -->
                         </ul>
-                        <button type="button" class="addbutton" id="addIngredientBtn">Add</button>
+                        <button type="button" class="addbutton" id="addIngredientBtn" >Add</button>
                     </div>
                 </div>
                 <div class="mealnutrition">

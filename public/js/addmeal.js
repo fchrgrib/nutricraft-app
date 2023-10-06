@@ -14,8 +14,10 @@
         inputIngredients.type = "text";
         inputIngredients.placeholder = "Ingredients";
         inputIngredients.class = "form-control";
+        inputIngredients.name = "ingredients";
         inputInformation.type = "text";
         inputInformation.placeholder = "Information";
+        inputInformation.name = "information";
 
         // Set text and type for the delete button
         deleteBtn.textContent = "X";
@@ -43,3 +45,14 @@
         document.getElementById('file').click();
     });
     
+    document.querySelector("form").addEventListener("submit", function(event) {
+        const listItems = document.querySelectorAll("#ingredientList li");
+        listItems.forEach(function(li, index) {
+            const ingredients = li.querySelector('input[name^="ingredients"]');
+            const information = li.querySelector('input[name^="information"]');
+            
+            // Set POST variables dynamically using JavaScript
+            ingredients.name = `item[${index}][ingredients]`;
+            information.name = `item[${index}][information]`;
+        });
+    });
