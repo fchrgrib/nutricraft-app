@@ -121,56 +121,133 @@ closeButton.addEventListener('click', () => {
 
 
 
-const fun = () => {
-  console.log(toInput.value);
-  console.log(fromInput.value);
-};
-
-
 const type = () =>{
   const typeMeals = document.querySelectorAll('#selected')[0].textContent;
   const lowRange = fromInput.value;
   const highRange = toInput.value;
   const sort = document.getElementById('pet-select').value;
   const xhttp = new XMLHttpRequest();
-  xhttp.open('POST', "../../server/controller/auth/Meals.php", true);
-  xhttp.onload = function() {
-    let response = this.response;
-    // console.log(response);
-    const startIndex = response.indexOf('[');
-    const jsonStr = response.substring(startIndex);
-    const jsonObject = JSON.parse(jsonStr);
-    console.log(jsonObject);
-
-    const parentElement = document.getElementById("mealsContent");
-    let http = '';
-    for (let i = 0; i < jsonObject.length; i++) {
-    const content = jsonObject[i];
-    http+=`
-    <div class='cardmeal' id='meal-card'>
-    <div class='cardmealimage'>
-    <img src="${content['path_photo']}" alt=''>
-    </div>
-    <a href="/?detailmeal&id=${content['id']}">
-        <div class='card-meal__content'>
-            <div class='card-meal__content__title'>
-                <h3>${content['title']}</h3>
-            </div>
-            <div class='card-meal__content__description'>
-                <p>${content['highlight']}</p>
-            </div>
-            <div class='card-meal__content__calories'>
-                <p>Calories: ${content['calorie']}</p>
-            </div>
-        </div>
-        </a>
-      </div>`;
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4){
+      let response = this.response;
+      // console.log(response);
+      const startIndex = response.indexOf('[');
+      const jsonStr = response.substring(startIndex);
+      const jsonObject = JSON.parse(jsonStr);
+      console.log(jsonObject);
+  
+      const parentElement = document.getElementById("mealsContent");
+      let http = '';
+      for (let i = 0; i < jsonObject.length; i++) {
+      const content = jsonObject[i];
+      http+=`
+      <div class='cardmeal' id='meal-card'>
+      <div class='cardmealimage'>
+      <img src="${content['path_photo']}" alt=''>
+      </div>
+      <a href="/?detailmeal&id=${content['id']}">
+          <div class='card-meal__content'>
+              <div class='card-meal__content__title'>
+                  <h3>${content['title']}</h3>
+              </div>
+              <div class='card-meal__content__description'>
+                  <p>${content['highlight']}</p>
+              </div>
+              <div class='card-meal__content__calories'>
+                  <p>Calories: ${content['calorie']}</p>
+              </div>
+          </div>
+          </a>
+        </div>`;
+      }
+  
+      parentElement.innerHTML = http;
     }
-
-    parentElement.innerHTML = http;
   };
-  xhttp.send(JSON.stringify({typeMeals: typeMeals, lowRange: lowRange, highRange: highRange, sort: sort}));
-
-
+  xhttp.open('GET', `../../server/controller/auth/Meals.php?typeMeals=${typeMeals}&lowRange=${lowRange}&highRange=${highRange}&sort=${sort}`, true);
+  xhttp.send();
 }
 
+const search = () =>{
+  const typeMeals = document.querySelectorAll('#selected')[0].textContent;
+  const lowRange = fromInput.value;
+  const highRange = toInput.value;
+  const sort = document.getElementById('pet-select').value;
+  const search = document.getElementById('searchinput').value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4){
+      let response = this.response;
+      // console.log(response);
+      const startIndex = response.indexOf('[');
+      const jsonStr = response.substring(startIndex);
+      const jsonObject = JSON.parse(jsonStr);
+      console.log(jsonObject);
+  
+      const parentElement = document.getElementById("mealsContent");
+      let http = '';
+      for (let i = 0; i < jsonObject.length; i++) {
+      const content = jsonObject[i];
+      http+=`
+      <div class='cardmeal' id='meal-card'>
+      <div class='cardmealimage'>
+      <img src="${content['path_photo']}" alt=''>
+      </div>
+      <a href="/?detailmeal&id=${content['id']}">
+          <div class='card-meal__content'>
+              <div class='card-meal__content__title'>
+                  <h3>${content['title']}</h3>
+              </div>
+              <div class='card-meal__content__description'>
+                  <p>${content['highlight']}</p>
+              </div>
+              <div class='card-meal__content__calories'>
+                  <p>Calories: ${content['calorie']}</p>
+              </div>
+          </div>
+          </a>
+        </div>`;
+      }
+  
+      parentElement.innerHTML = http;
+    }
+  };
+  xhttp.open('GET', `../../server/controller/auth/Meals.php?typeMeals=${typeMeals}&lowRange=${lowRange}&highRange=${highRange}&sort=${sort}&search=${search}`, true);
+  xhttp.send();
+}
+
+
+document.getElementById('pet-select').addEventListener('change', function(){
+  if(document.getElementById('searchinput').value == ""){
+    type();
+  }else{
+    search();
+  }
+});
+
+document.getElementById('toInput').addEventListener('change', function(){
+  if(document.getElementById('searchinput').value == ""){
+    type();
+  }else{
+    search();
+  }
+});
+
+document.getElementById('fromInput').addEventListener('change', function(){
+  if(document.getElementById('searchinput').value == ""){
+    type();
+  }else{
+    search();
+  }
+});
+
+function debounce(func, timeout = 500){
+  let timer;
+  return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  };
+}
+
+
+const searchDebounce = debounce(() => search());

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../../public/css/meals.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script defer src="../../../public/js/meals.js"></script>
+    <script>window.onload = function() {type();};</script>
     <title>NutriCraft</title>
 </head>
 
@@ -22,10 +23,10 @@
                     </button>
                     <div class="searchcontainer">
                         <i class="fas fa-search"></i>
-                        <input class="searchinput" type="text" placeholder="Search">
+                        <input class="searchinput" id="searchinput" type="text" placeholder="Search" onkeyup=searchDebounce()>
                     </div>
                 </div>
-                <div class="buttons" onclick=type()>
+                <div class="buttons">
                     <button type="button" class="all" id="selected">All</button>
                     <button type="button" class="breakfast">Breakfast</button>
                     <button type="button" class="lunch">Lunch</button>
@@ -34,7 +35,7 @@
                 <script>
                 // Get all the buttons
                 const buttons = document.querySelectorAll('.buttons button');
-
+                console.log(buttons);
                 // Add click event listeners to each button
                 buttons.forEach(button => {
                     button.addEventListener('click', () => {
@@ -73,7 +74,7 @@
                 <div class="selectcontainer">
                     <label for="sorttitle">Sort By</label>
                 </div>
-                <select name="sortby" id="pet-select" onclick=type()>
+                <select name="sortby" id="pet-select">
                     <option value="Alphabet" class="alpha">Alphabet</option>
                     <option value="Calories: low to high">Calories: low to high</option>
                     <option value="Calories: high to low">Calories: high to low</option>
@@ -87,20 +88,20 @@
             </div>
             <div class="range_container" >
                 <div class="range_container__title">Calories</div>
-                <div class="sliders_control" >
-                    <input id="fromSlider" type="range" value="10" min="0" max="1600" onclick=type()/>
-                    <input id="toSlider" type="range" value="10000" min="0" max="1600" onclick=type()/>
+                <div class="sliders_control" id="slider_control">
+                    <input id="fromSlider" type="range" value="10" min="0" max="1600" />
+                    <input id="toSlider" type="range" value="10000" min="0" max="1600" />
                 </div>
                 <div class="form_control">
                     <div class="form_control_container">
                         <div class="form_control_container__time">Min</div>
                         <input class="form_control_container__time__input" type="number" id="fromInput" value="10"
-                            min="0" max="1600" onclick=type()/>
+                            min="0" max="1600"/>
                     </div>
                     <div class="form_control_container">
                         <div class="form_control_container__time">Max</div>
                         <input class="form_control_container__time__input" type="number" id="toInput" value="1600"
-                            min="0" max="1600" onclick=type()/>
+                            min="0" max="1600"/>
                     </div>
                 </div>
             </div>
