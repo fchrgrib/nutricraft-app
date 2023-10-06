@@ -112,6 +112,42 @@ class Content
         return $result;
     }
 
+    public function FindAllSearch($title){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+
+        $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
+                        (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
+                        (SELECT p.path FROM file p WHERE c.id_file = p.id) as path_file,
+                        (SELECT p.type_content FROM file p WHERE c.id_file = p.id) as type_file,
+                        c.created_at as created_at,
+                        c.updated_at as updated_at
+                        FROM content c 
+                        WHERE c.title ILIKE '%$title%'");
+        
+
+        // $exec = pg_query($conn, "SELECT * FROM content ORDER BY created_at");
+        $result = array();
+
+        while ($row = pg_fetch_assoc($exec)){
+            $result[] = array(
+                'id' => $row['id'],
+                'title' => $row['title'],
+                'body' => $row['body'],
+                'highlight'=> $row['highlight'],
+                'path_photo'=>$row['path_photo'],
+                'path_file'=>$row['path_file'],
+                'type_file' =>$row['type_file'],
+                'created_at' => $row['created_at'],
+                'updated_at' => $row['updated_at']
+            );
+        }
+
+        $this->db->Disconnect();
+
+        return $result;
+    }
+
     public function FindAllPaging($select, $page){
         $this->db->Connect();
         $conn = $this->db->getDb();

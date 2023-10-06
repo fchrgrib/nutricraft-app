@@ -1,3 +1,4 @@
+
 function toggleVideo(card) {
     var content = card.querySelector('.video-content'); // Use card parameter to find .video-content within the clicked card
     console.log(content)
@@ -9,6 +10,7 @@ function toggleVideo(card) {
 }
 
 let Page = 1;
+let TotalPage;
 
 // Add a click event listener to a parent container (e.g., isicontent)
 document.getElementById("isicontent").addEventListener("click", function(event) {
@@ -28,27 +30,35 @@ function capitalizeWords(str) {
   
   // masi salah
 const pagination = () => {
-    const show = "all";
+    const pageNumber = "pageNumber";
+    const search = document.getElementById('searchinput').value;
     const xhttp = new XMLHttpRequest();
-    xhttp.open('POST', "../../server/controller/auth/Fact.php", true);
-    xhttp.onload = function() {
-        let response = this.response;
-        const startIndex = response.indexOf('[');
-        const jsonStr = response.substring(startIndex);
-        const jsonObject = JSON.parse(jsonStr);
-        console.log(jsonObject);
-        
-        const numberpage = document.getElementById('numberpage');
-        let html = "";
-        for (let i = 0; i < Math.ceil(jsonObject.length / 2); i++) {
-            html += `<button class="page" onclick="showPage(this)">${i}</button>`;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4){
+            let response = this.response;
+            const startIndex = response.indexOf('[');
+            const jsonStr = response.substring(startIndex);
+            const jsonObject = JSON.parse(jsonStr);
+            
+            const numberpage = document.getElementById('numberpage');
+            TotalPage=Math.ceil(jsonObject.length / 2);
+            let html = "";
+            for (let i = 1; i <= Math.ceil(jsonObject.length / 2); i++) {
+                if(i == 1){
+                    html += `<button type='button' class="page" value=${i} id='selected' onclick='selectPage(); getPage(${i});' ">${i}</button>`;
+                }else{
+                    html += `<button type='button' class="page" value=${i} onclick='selectPage(); getPage(${i});' ">${i}</button>`;
+                }
+            }
+            numberpage.innerHTML = html;
         }
-        numberpage.innerHTML = html;
     };
-    xhttp.send({show : show});
+    xhttp.open('GET', `../../server/controller/auth/Fact.php?pageNumber=${pageNumber}&search=${search}`, true);
+    xhttp.send();
 }
 
 
+// pagination();
 const Search = () => {
     const search = capitalizeWords(document.getElementById('searchinput').value);
     const select = document.getElementById('pet-select').value;
@@ -60,36 +70,37 @@ const Search = () => {
             const startIndex = response.indexOf('[');
             const jsonStr = response.substring(startIndex);
             const jsonObject = JSON.parse(jsonStr);
-
-            console.log(jsonStr);
+            
+            // console.log(jsonStr);
 
 
             const parentElement = document.getElementById("isicontent");
-
+            
             let html = "";
             for (let i = 0; i < jsonObject.length; i++) {
                 const content = jsonObject[i];
                 html += `
                 <div class="video-card" onclick="toggleVideo(this)">
                 <div class="cardcontent">
-                        <img src="${content.path_photo}" alt="">
-                        <div class="card-title">
-                            <h3>${content.title}</h3>
+                <img src="${content.path_photo}" alt="">
+                <div class="card-title">
+                <h3>${content.title}</h3>
                             <p>${content.highlight}</p>
-                        </div>
+                            </div>
                     </div>
                     
                     </div>
                     `;
                 }
-                    // <div class="video-content">
-                    // <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
-                    // </div>
+                // <div class="video-content">
+                // <iframe src="https://www.youtube.com/embed/KpcbvgwfUwQ&ab" frameborder="0" allowfullscreen></iframe>
+                // </div>
                 
                 parentElement.innerHTML = html;
-        }
+            }
             
             
+            pagination();
         };
         xhttp.open('GET', `../../server/controller/auth/Fact.php?search=${search}&select=${select}&page=${Page}`, true);
         xhttp.send(JSON.stringify({search: search, select: select}));
@@ -99,6 +110,7 @@ const Search = () => {
 const showAll = () => {
     const show = "all";
     const select = document.getElementById('pet-select').value;
+    console.log(Page);
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4){
@@ -107,46 +119,67 @@ const showAll = () => {
             const jsonStr = response.substring(startIndex);
             const jsonObject = JSON.parse(jsonStr);
             console.log(jsonStr);
-    
-    
+            
+            
             const parentElement = document.getElementById("isicontent");
             let html = "";
             for (let i = 0; i < jsonObject.length; i++) {
             const content = jsonObject[i];
             html += `
-                <div class="video-card" onclick="toggleVideo(this)">
-                    <div class="cardcontent">
-                        <img src="${content.path_photo}" alt="">
-                        <div class="card-title">
-                            <h3>${content.title}</h3>
-                            <p>${content.highlight}</p>
-                        </div>
-                    </div>
-                    
-                    </div>
-                    `;
-                }
-                {/* <div class="video-content">
-                    <iframe src="https://www.youtube.com/embed/l970HoJ7g7o?si=61k4a2ioQf4YfpFF" frameborder="0" allowfullscreen></iframe>
-                </div> */}
+            <div class="video-card" onclick="toggleVideo(this)">
+            <div class="cardcontent">
+            <img src="${content.path_photo}" alt="">
+            <div class="card-title">
+            <h3>${content.title}</h3>
+            <p>${content.highlight}</p>
+            </div>
+            </div>
+            
+            </div>
+            `;
+        }
+        {/* <div class="video-content">
+        <iframe src="https://www.youtube.com/embed/l970HoJ7g7o?si=61k4a2ioQf4YfpFF" frameborder="0" allowfullscreen></iframe>
+    </div> */}
             parentElement.innerHTML = html;        
-
+            pagination();
         }
     };  
     xhttp.open('GET', `../../server/controller/auth/Fact.php?show=${show}&Select=${select}&page=${Page}`, true);
-    xhttp.send(JSON.stringify({show : show}));
+    xhttp.send();
 
 }
 
 
 const prevPage = () =>{
-    Page = 1;
-    showAll();
+    const search = document.getElementById('searchinput').value;
+    if(Page>1){
+        Page-=1
+        if(search==''){
+            showAll();
+        }else{
+            Search();
+        }
+    }
 }
 
 const nextPage = () =>{
-    Page = 2;
-    showAll();
+    const search = document.getElementById('searchinput').value;
+    if(Page<TotalPage){
+        Page+=1
+        console.log(Page);
+        console.log("HAI");
+        if(search==''){
+            showAll();
+        }else{
+            Search();
+        }
+    }
+}
+
+function getPage(pa){
+    Page = pa;
+    console.log(Page);
 }
 
 
@@ -157,6 +190,37 @@ function debounce(func, timeout = 500){
         timer = setTimeout(() => { func.apply(this, args); }, timeout);
     };
 }
+
+function selectPage (){
+    const buttons = document.querySelectorAll('.buttons button');
+
+
+    for (let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener('click', () => {
+
+            const currentlySelectedButton = document.querySelector('#selected');
+            currentlySelectedButton.removeAttribute('id');
+
+            buttons[i].id = 'selected';
+
+            for (let j = 0; j < buttons.length; j++){
+                buttons[j].classList.remove('selected');
+            }
+            buttons[i].classList.add('selected');
+        });
+    }
+}
+
+
+document.getElementById('numberpage').addEventListener('click',()=>{
+    const search = document.getElementById('searchinput').value;
+    console.log(search);
+    if(search==''){
+        showAll();
+    }else{
+        Search();
+    }
+})
 
 
 const searchDebounce = debounce(() => Search());
