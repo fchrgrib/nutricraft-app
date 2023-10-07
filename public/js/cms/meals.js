@@ -49,6 +49,8 @@ function showConfirmation() {
     const content = document.getElementById('content');
     const confirmButton = document.getElementById('confirmButton');
     const cancelButton = document.getElementById('cancelButton');
+    const message = document.getElementById('message');
+    message.innerHTML = "Are you sure you want to delete this meal?";
     confirmationBox.style.display = 'flex';
     content.style.filter = 'blur(3px)';
     confirmButton.addEventListener('click', function() {
@@ -65,21 +67,9 @@ function showConfirmation() {
 function hideConfirmation() {
     const confirmationBox = document.getElementById('confirmationBox');
     const content = document.getElementById('content');
-    const confirmButton = document.getElementById('confirmButton');
-    const cancelButton = document.getElementById('cancelButton');
     confirmationBox.style.display = 'none';
     content.style.filter = 'none';
 }
-
-confirmButton.addEventListener('click', function() {
-    // Your code for handling the "Confirm" action here
-    hideConfirmation();
-});
-
-cancelButton.addEventListener('click', function() {
-    // Your code for handling the "Cancel" action here
-    hideConfirmation();
-});
 
 // Trigger the confirmation box
 // You can call showConfirmation() wherever you need to show the confirmation dialog

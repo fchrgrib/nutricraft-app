@@ -274,6 +274,11 @@ li button {
         width: 100%;
     }
 
+    .nametype {
+        flex-direction: column;
+        gap: 25px;
+    }
+
     .mealname {
         width: 100%;
     }

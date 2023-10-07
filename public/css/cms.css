@@ -196,6 +196,7 @@
     border: 1px solid #EF4800;
     border-radius: 20px;
     cursor: pointer;
+    gap: 10px;
 }
 
 .cardmeal:hover {
@@ -216,6 +217,14 @@
     margin-right: 20px;
 }
 
+.card-meal__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .card-meal__content__edit button{
     border: none;
     background-color: #EF4800;
@@ -224,6 +233,7 @@
     height: 30px;
     margin-bottom: 10px;
     margin-right: 10px;
+    margin-left: 10px;
     border-radius: 30px;
     font-size: 16px;
     font-weight: 600;
@@ -245,6 +255,19 @@
 
     .buttons button {
         width: 150px;
+    }
+
+    .card-meal__content__edit {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .card-meal__content__edit button{
+        margin: 0;
     }
 
     .cardmeal {
