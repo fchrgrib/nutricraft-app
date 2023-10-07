@@ -24,7 +24,6 @@
         <div class="content" id="content">
             <div class="header">
                 <h1>CMS Admin</h1>
-                <button type="button" class="logoutbtn" onclick="showConfirmation()">Logout</button>
                 <div class="buttons">
                     <button type="button" class="mealsbtn" id="selected">Meals</button>
                     <button type="button" class="factsbtn">Facts</button>
