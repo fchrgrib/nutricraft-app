@@ -35,7 +35,7 @@ body {
     display: none;
     width: 100px;
     height: 30px;
-    border: 1px solid #BA540B;
+    border: 1px solid #EF4800;
     border-radius: 30px;
     background-color: #FFFFFF;
     /* align text */
@@ -66,7 +66,7 @@ body {
 
 
 .searchcontainer:hover, .searchcontainer:focus-within {
-    border: 1px solid #288990;
+    border: 1px solid #10A5A5;
     transform: scale(1.001); /* Slightly scale up on hover */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -97,7 +97,7 @@ body {
 .buttons button {
     border: none;
     background-color: transparent;
-    color: #BA540B;
+    color: #EF4800;
     width: 120px;
     height: 30px;
     font-size: 16px;
@@ -107,7 +107,7 @@ body {
 }
 
 #selected {
-    background-color: #BA540B;
+    background-color: #EF4800;
     color: #FFFFFF;
     transition: background-color 0.3s ease, color 0.3s ease;
 
@@ -127,13 +127,13 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid #BA540B;
+    border: 1px solid #EF4800;
     border-radius: 20px;
     cursor: pointer;
 }
 
 .cardmeal:hover {
-    border: 1px solid #288990;
+    border: 1px solid #10A5A5;
     transform: scale(1.001); /* Slightly scale up on hover */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -205,7 +205,7 @@ a {
     justify-content: flex-start;
     align-items: center;
     width: 50%;
-    border: 1px solid #BA540B;
+    border: 1px solid #EF4800;
     border-radius: 20px;
 }
 
@@ -217,7 +217,7 @@ a {
     width: 90%;
     height: 50px;
     padding: 0 10px;
-    border-bottom: 1px solid #BA540B;
+    border-bottom: 1px solid #EF4800;
 
 }
 
@@ -229,7 +229,7 @@ a {
 .sortheader h3{
     font-size: 18px;
     font-weight: 700;
-    color: #BA540B;
+    color: #EF4800;
     margin-left: 10px;
 }
 
@@ -251,7 +251,7 @@ a {
 .selectcontainer label {
     font-size: 18px;
     font-weight: 500;
-    color: #BA540B;
+    color: #EF4800;
     margin-bottom: 10px;
 }
 
@@ -259,7 +259,7 @@ select {
     width: 80%;
     font-size: 0.9rem;
     padding: 2px 5px;
-    border: 1px solid #BA540B;
+    border: 1px solid #EF4800;
     border-radius: 5px;
     background-color: #FFFFFF;
 
@@ -270,7 +270,7 @@ select {
 }
 
 .sortmenus select:hover {
-    border: 1px solid #288990;
+    border: 1px solid #10A5A5;
     transform: scale(1.001); /* Slightly scale up on hover */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -286,7 +286,7 @@ select {
     justify-content: flex-start;
     align-items: center;
     width: 50%;
-    border: 1px solid #BA540B;
+    border: 1px solid #EF4800;
     border-radius: 20px
 }
 
@@ -298,7 +298,7 @@ select {
     width: 90%;
     height: 50px;
     padding: 0 10px;
-    border-bottom: 1px solid #BA540B;
+    border-bottom: 1px solid #EF4800;
 }
 
 .filterheader img {
@@ -309,14 +309,55 @@ select {
 .filterheader h3{
     font-size: 18px;
     font-weight: 700;
-    color: #BA540B;
+    color: #EF4800;
     margin-left: 10px;
+}
+
+.mealscontent {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-left: 30px;
+    padding-bottom: 30px;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pagination button {
+    border: 1px solid #EF4800;
+    background-color: transparent;
+    color: #EF4800;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #EF4800;
+    color: #FFFFFF;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination button:focus {
+    outline: none;
 }
 
 .range_container__title {
     font-size: 18px;
     font-weight: 500;
-    color: #BA540B;
+    color: #EF4800;
     margin-left: 15px;
     margin-bottom: 10px;
 }
@@ -368,8 +409,8 @@ select {
   }
   
   input[type=range]::-webkit-slider-thumb:active {
-    box-shadow: inset 0 0 3px #BA540B, 0 0 9px #BA540B;
-    -webkit-box-shadow: inset 0 0 3px #BA540B, 0 0 9px #BA540B;
+    box-shadow: inset 0 0 3px #EF4800, 0 0 9px #EF4800;
+    -webkit-box-shadow: inset 0 0 3px #EF4800, 0 0 9px #EF4800;
   }
   
   input[type="number"] {
@@ -424,7 +465,7 @@ select {
         height: 50px;
         gap: 40px;
         padding: 0 10px;
-        border-bottom: 1px solid #BA540B;
+        border-bottom: 1px solid #EF4800;
         margin-bottom: 30px;
     }
 

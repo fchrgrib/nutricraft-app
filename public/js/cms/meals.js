@@ -32,7 +32,7 @@ function loadMealsData() {
                                 <a href="/?editmeal&id=${meal.id}">
                                 <button type='button' class='editbtn'>Edit</button>
                                 </a>
-                                    <button type='button' class='deletebtn'>Delete</button>
+                                    <button type='button' class='deletebtn' onclick='showConfirmation()'>Delete</button>
                                 </div>
                             </div>`;
             content.innerHTML += mealHTML;
@@ -41,3 +41,45 @@ function loadMealsData() {
     xhttp.open('GET', "../../../server/controller/auth/cms/Meals.php", true);
     xhttp.send();
 }
+
+
+
+function showConfirmation() {
+    const confirmationBox = document.getElementById('confirmationBox');
+    const content = document.getElementById('content');
+    const confirmButton = document.getElementById('confirmButton');
+    const cancelButton = document.getElementById('cancelButton');
+    confirmationBox.style.display = 'flex';
+    content.style.filter = 'blur(3px)';
+    confirmButton.addEventListener('click', function() {
+        // Your code for handling the "Confirm" action here
+        hideConfirmation();
+    });
+    
+    cancelButton.addEventListener('click', function() {
+        // Your code for handling the "Cancel" action here
+        hideConfirmation();
+    });
+}
+
+function hideConfirmation() {
+    const confirmationBox = document.getElementById('confirmationBox');
+    const content = document.getElementById('content');
+    const confirmButton = document.getElementById('confirmButton');
+    const cancelButton = document.getElementById('cancelButton');
+    confirmationBox.style.display = 'none';
+    content.style.filter = 'none';
+}
+
+confirmButton.addEventListener('click', function() {
+    // Your code for handling the "Confirm" action here
+    hideConfirmation();
+});
+
+cancelButton.addEventListener('click', function() {
+    // Your code for handling the "Cancel" action here
+    hideConfirmation();
+});
+
+// Trigger the confirmation box
+// You can call showConfirmation() wherever you need to show the confirmation dialog

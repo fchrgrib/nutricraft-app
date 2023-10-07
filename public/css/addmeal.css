@@ -22,6 +22,10 @@
     margin-right: 40px;
 }
 
+.imagecontainer img {
+    height: 20vw;
+}
+
 .editPhotoButton {
     background-color: #BA540B;
     border: none;
@@ -245,11 +249,8 @@ li button {
     transition: 0.5s;
 }
 
-@media screen and (max-width: 1200px) {
-    .content {
-        flex-direction: column;
-        gap: 50px;
-    }
+@media screen and (max-width: 768px) {
+    
 
     .editcontainer {
         border-left: none;

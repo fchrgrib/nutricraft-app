@@ -9,8 +9,8 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="content">
-        <form action="../../../server/controller/auth/cms/AddMeal.php" method="POST" enctype="multipart/form-data">
+    <form action="../../../server/controller/auth/cms/AddMeal.php" method="POST" enctype="multipart/form-data">
+            <div class="content">
             <div class="imagecontainer">
                 <img src="../../../assets/Nopict.png" alt="defaultProfPic" class="photoProfile">
                 <div class="editPhotoButton">

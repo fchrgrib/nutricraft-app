@@ -166,7 +166,7 @@
     margin-right: 5px;
 }
 
-/* #selected {
+ #selected {
     background-color: #BA540B;
     color: #FFFFFF;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -177,4 +177,4 @@
     background-color: #FF6B00;
     color: #FFFFFF;
     transition: background-color 0.3s ease, color 0.3s ease;
-} */
+} 

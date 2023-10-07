@@ -76,6 +76,7 @@
                 const li = document.createElement('li');
                 const inputIngredients = document.createElement("input");
                 const inputInformation = document.createElement("input");
+                const deleteBtn = document.createElement("button");
                 const ingredient = content[1][i]['ingredient'];
                 const description = content[1][i]['description'];
                 inputIngredients.type = "text";
@@ -87,8 +88,16 @@
                 inputInformation.value = description;
                 li.appendChild(inputIngredients);
                 li.appendChild(inputInformation);
+                deleteBtn.textContent = "X";
+                deleteBtn.type = "button";
+
+                // Add a click event listener to the delete button
+                deleteBtn.addEventListener("click", () => {
+                    // Remove the parent list item when the delete button is clicked
+                    li.remove();
+                });
+                li.appendChild(deleteBtn);
                 // Concatenate ingredient and description with a delimiter (e.g., a space)
-                const combinedText = `${ingredient} - ${description}`;
                 ingredients.appendChild(li);
             }
     

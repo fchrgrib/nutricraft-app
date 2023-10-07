@@ -16,7 +16,7 @@ body {
 }
 
 #buttons{
-    background-color: #288990;
+    background-color: #10A5A5;
     margin: 0;
     width: 100%;
     height: 100px;
@@ -31,7 +31,7 @@ body {
 #login{
     display: flex;
     align-items: center;
-    background-color: #288990;
+    background-color: #10A5A5;
 
 }
 
@@ -129,7 +129,7 @@ body {
 }
 
 .login{
-    background-color: #BA540B;
+    background-color: #EF4800;
     border: none;
     border-radius: 30px;
     width: 154px;
@@ -182,7 +182,7 @@ body {
 /* Styles for the mobile menu when it's shown */
 #mobile-menu.show {
     display: block;
-    background-color: #288990;
+    background-color: #10A5A5;
     position: absolute;
     top: 100px; /* Adjust this value as needed */
     left: 0;
@@ -211,7 +211,7 @@ body {
 }
 
 .dropbtn {
-    background-color: #288990;
+    background-color: #10A5A5;
     color: white;
     padding: 16px;
     font-size: 16px;

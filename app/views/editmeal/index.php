@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <link rel="stylesheet" href="../../../public/css/addmeal.css">
+    <link rel="stylesheet" href="../../../public/css/editmeal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script defer src="../../../public/js/editmeal.js"></script>
     <title>Document</title>
@@ -42,6 +42,10 @@
                             <option value="dinner">Dinner</option>
                         </select>
                     </div>
+                </div>
+                <div class="mealhighlight">
+                    <p class="labeldescription">Meal Highlight</p>
+                    <input name="mealdescription" id="highlight"class="inputhighlight" placeholder="Highlight"></textarea>
                 </div>
                 <div class="mealdescription">
                     <p class="labeldescription">Meal Description</p>

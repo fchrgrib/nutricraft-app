@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     <div>
         <div class="content">
             <div class="header">
@@ -53,9 +54,16 @@
                 });
                 </script>
             </div>
-            <div id="mealsContent" class="content"></div>
+            <div id="mealsContent" class="mealscontent"></div>
 
                 
+            </div>
+            <div id="pagination" class="pagination">
+                <button class="prev" onclick=prevPage()>&laquo;</button>
+                <div id="numberpage" class="buttons">
+                </div>
+                
+                <button class="next" onclick=nextPage() >&raquo;</button>
         </div>
     </div>
     <div class="filtersort">

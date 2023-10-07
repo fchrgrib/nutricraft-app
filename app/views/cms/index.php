@@ -11,10 +11,20 @@
     <title>NutriCraft</title>
 </head>
 <body>
+    <div class="overlay" id="confirmationBox">
+        <div class="confirmation-dialog">
+            <p>Are you sure you want to continue?</p>
+            <div class="confirmbtn">
+            <button id="confirmButton">Confirm</button>
+            <button id="cancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>    
 <div>
-        <div class="content">
+        <div class="content" id="content">
             <div class="header">
                 <h1>CMS Admin</h1>
+                <button type="button" class="logoutbtn" onclick="showConfirmation()">Logout</button>
                 <div class="buttons">
                     <button type="button" class="mealsbtn" id="selected">Meals</button>
                     <button type="button" class="factsbtn">Facts</button>

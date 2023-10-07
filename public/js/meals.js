@@ -168,6 +168,34 @@ const type = () =>{
   xhttp.send();
 }
 
+const pagination = () => {
+  const pageNumber = "pageNumber";
+  const search = document.getElementById('searchinput').value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState === 4){
+          let response = this.response;
+          const startIndex = response.indexOf('[');
+          const jsonStr = response.substring(startIndex);
+          const jsonObject = JSON.parse(jsonStr);
+          
+          const numberpage = document.getElementById('numberpage');
+          TotalPage=Math.ceil(jsonObject.length / 2);
+          let html = "";
+          for (let i = 1; i <= Math.ceil(jsonObject.length / 2); i++) {
+              if(i == 1){
+                  html += `<button type='button' class="page" value=${i} id='selected' onclick='selectPage(); getPage(${i});' ">${i}</button>`;
+              }else{
+                  html += `<button type='button' class="page" value=${i} onclick='selectPage(); getPage(${i});' ">${i}</button>`;
+              }
+          }
+          numberpage.innerHTML = html;
+      }
+  };
+  xhttp.open('GET', `../../server/controller/auth/Meals.php?pageNumber=${pageNumber}&search=${search}`, true);
+  xhttp.send();
+}
+
 const search = () =>{
   const typeMeals = document.querySelectorAll('#selected')[0].textContent;
   const lowRange = fromInput.value;
