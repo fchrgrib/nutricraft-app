@@ -75,6 +75,12 @@
     overflow: hidden;
 }
 
+.video-card:hover {
+    border: 1px solid #288990;
+    transform: scale(1.001); /* Slightly scale up on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
 .cardcontent {
     display: flex;
     flex-direction: row;
@@ -113,7 +119,7 @@
     
 }
 
-.video-content iframe {
+.video-content video {
     width: 95%;
     height: 30vw;
     /* margin: 23px; */
