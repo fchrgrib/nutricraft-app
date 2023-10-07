@@ -250,11 +250,68 @@ li button {
 }
 
 @media screen and (max-width: 768px) {
-    
+    .content {
+        flex-direction: column;
+        gap: 50px;
+    }
 
     .editcontainer {
         border-left: none;
         border-top: 1px solid #000000;
+        width: 100%;
+    }
+
+    .mealinformation {
+        width: 100%;
+    }
+
+    .mealnutrition {
+        width: 100%;
+    }
+
+    .nametype {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .mealname {
+        width: 100%;
+    }
+
+    .mealhighlight {
+        width: 100%;
+    }
+
+    .inputhighlight {
+        width: 100%;
+    }
+
+    .inputdescription {
+        width: 100%;
+    }
+
+    .mealdescription {
+        width: 100%;
+    }
+
+    .inputname {
+        width: 100%;
+    }
+
+    .inputtype {
+        width: 100%;
+    }
+
+    .inputdescription {
+        width: 100%;
+    }
+
+    .nutrition input {
+        width: 100%;
+    }
+
+    .submitButton {
+        width: 100%;
     }
 }
 
