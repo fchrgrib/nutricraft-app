@@ -119,7 +119,45 @@ closeButton.addEventListener('click', () => {
 });
 
 
+let Page=1;
+let TotalPage;
 
+const pagination = () => {
+  const typeMeals = document.querySelectorAll('#selected')[0].textContent;
+  const lowRange = fromInput.value;
+  const highRange = toInput.value;
+  const sort = document.getElementById('pet-select').value;
+  const pageNumber = "pageNumber";
+  const search = document.getElementById('searchinput').value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState === 4){
+          let response = this.response;
+          const startIndex = response.indexOf('[');
+          const jsonStr = response.substring(startIndex);
+          const jsonObject = JSON.parse(jsonStr);
+          // console.log(jsonStr);
+          // console.log(jsonObject);
+          
+          const numberpage = document.getElementById('numberpage');
+          TotalPage=Math.ceil(jsonObject.length / 2);
+          // console.log(TotalPage);
+          let html = "";
+          for (let i = 1; i <= Math.ceil(jsonObject.length / 2); i++) {
+              if(i == 1){
+                  html += `<button type='button' class="page" value=${i} id='selectedPage' onclick='selectPage(); getPage(${i});' ">${i}</button>`;
+              }else{
+                  html += `<button type='button' class="page" value=${i} onclick='selectPage(); getPage(${i});' ">${i}</button>`;
+              }
+          }
+          numberpage.innerHTML = html;
+      }
+  };
+  xhttp.open('GET', `../../server/controller/auth/Meals.php?pageNumber=${pageNumber}&search=${search}&typeMeals=${typeMeals}&lowRange=${lowRange}&highRange=${highRange}&sort=${sort}`, true);
+  xhttp.send();
+}
+
+// pagination();
 
 const type = () =>{
   const typeMeals = document.querySelectorAll('#selected')[0].textContent;
@@ -133,9 +171,10 @@ const type = () =>{
       // console.log(response);
       const startIndex = response.indexOf('[');
       const jsonStr = response.substring(startIndex);
+      console.log(jsonStr);
       const jsonObject = JSON.parse(jsonStr);
-      console.log(jsonObject);
-  
+      // console.log(jsonObject);
+      
       const parentElement = document.getElementById("mealsContent");
       let http = '';
       for (let i = 0; i < jsonObject.length; i++) {
@@ -146,63 +185,41 @@ const type = () =>{
       <img src="${content['path_photo']}" alt=''>
       </div>
       <a href="/?detailmeal&id=${content['id']}">
-          <div class='card-meal__content'>
-              <div class='card-meal__content__title'>
-                  <h3>${content['title']}</h3>
-              </div>
-              <div class='card-meal__content__description'>
-                  <p>${content['highlight']}</p>
+      <div class='card-meal__content'>
+      <div class='card-meal__content__title'>
+      <h3>${content['title']}</h3>
+      </div>
+      <div class='card-meal__content__description'>
+      <p>${content['highlight']}</p>
               </div>
               <div class='card-meal__content__calories'>
-                  <p>Calories: ${content['calorie']}</p>
+              <p>Calories: ${content['calorie']}</p>
               </div>
-          </div>
-          </a>
-        </div>`;
+              </div>
+              </a>
+              </div>`;
       }
-  
+      
       parentElement.innerHTML = http;
+      pagination();
     }
   };
-  xhttp.open('GET', `../../server/controller/auth/Meals.php?typeMeals=${typeMeals}&lowRange=${lowRange}&highRange=${highRange}&sort=${sort}`, true);
+  xhttp.open('GET', `../../server/controller/auth/Meals.php?show=show&typeMeals=${typeMeals}&lowRange=${lowRange}&highRange=${highRange}&sort=${sort}&page=${Page}`, true);
   xhttp.send();
 }
 
-const pagination = () => {
-  const pageNumber = "pageNumber";
-  const search = document.getElementById('searchinput').value;
-  const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-      if (this.readyState === 4){
-          let response = this.response;
-          const startIndex = response.indexOf('[');
-          const jsonStr = response.substring(startIndex);
-          const jsonObject = JSON.parse(jsonStr);
-          
-          const numberpage = document.getElementById('numberpage');
-          TotalPage=Math.ceil(jsonObject.length / 2);
-          let html = "";
-          for (let i = 1; i <= Math.ceil(jsonObject.length / 2); i++) {
-              if(i == 1){
-                  html += `<button type='button' class="page" value=${i} id='selected' onclick='selectPage(); getPage(${i});' ">${i}</button>`;
-              }else{
-                  html += `<button type='button' class="page" value=${i} onclick='selectPage(); getPage(${i});' ">${i}</button>`;
-              }
-          }
-          numberpage.innerHTML = html;
-      }
-  };
-  xhttp.open('GET', `../../server/controller/auth/Meals.php?pageNumber=${pageNumber}&search=${search}`, true);
-  xhttp.send();
-}
 
-const search = () =>{
+
+// pagination();
+
+const Search = () =>{
   const typeMeals = document.querySelectorAll('#selected')[0].textContent;
   const lowRange = fromInput.value;
   const highRange = toInput.value;
   const sort = document.getElementById('pet-select').value;
   const search = document.getElementById('searchinput').value;
   const xhttp = new XMLHttpRequest();
+  console.log(search, typeMeals, lowRange, highRange, sort);
   xhttp.onreadystatechange = function() {
     if (this.readyState === 4){
       let response = this.response;
@@ -222,34 +239,95 @@ const search = () =>{
       <img src="${content['path_photo']}" alt=''>
       </div>
       <a href="/?detailmeal&id=${content['id']}">
-          <div class='card-meal__content'>
+      <div class='card-meal__content'>
               <div class='card-meal__content__title'>
-                  <h3>${content['title']}</h3>
+              <h3>${content['title']}</h3>
               </div>
               <div class='card-meal__content__description'>
                   <p>${content['highlight']}</p>
               </div>
               <div class='card-meal__content__calories'>
                   <p>Calories: ${content['calorie']}</p>
-              </div>
+                  </div>
           </div>
           </a>
-        </div>`;
+          </div>`;
       }
   
       parentElement.innerHTML = http;
+      pagination();
     }
   };
-  xhttp.open('GET', `../../server/controller/auth/Meals.php?typeMeals=${typeMeals}&lowRange=${lowRange}&highRange=${highRange}&sort=${sort}&search=${search}`, true);
+  xhttp.open('GET', `../../server/controller/auth/Meals.php?show=show&typeMeals=${typeMeals}&lowRange=${lowRange}&highRange=${highRange}&sort=${sort}&search=${search}&page=${Page}`, true);
   xhttp.send();
 }
 
+const prevPage = () =>{
+  const search = document.getElementById('searchinput').value;
+  if(Page>1){
+      Page-=1
+      if(search==''){
+          type();
+      }else{
+        search();
+      }
+  }
+}
+
+const nextPage = () =>{
+  const search = document.getElementById('searchinput').value;
+  if(Page<TotalPage){
+      Page+=1
+      console.log(Page);
+      console.log("HAI");
+      if(search==''){
+          type();
+      }else{
+        search();
+      }
+  }
+}
+
+function getPage(pa){
+  Page = pa;
+  console.log(Page);
+}
+
+function selectPage (){
+  const buttons = document.querySelectorAll('.buttons button');
+
+
+  for (let i = 0; i < buttons.length; i++){
+      buttons[i].addEventListener('click', () => {
+
+          const currentlySelectedButton = document.querySelector('#selectedPage');
+          currentlySelectedButton.removeAttribute('id');
+
+          buttons[i].id = 'selectedPage';
+
+          for (let j = 0; j < buttons.length; j++){
+              buttons[j].classList.remove('selectedPage');
+          }
+          buttons[i].classList.add('selectedPage');
+      });
+  }
+}
+
+document.getElementById('numberpage').addEventListener('click',()=>{
+  const search = document.getElementById('searchinput').value;
+  console.log(search);
+  if(search==''){
+      type();
+  }else{
+    Search();
+  }
+})
 
 document.getElementById('pet-select').addEventListener('change', function(){
   if(document.getElementById('searchinput').value == ""){
     type();
   }else{
-    search();
+    Search();
   }
 });
 
@@ -257,7 +335,7 @@ document.getElementById('toInput').addEventListener('change', function(){
   if(document.getElementById('searchinput').value == ""){
     type();
   }else{
-    search();
+    Search();
   }
 });
 
@@ -265,7 +343,7 @@ document.getElementById('fromInput').addEventListener('change', function(){
   if(document.getElementById('searchinput').value == ""){
     type();
   }else{
-    search();
+    Search();
   }
 });
 
@@ -278,4 +356,4 @@ function debounce(func, timeout = 500){
 }
 
 
-const searchDebounce = debounce(() => search());
+const searchDebounce = debounce(() => Search());
