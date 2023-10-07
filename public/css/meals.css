@@ -325,6 +325,8 @@ select {
 }
 
 .pagination {
+    margin-top: 15px;
+    margin-bottom: 25px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -445,8 +447,9 @@ select {
       /* make sidebar menu */
     .filtersort {
         width: 250px;
-        background-color: #f0f0f0;
+        background-color: #FFFFFF;
         padding: 20px;
+        border-right: 0.2px solid #000000;
         position: fixed;
         top: 0px;
         left: -300px; 
@@ -467,6 +470,14 @@ select {
         padding: 0 10px;
         border-bottom: 1px solid #EF4800;
         margin-bottom: 30px;
+    }
+
+    .buttons button {
+        width: 80px;
+    }
+
+    .mealscontent {
+        padding: 0;
     }
 
     .close {
