@@ -211,6 +211,8 @@ class Content
                             (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
                             (SELECT p.path FROM file p WHERE c.id_file = p.id) as path_file,
                             (SELECT p.type_content FROM file p WHERE c.id_file = p.id) as type_file,
+                            c.id_file as id_file,
+                            c.id_photo_highlight as id_photo,
                             c.created_at as created_at,
                             c.updated_at as updated_at
                             FROM content c WHERE c.id = $1 ORDER BY c.updated_at",array($id));
@@ -226,6 +228,8 @@ class Content
                 'path_photo'=>$row['path_photo'],
                 'path_file'=>$row['path_file'],
                 'type_file' =>$row['type_file'],
+                'id_file'=>$row['id_file'],
+                'id_photo'=>$row['id_photo'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );

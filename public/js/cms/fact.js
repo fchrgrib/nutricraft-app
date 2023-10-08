@@ -32,7 +32,7 @@ function loadFactsData(data) {
                                     <a href="/?editfact&id=${fact.id}">
                                     <button type='button' class='editbtn'>Edit</button>
                                     </a>
-                                    <button type='button' class='deletebtn' onclick='showConfirmationfact()'>Delete</button>
+                                    <button type='button' class='deletebtn' onclick='showConfirmationfact("${fact.id}")'>Delete</button>
                                 </div>
                             </div>`;
             content.innerHTML += factHTML;
@@ -42,9 +42,10 @@ function loadFactsData(data) {
     xhttp.send();
 }
 
-function showConfirmationfact() {
+function showConfirmationfact(id) {
     const confirmationBox = document.getElementById('confirmationBox');
     const content = document.getElementById('content');
+    const valueConfirm = document.getElementById('confirmationId');
     const confirmButton = document.getElementById('confirmButton');
     const cancelButton = document.getElementById('cancelButton');
     const message = document.getElementById('message');
@@ -52,7 +53,7 @@ function showConfirmationfact() {
     confirmationBox.style.display = 'flex';
     content.style.filter = 'blur(3px)';
     confirmButton.addEventListener('click', function() {
-        // Your code for handling the "Confirm" action here
+        valueConfirm.value = `fact;${id}`;
         hideConfirmation();
     });
     

@@ -72,10 +72,6 @@ if (isset($_POST['submit'])){
         }
     }
 
-    $c = json_encode($get_meals);
-
-    echo "<script>console.log('$c')</script>";
-
 
     $meal->Update($get_meals['id'],$get_meals['title'],$get_meals['highlight'],$get_meals['description'],$get_meals['type'],$get_meals['calorie'],$get_meals['id_photo']);
 

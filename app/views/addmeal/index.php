@@ -93,8 +93,8 @@
                     <button type="submit" class="submitButton" name="submit">Save Change</button>
                 </div>
             </div>
-        </form>
         </div>
+    </form>
 </body>
 
 </html>

@@ -13,6 +13,7 @@ function loadMealsData() {
 
         jsonObject.forEach(meal => {
             const mealHTML = `
+<form action="../../../server/controller/auth/cms/DeleteMealAndFact.php" method="POST" enctype="multipart/form-data">
                             <div class='cardmeal' id='meal-card'>
                                 <div class='cardmealimage'>
                                     <img src=${meal.path_photo} alt=''>
@@ -30,11 +31,13 @@ function loadMealsData() {
                                 </div>
                                 <div class='card-meal__content__edit'>
                                 <a href="/?editmeal&id=${meal.id}">
+                                <input hidden="hidden" name="id_meals" value="${meal.id}">
                                 <button type='button' class='editbtn'>Edit</button>
                                 </a>
-                                    <button type='button' class='deletebtn' onclick='showConfirmation()'>Delete</button>
+                                    <button type='button' class='deletebtn' name="deletebtn" value="${meal.id}" onclick='showConfirmation("${meal.id}")'>Delete</button>
                                 </div>
-                            </div>`;
+                            </div>
+</form>`;
             content.innerHTML += mealHTML;
         });
     };
@@ -44,17 +47,19 @@ function loadMealsData() {
 
 
 
-function showConfirmation() {
+function showConfirmation(id) {
     const confirmationBox = document.getElementById('confirmationBox');
     const content = document.getElementById('content');
     const confirmButton = document.getElementById('confirmButton');
+    const valueConfirm = document.getElementById('confirmationId');
     const cancelButton = document.getElementById('cancelButton');
     const message = document.getElementById('message');
+
     message.innerHTML = "Are you sure you want to delete this meal?";
     confirmationBox.style.display = 'flex';
     content.style.filter = 'blur(3px)';
     confirmButton.addEventListener('click', function() {
-        // Your code for handling the "Confirm" action here
+        valueConfirm.value = `meals;${id}`;
         hideConfirmation();
     });
     

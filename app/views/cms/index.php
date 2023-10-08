@@ -17,12 +17,14 @@
 </head>
 
 <body>
+<form action="../../../server/controller/auth/cms/DeleteMealAndFact.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" id="confirmationId" name="confirmationId" value="">
     <div class="overlay" id="confirmationBox">
         <div class="confirmation-dialog">
             <p id="message">Are you sure you want to continue?</p>
             <div class="confirmbtn">
-                <button id="confirmButton">Confirm</button>
-                <button id="cancelButton">Cancel</button>
+                <button id="confirmButton" name="confirmButton">Confirm</button>
+                <button id="cancelButton" name="cancelButton">Cancel</button>
             </div>
         </div>
     </div>
@@ -85,7 +87,7 @@
                 });
             });
             </script>
-
+</form>
 </body>
 
 </html>
