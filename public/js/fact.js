@@ -129,7 +129,7 @@ const showAll = () => {
             <div class="cardcontent">
             <img src="${content.path_photo}" alt="">
             <div class="card-title">
-            <h3>${content.title}</h3>
+            <h2>${content.title}</h2>
             <p>${content.highlight}</p>
             </div>
             </div>

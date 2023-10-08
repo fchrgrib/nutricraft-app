@@ -68,7 +68,7 @@
 
 
 .video-card {
-    border: 1px solid #BA540B;
+    border: 1px solid #EF4800;
     border-radius: 20px;
     margin: 10px;
     width: 60%;
@@ -87,7 +87,7 @@
     background-color: #FFFFFF;
     cursor: pointer;
     gap: 20px;
-    /* border-bottom: 1px solid #BA540B; */
+    /* border-bottom: 1px solid #EF4800; */
 }
 
 .cardcontent img {
@@ -136,9 +136,9 @@
 }
 
 .pagination button {
-    border: 1px solid #BA540B;
+    border: 1px solid #EF4800;
     background-color: transparent;
-    color: #BA540B;
+    color: #EF4800;
     width: 40px;
     height: 40px;
     border-radius: 10px;
@@ -149,7 +149,7 @@
 }
 
 .pagination button:hover {
-    background-color: #BA540B;
+    background-color: #EF4800;
     color: #FFFFFF;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -173,7 +173,7 @@
 }
 
  #selected {
-    background-color: #BA540B;
+    background-color: #EF4800;
     color: #FFFFFF;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
