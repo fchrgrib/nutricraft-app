@@ -33,7 +33,7 @@ body{
 }
 
 .editPhotoButton{
-    background-color: #BA540B;
+    background-color: #EF4800;
     border: none;
     border-radius: 30px;
     width: 220px;
@@ -77,12 +77,13 @@ body{
     border: none;
     outline: none;
     color: grey;
+    margin-bottom: 2px;
 
 }
 
 
 .submitButton{
-    background-color: #BA540B;
+    background-color: #EF4800;
     border: none;
     border-radius: 30px;
     width: 150px;
@@ -98,6 +99,7 @@ body{
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 
 }
+
 
 
 .boxKanan{

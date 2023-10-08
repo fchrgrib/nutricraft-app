@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <link rel="stylesheet" href="../../../public/css/addfact.css">
+    <link rel="stylesheet" href="../../../public/css/editfact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script defer src="../../../public/js/addmeal.js"></script>
+    <script defer src="../../../public/js/editfact.js"></script>
     <title>Document</title>
+    <?php
+        $id = $_GET['id'];
+    ?>
+    <script>
+        window.onload = function() {loadpage(<?php echo $id; ?>);};
+
+    </script>
 </head>
 <body>
-    <div class="content">
+<div class="overlay" id="confirmationBox">
+        <div class="confirmation-dialog">
+            <p id="message">Are you sure you want to continue?</p>
+            <div class="confirmbtn">
+                <button id="confirmButton">Confirm</button>
+                <button id="cancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="content" id="content">
         <div class="imagecontainer">
-            <img src="../../../assets/Nopict.png" alt="defaultProfPic" class="photoProfile">
+            <img src="../../../assets/Nopict.png" alt="defaultProfPic" class="photoProfile" id ="imagevideo">
             <div class="editPhotoButton">
                 <label for="file" class="labelFile">Upload Photo</label>
                 <input type="file" name="file" id="file" class="file" accept="image/*,video/*">
@@ -24,7 +40,7 @@
                     <div class="name-container">
                         <div class="factname">
                             <p class="labelname">Video File</p>
-                                <label for="file" class="labelFile">Upload Video</label>
+                                <label for="file" class="labelFile" id="filename">Upload Video</label>
                                 <input type="file" name="videofile" id="videofile" class="videofile" accept="image/*,video/*">
                         </div>
                     </div>
@@ -39,13 +55,13 @@
                 </div>
                 <div class="factdescription">
                     <p class="labeldescription">Fact Description</p>
-                    <textarea name="factdescription" id="factdescription"class="inputdescription" placeholder="Description"></textarea>
+                    <textarea name="factdescription" id="editdescription"class="inputdescription" placeholder="Description"></textarea>
                 </div>
                 
             </div>
 
     
-            <button type="button" class="submitButton" name="submit" id="submitbtn">Save Change</button>
+            <button type="button" class="submitButton" name="submit"id="submitbtn" onclick="showConfirmationfact()">Save Change</button>
         </div>
 </body>
 </html>

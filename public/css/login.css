@@ -62,7 +62,7 @@ body{
 }
 
 .header a {
-    color: #ba540bb4; /* Change the link color to blue (#007bff) or your preferred color */
+    color: #EF4800; /* Change the link color to blue (#007bff) or your preferred color */
     text-decoration: none; /* Remove the underline */
     transition: color 0.3s ease-in-out;
 }

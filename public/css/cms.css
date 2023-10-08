@@ -138,7 +138,7 @@
 
 
 .searchcontainer:hover, .searchcontainer:focus-within {
-    border: 1px solid #288990;
+    border: 1px solid #10A5A5;
     transform: scale(1.001); /* Slightly scale up on hover */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -200,7 +200,7 @@
 }
 
 .cardmeal:hover {
-    border: 1px solid #288990;
+    border: 1px solid #10A5A5;
     transform: scale(1.001); /* Slightly scale up on hover */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }

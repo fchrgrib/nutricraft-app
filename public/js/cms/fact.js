@@ -29,7 +29,9 @@ function loadFactsData(data) {
                                     </div>
                                 </div>
                                 <div class='card-meal__content__edit'>
+                                    <a href="/?editfact&id=${fact.id}">
                                     <button type='button' class='editbtn'>Edit</button>
+                                    </a>
                                     <button type='button' class='deletebtn' onclick='showConfirmationfact()'>Delete</button>
                                 </div>
                             </div>`;

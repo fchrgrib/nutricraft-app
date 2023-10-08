@@ -60,7 +60,7 @@
             </div>
             <div id="pagination" class="pagination">
                 <button class="prev" onclick=prevPage()>&laquo;</button>
-                <div id="numberpage" class="buttons">
+                <div id="numberpage" class="prev">
                 </div>
                 
                 <button class="next" onclick=nextPage() >&raquo;</button>

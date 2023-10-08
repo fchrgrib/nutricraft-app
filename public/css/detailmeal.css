@@ -53,7 +53,7 @@
     width: 80px;
     height: 75px;
     border-radius: 20px;
-    border : 1px solid #BA540B;
+    border : 1px solid #EF4800;
     padding-bottom: 5px;
     
 }
@@ -61,7 +61,7 @@
 .nutritionfacts div h5 {
     font-size: 18px;
     font-weight: 700;
-    color: #BA540B;
+    color: #EF4800;
     margin-bottom: 0;
     padding: 0;
 }
@@ -91,7 +91,7 @@
 
 .foodtitle h3 {
     margin: 0;
-    color: #BA540B;
+    color: #EF4800;
 }
 
 .foodtitle h1 {
