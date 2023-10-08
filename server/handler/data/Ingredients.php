@@ -61,6 +61,19 @@ class Ingredients
         $this->db->Disconnect();
     }
 
+    public function DeleteByIdMeals($id){
+        $this->db->Connect();
+        $conn = $this->db->getDb();
+
+        $delete_data =  pg_query_params($conn, "DELETE FROM ingredients WHERE id_meals = $1", array($id));
+
+        if (!$delete_data) die("failed to delete values: ".pg_last_error());
+
+        echo "<script>console.log('successfully delete ingredients')</script>";
+
+        $this->db->Disconnect();
+    }
+
     public function FindAll(){
         $this->db->Connect();
         $conn = $this->db->getDb();

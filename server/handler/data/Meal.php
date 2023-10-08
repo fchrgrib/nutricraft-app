@@ -242,7 +242,7 @@ class Meal
         $conn = $this->db->getDb();
 
         $exec = pg_query_params($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
-                                            (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
+                                            (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo, m.id_file as id_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE m.id = $1 ORDER BY m.updated_at", array($id));
 
@@ -257,6 +257,7 @@ class Meal
                 'type' => $row['type'],
                 'calorie' => $row['calorie'],
                 'path_photo'=>$row['path_photo'],
+                'id_photo'=>$row['id_photo'],
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
             );
