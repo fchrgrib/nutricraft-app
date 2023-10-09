@@ -29,23 +29,13 @@
         <div class="imagecontainer">
             <img src="../../../assets/Nopict.png" alt="defaultProfPic" class="photoProfile" id ="imagevideo">
             <div class="editPhotoButton">
-                <label for="file" class="labelFile">Upload Photo</label>
+                <label for="file" class="labelFile">Upload File</label>
                 <input type="file" name="file" id="file" class="file" accept="image/*,video/*">
             </div>
         </div>
         <div class="editcontainer">
             <div class="factinformation">
                 <h2 class="facttitle">Fact Information</h2>
-                <div class="nametype">
-                    <div class="name-container">
-                        <div class="factname">
-                            <p class="labelname">Video File</p>
-                                <label for="file" class="labelFile" id="filename">Upload Video</label>
-                                <input type="file" name="videofile" id="videofile" class="videofile" accept="image/*,video/*">
-                                <button type="submit" class="updatebtn" id="updatebtn" name="updatebtn">Update</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="videotitle">
                     <p class="labeldescription">Video Title</p>
                     <input type="text" placeholder="Title" class="inputtitle" id="edittitle" name="facttitle">
