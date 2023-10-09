@@ -39,9 +39,9 @@
                         <div class="mealtype">
                             <p class="labeltype">Meal Type</p>
                             <select name="mealtype" class="inputtype">
-                                <option value="breakfast">Breakfast</option>
-                                <option value="lunch">Lunch</option>
-                                <option value="dinner">Dinner</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
                             </select>
                         </div>
                     </div>

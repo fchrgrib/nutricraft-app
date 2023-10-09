@@ -141,7 +141,7 @@ class InitialData
                 'highlight' => 'Pertama ada resep salad dengan bahan utama jagung manis, paprika, timun Jepang, dan brokoli yang renyah serta segar.',
                 'description' => "Cara Membuat Salad Jagung:\n\n
                                   Cuci bersih, lalu campur semua bahan sayur. Kemudian sisihkan terlebih dahulu. Aduk rata semua bahan saus, lalu sajikan di wadah terpisah atau langsung tuang ke salad sayuran. Salad jagung siap disajikan sebagai makanan ringan. Santap selagi sayuran masih renyah dan belum layu.",
-                'type' => 'breakfast',
+                'type' => 'Breakfast',
                 'calorie' => 70,
                 'id_file' =>9,
                 'created_at' => $curr,
