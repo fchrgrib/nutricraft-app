@@ -29,8 +29,16 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
     <title>NutriCraft</title>
 </head>
 <body>
-   
     <form action="../../../server/controller/auth/Profile.php" method="POST" enctype="multipart/form-data">
+        <div class="overlay" id="confirmationBox">
+            <div class="confirmation-dialog">
+                <p id="message">Are you sure you want to continue?</p>
+                <div class="confirmbtn">
+                    <button id="confirmButton">Confirm</button>
+                    <button id="cancelButton">Cancel</button>
+                </div>
+            </div>
+        </div>
         <div class="profileContainer">
             <div class="boxKiri">
                 <div class="photoContainer">
@@ -68,7 +76,8 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
                     <i class="fas fa-edit editIcon" onclick= enablePassword()></i>
                 </div>
                 <hr>
-                <button type="submit" class="submitButton" name="submit" id="submitButton">Save Change</button>
+                <button type="button" class="saveButton" name="save" id="submitButton" onclick="showConfirmation()">Save Change</button>
+                <button type="button" class="submitButton" name="delete" id="delete" onclick="showConfirmationdelete()">Delete</button>
             </div>
         </div>
     </form>

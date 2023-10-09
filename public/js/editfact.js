@@ -8,7 +8,6 @@ function loadpage(id) {
         const startIndex = response.indexOf('[');
         const image = document.getElementById('imagevideo');
         const title = document.getElementById('edittitle');
-        const file = document.getElementById('filename')
         const description = document.getElementById('editdescription');
         const highlight = document.getElementById('edithighlight');
         const jsonStr = response.substring(startIndex);
@@ -20,7 +19,6 @@ function loadpage(id) {
         
         const content = jsonObject;
         image.src = content[0]['path_photo'];
-        file.textContent = content[0]['path_file'];
         title.value = content[0].title;
         description.value = content[0]['body'];
         highlight.value = content[0].highlight;
@@ -32,7 +30,6 @@ function loadpage(id) {
 const submitbtn = document.getElementById('submitbtn');
 
 function showConfirmationfact() {
-    console.log('KOTNOL');
     const confirmationBox = document.getElementById('confirmationBox');
     const content = document.getElementById('content');
     const confirmButton = document.getElementById('confirmButton');
@@ -58,3 +55,6 @@ function hideConfirmation() {
     confirmationBox.style.display = 'none';
     content.style.filter = 'none';
 }
+
+
+
