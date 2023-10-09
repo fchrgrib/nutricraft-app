@@ -27,7 +27,7 @@
                         <input class="searchinput" id="searchinput" type="text" placeholder="Search" onkeyup=searchDebounce()>
                     </div>
                 </div>
-                <div class="buttons">
+                <div class="buttons" id="mealsSelection">
                     <button type="button" class="all" id="selected">All</button>
                     <button type="button" class="breakfast">Breakfast</button>
                     <button type="button" class="lunch">Lunch</button>

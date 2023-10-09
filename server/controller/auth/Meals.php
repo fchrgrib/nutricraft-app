@@ -13,6 +13,7 @@ $kiri = $_GET['lowRange'];
 $kanan = $_GET['highRange'];
 $sort = $_GET['sort'];
 $page = $_GET['page'];
+$page = ($page-1)*2;
 $show = $_GET['show'];
 
 
@@ -44,7 +45,7 @@ if(isset($show)){
 if(isset($_GET['pageNumber'])){
     if(isset($_GET['search'])){
         $search = $_GET['search'];
-        $result = $meal->FindAllSearch($search, $sort, $kiri, $kanan);
+        $result = $meal->FindAllSearch($search, $sort, $kiri, $kanan, $type);
     }else{
         $result = $meal->FindAll($sort, $kiri, $kanan);
     }

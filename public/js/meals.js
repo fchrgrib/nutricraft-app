@@ -168,7 +168,7 @@ const type = () =>{
   xhttp.onreadystatechange = function() {
     if (this.readyState === 4){
       let response = this.response;
-      // console.log(response);
+      console.log(response);
       const startIndex = response.indexOf('[');
       const jsonStr = response.substring(startIndex);
       console.log(jsonStr);
@@ -262,14 +262,64 @@ const Search = () =>{
   xhttp.send();
 }
 
+const SearchPaging = () =>{
+  const typeMeals = document.querySelectorAll('#selected')[0].textContent;
+  const lowRange = fromInput.value;
+  const highRange = toInput.value;
+  const sort = document.getElementById('pet-select').value;
+  const search = document.getElementById('searchinput').value;
+  const xhttp = new XMLHttpRequest();
+  console.log(search, typeMeals, lowRange, highRange, sort);
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4){
+      let response = this.response;
+      // console.log(response);
+      const startIndex = response.indexOf('[');
+      const jsonStr = response.substring(startIndex);
+      const jsonObject = JSON.parse(jsonStr);
+      console.log(jsonObject);
+  
+      const parentElement = document.getElementById("mealsContent");
+      let http = '';
+      for (let i = 0; i < jsonObject.length; i++) {
+      const content = jsonObject[i];
+      http+=`
+      <div class='cardmeal' id='meal-card'>
+      <div class='cardmealimage'>
+      <img src="${content['path_photo']}" alt=''>
+      </div>
+      <a href="/?detailmeal&id=${content['id']}">
+      <div class='card-meal__content'>
+              <div class='card-meal__content__title'>
+              <h3>${content['title']}</h3>
+              </div>
+              <div class='card-meal__content__description'>
+                  <p>${content['highlight']}</p>
+              </div>
+              <div class='card-meal__content__calories'>
+                  <p>Calories: ${content['calorie']}</p>
+                  </div>
+          </div>
+          </a>
+          </div>`;
+      }
+  
+      parentElement.innerHTML = http;
+      // pagination();
+    }
+  };
+  xhttp.open('GET', `../../server/controller/auth/Meals.php?show=show&typeMeals=${typeMeals}&lowRange=${lowRange}&highRange=${highRange}&sort=${sort}&search=${search}&page=${Page}`, true);
+  xhttp.send();
+}
+
 const prevPage = () =>{
   const search = document.getElementById('searchinput').value;
   if(Page>1){
       Page-=1
       if(search==''){
-          type();
+        SearchPaging();
       }else{
-        search();
+        Search();
       }
   }
 }
@@ -281,9 +331,9 @@ const nextPage = () =>{
       console.log(Page);
       console.log("HAI");
       if(search==''){
-          type();
+        SearchPaging();
       }else{
-        search();
+        Search();
       }
   }
 }
@@ -294,7 +344,8 @@ function getPage(pa){
 }
 
 function selectPage (){
-  const buttons = document.querySelectorAll('.buttons button');
+  // const buttons = document.querySelectorAll('.buttons button');
+  const buttons = document.getElementsByClassName('pagination');
 
 
   for (let i = 0; i < buttons.length; i++){
@@ -317,34 +368,27 @@ document.getElementById('numberpage').addEventListener('click',()=>{
   const search = document.getElementById('searchinput').value;
   console.log(search);
   if(search==''){
-      type();
+    SearchPaging();
   }else{
     Search();
   }
 })
 
 document.getElementById('pet-select').addEventListener('change', function(){
-  if(document.getElementById('searchinput').value == ""){
-    type();
-  }else{
     Search();
-  }
 });
 
 document.getElementById('toInput').addEventListener('change', function(){
-  if(document.getElementById('searchinput').value == ""){
-    type();
-  }else{
     Search();
-  }
 });
 
 document.getElementById('fromInput').addEventListener('change', function(){
-  if(document.getElementById('searchinput').value == ""){
-    type();
-  }else{
     Search();
-  }
+
+});
+
+document.getElementById('mealsSelection').addEventListener('click', function(){
+    Search();
 });
 
 function debounce(func, timeout = 500){
