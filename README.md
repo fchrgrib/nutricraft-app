@@ -288,13 +288,13 @@ NutriCraft adalah aplikasi berbasis web yang dibuat untuk memudahkan user dalam 
 
 Server-side
 <br>
-* Login : 13521xxx, 13521xxx
-* Register : 13521xxx
-* Meals : 13521005, 13521xxx
+* Login : 13521011, 13521xxx
+* Register : 13521011
+* Meals : 13521005, 13521011
 * DetailMeal : 13521005
-* Fact : 13521xxx
+* Fact : 13521011
 * Navbar : 13521xxx, 13521xxx
-* Profile : 13521xxx
+* Profile : 13521011
 * CMS meal : 13521005
 * CMS fact : 13521xxx
 
@@ -303,11 +303,11 @@ Client-side
 <br>
 * Login : 13521005, 13521xxx
 * Register : 13521005
-* Meals : 13521005, 13521xxx
+* Meals : 13521005, 13521011
 * DetailMeal : 13521005
-* Fact : 13521005
+* Fact : 13521005, 13521011
 * Navbar : 13521005, 13521xxx
-* Profile : 13521xxx
+* Profile : 13521011
 * CMS meal : 13521005
 * CMS fact : 13521005
 
