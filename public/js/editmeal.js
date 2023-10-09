@@ -14,8 +14,10 @@
         inputIngredients.type = "text";
         inputIngredients.placeholder = "Ingredients";
         inputIngredients.class = "form-control";
+        inputIngredients.name = "ingredients";
         inputInformation.type = "text";
         inputInformation.placeholder = "Information";
+        inputInformation.name = "information";
 
         // Set text and type for the delete button
         deleteBtn.textContent = "X";
@@ -35,6 +37,8 @@
         // Append the list item to the ingredientList (ul)
         ingredientList.appendChild(listItem);
     }
+
+
 
     // Add a click event listener to the "Add Ingredients" button
     addIngredientBtn.addEventListener("click", createListItem);
@@ -70,6 +74,7 @@
             const titleInput = document.getElementById("title"); // Get the input element by its id
             titleInput.value = content[0][0]['title']; // Set the value
             descrition.value = content[0][0]['description'];
+            // type.value = content[0][0]['type'];
 
             for (let i = 0; i < content[1].length; i++) {
                 const ingredients = document.getElementById('ingredientList');
@@ -83,9 +88,11 @@
                 inputIngredients.placeholder = "Ingredients";
                 inputIngredients.class = "form-control";
                 inputIngredients.value = ingredient;
+                inputIngredients.name = "ingredients";
                 inputInformation.type = "text";
                 inputInformation.placeholder = "Information";
                 inputInformation.value = description;
+                inputInformation.name = "information";
                 li.appendChild(inputIngredients);
                 li.appendChild(inputInformation);
                 deleteBtn.textContent = "X";
@@ -110,6 +117,18 @@
             // console.log(content['title']);
         
         };
+
+        document.querySelector("form").addEventListener("submit", function(event) {
+            const listItems = document.querySelectorAll("#ingredientList li");
+            listItems.forEach(function(li, index) {
+                const ingredients = li.querySelector('input[name^="ingredients"]');
+                const information = li.querySelector('input[name^="information"]');
+
+                // Set POST variables dynamically using JavaScript
+                ingredients.name = `item[${index}][ingredients]`;
+                information.name = `item[${index}][information]`;
+            });
+        });
         
         xhttp.send(JSON.stringify({id : id}));
     }

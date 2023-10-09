@@ -50,7 +50,7 @@
         listItems.forEach(function(li, index) {
             const ingredients = li.querySelector('input[name^="ingredients"]');
             const information = li.querySelector('input[name^="information"]');
-            
+
             // Set POST variables dynamically using JavaScript
             ingredients.name = `item[${index}][ingredients]`;
             information.name = `item[${index}][information]`;

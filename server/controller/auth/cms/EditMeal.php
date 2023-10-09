@@ -20,7 +20,6 @@ if (isset($_POST['submit'])){
     $ingredients = new Ingredients();
 
     $get_meals = $meal->FindById($id)[0];
-    $get_ingredients = $ingredients->FindByMeals($id);
     $get_nutrition = $ingredients->FindByMeals($id);
     $get_file = $file->FindById($get_meals['id_photo']);
 
@@ -34,7 +33,7 @@ if (isset($_POST['submit'])){
         $file_up_name = time() . "." . $extension;
         move_uploaded_file($tmp_name, $targetDirectory . $file_up_name);
 
-        $file->Update($file->FindById($get_meals['id_photo']),$file_name,'../../assets/meals/'.$file_up_name,'photo');
+        $file->Update($get_meals['id_photo'],$file_name,'../../assets/meals/'.$file_up_name,'photo');
     }
     if (isset($_POST['mealname'])){
         $get_meals['title'] = $_POST['mealname'];
@@ -65,6 +64,8 @@ if (isset($_POST['submit'])){
     if(isset($_POST['item'])) {
         $ingredients->DeleteByIdMeals($id);
         $items = $_POST['item'];
+        $test = json_encode($items);
+        echo "<script>console.log('masuk sini $test')</script>";
         foreach ($items as $index => $itemData) {
             $ing = $itemData['ingredients'];
             $info = $itemData['information'];

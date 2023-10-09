@@ -42,6 +42,7 @@
                             <p class="labelname">Video File</p>
                                 <label for="file" class="labelFile" id="filename">Upload Video</label>
                                 <input type="file" name="videofile" id="videofile" class="videofile" accept="image/*,video/*">
+                                <button type="submit" class="updatebtn" id="updatebtn" name="updatebtn">Update</button>
                         </div>
                     </div>
                 </div>

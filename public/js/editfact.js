@@ -8,7 +8,7 @@ function loadpage(id) {
         const startIndex = response.indexOf('[');
         const image = document.getElementById('imagevideo');
         const title = document.getElementById('edittitle');
-        const file = document.getElementById('filename')
+        const file = document.getElementById('filename');
         const description = document.getElementById('editdescription');
         const highlight = document.getElementById('edithighlight');
         const jsonStr = response.substring(startIndex);
@@ -56,4 +56,12 @@ function hideConfirmation() {
     const content = document.getElementById('content');
     confirmationBox.style.display = 'none';
     content.style.filter = 'none';
+}
+
+
+function updatelabel() {
+    const inputfile = document.getElementById('videofile');
+    const label = document.getElementById('filename');
+    console.log(inputfile.files)
+    label.textContent = inputfile.files[0].name;
 }
