@@ -139,9 +139,35 @@ body{
 
 }
 
+.saveButton {
+    background-color: #FFFFFF;
+    border: 1px solid #EF4800;
+    border-radius: 30px;
+    width: 150px;
+    height: 35px;
+    color: #EF4800;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    margin-right: 20px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.saveButton:hover{
+    background-color: #EF4800; /* Change the background color on hover */
+    color: #FFFFFF;
+    transform: scale(1.05); /* Slightly scale up on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle shadow on hover */
+    transition: 0.5s;
+}
+
 
 .submitButton{
-    background-color: #EF4800;
+    background-color: #ff0303;
     border: none;
     border-radius: 30px;
     width: 150px;
@@ -156,6 +182,13 @@ body{
     margin-bottom: 50px;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 
+}
+
+.submitButton:hover{
+    background-color: #FF6B00; /* Change the background color on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle shadow on hover */
+    transition: 0.5s;
 }
 
 

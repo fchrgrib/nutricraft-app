@@ -54,3 +54,27 @@ function hideConfirmation() {
     const confirmationBox = document.getElementById('confirmationBox');
     confirmationBox.style.display = 'none';
 }
+
+function showConfirmationdelete() {
+    const confirmationBox = document.getElementById('confirmationBox');
+    const confirmButton = document.getElementById('confirmButton');
+    const cancelButton = document.getElementById('cancelButton');
+    const message = document.getElementById('message');
+    message.innerHTML = "Are you sure you want to delte your account?";
+    confirmationBox.style.display = 'flex';
+    confirmButton.type = 'submit';
+    confirmButton.name = 'delete';
+    cancelButton.type = 'button';
+    cancelButton.name = 'cancel';
+    confirmButton.addEventListener('click', function() {
+        // Your code for handling the "Confirm" action here
+        console.log('confirm');
+        hideConfirmation();
+    });
+    
+    cancelButton.addEventListener('click', function() {
+        // Your code for handling the "Cancel" action here
+        console.log('cancel');
+        hideConfirmation();
+    });
+}

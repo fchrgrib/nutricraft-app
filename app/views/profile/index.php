@@ -76,7 +76,8 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
                     <i class="fas fa-edit editIcon" onclick= enablePassword()></i>
                 </div>
                 <hr>
-                <button type="button" class="submitButton" name="save" id="submitButton" onclick="showConfirmation()">Save Change</button>
+                <button type="button" class="saveButton" name="save" id="submitButton" onclick="showConfirmation()">Save Change</button>
+                <button type="button" class="submitButton" name="delete" id="delete" onclick="showConfirmationdelete()">Delete</button>
             </div>
         </div>
     </form>
