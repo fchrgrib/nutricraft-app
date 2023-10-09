@@ -32,7 +32,6 @@ function loadpage(id) {
 const submitbtn = document.getElementById('submitbtn');
 
 function showConfirmationfact() {
-    console.log('KOTNOL');
     const confirmationBox = document.getElementById('confirmationBox');
     const content = document.getElementById('content');
     const confirmButton = document.getElementById('confirmButton');
