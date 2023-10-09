@@ -168,7 +168,7 @@ const type = () =>{
   xhttp.onreadystatechange = function() {
     if (this.readyState === 4){
       let response = this.response;
-      console.log(response);
+      // console.log(response);
       const startIndex = response.indexOf('[');
       const jsonStr = response.substring(startIndex);
       console.log(jsonStr);
