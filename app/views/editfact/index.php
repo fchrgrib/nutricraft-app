@@ -15,7 +15,7 @@
     </script>
 </head>
 <body>
-    <form action="../../../server/controller/auth/cms/AddMeal.php" method="POST" enctype="multipart/form-data">
+    <form action="../../../server/controller/auth/cms/EditFact.php" method="POST" enctype="multipart/form-data">
     <input hidden="hidden" name="id_fact" value=<?php echo $id ?>;>
     <div class="overlay" id="confirmationBox">
         <div class="confirmation-dialog">
@@ -31,7 +31,7 @@
                 <img src="../../../assets/Nopict.png" alt="defaultProfPic" class="photoProfile" id ="imagevideo">
                 <div class="editPhotoButton">
                     <label for="file" class="labelFile">Upload File</label>
-                    <input type="file" name="file" id="file" class="file" accept="image/*,video/*">
+                    <input type="file" name="file[]" id="file" class="file" accept="image/*,video/*" multiple="multiple">
                 </div>
             </div>
             <div class="editcontainer">
@@ -50,7 +50,7 @@
                         <textarea name="factdescription" id="editdescription"class="inputdescription" placeholder="Description"></textarea>
                     </div>
                 </div>
-                <button type="button" class="submitButton" name="submit"id="submitbtn" onclick="showConfirmationfact()">Save Change</button>
+                <button type="submit" class="submitButton" name="submit" id="submitbtn" onclick="showConfirmationfact()">Save Change</button>
             </div>
     </form>
 </body>

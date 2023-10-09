@@ -11,7 +11,9 @@ use data\Content;
 if (isset($_POST['submit'])){
     $file = new File();
     $content = new Content();
-    $get_content = $content->FindById($_GET['id_fact'])[0];
+    $a = explode(";",$_POST['id_fact']);
+    $id = $a[0];
+    $get_content = $content->FindById($id)[0];
 
     $targetDirectory = "../../../../assets/content/";
     if (!empty($_FILES['file']['name'])){
@@ -24,14 +26,14 @@ if (isset($_POST['submit'])){
                     $tmp_name = $_FILES['file']['tmp_name'][$i];
                     $extension = pathinfo($file_name, PATHINFO_EXTENSION);
                     $file_up_name = time() . "." . $extension;
-                    move_uploaded_file($tmp_name, $targetDirectory . $file_name);
-                    $file->Update($get_content['id_video'],$file_name,'../../assets/content/'.$file_up_name,'photo');
+                    move_uploaded_file($tmp_name, $targetDirectory . $file_up_name);
+                    $file->Update($get_content['id_photo'],$file_name,'../../assets/content/'.$file_up_name,'photo');
                 }else{
                     $file_video = $_FILES['file']['name'][$i];
                     $tmp_video = $_FILES['file']['tmp_name'][$i];
                     $extension = pathinfo($file_video, PATHINFO_EXTENSION);
                     $file_up_video = time() . "." . $extension;
-                    move_uploaded_file($tmp_video, $targetDirectory . $file_video);
+                    move_uploaded_file($tmp_video, $targetDirectory . $file_up_video);
                     $file->Update($get_content['id_file'],$file_video,'../../assets/content/'.$file_up_video,'video');
                 }
             }
@@ -39,14 +41,17 @@ if (isset($_POST['submit'])){
     }
 
     if (isset($_POST['facttitle'])){
-        $title = $_POST['facttitle'];
+        $get_content['title'] = $_POST['facttitle'];
     }
     if (isset($_POST['facthighlight'])){
-        $highlight = $_POST['facthighlight'];
+        $get_content['highlight'] = $_POST['facthighlight'];
     }
     if (isset($_POST['factdescription'])){
-        $description = $_POST['factdescription'];
+        $get_content['body'] = $_POST['factdescription'];
     }
 
-    $content->Update($get_content['id'],$title,$description,$get_content['id_file'],$get_content['id_photo'],$highlight);
+    echo "<script>console.log('masukk')</script>";
+
+    $content->Update($get_content['id'],$get_content['title'],$get_content['body'],$get_content['id_file'],$get_content['id_photo'],$get_content['highlight']);
+    echo "<script>window.location.href='/?cms'</script>";
 }
