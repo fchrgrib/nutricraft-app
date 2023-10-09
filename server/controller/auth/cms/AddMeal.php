@@ -62,7 +62,7 @@ if(isset($_POST['submit'])) {
         }
     }
 
-    echo "<script>window.location.href='/?cms'</script>";
+//    echo "<script>window.location.href='/?cms'</script>";
 
 
 }
