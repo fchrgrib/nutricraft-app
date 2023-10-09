@@ -24,6 +24,18 @@ if(isset($_COOKIE['user'])){
     }
 }
 
+if(isset($_POST['delete'])){
+    $user->Delete($id);
+    echo "<script>
+                var date = new Date()
+                date.setTime(date.getTime() - (24*60*60*1000));
+                var expires = '; expires=' + date.toUTCString();
+                document.cookie = 'user='+ expires + '; path=/';
+                </script>";
+    echo "<script>window.location.href='/home'</script>";
+
+}
+
 if(isset($_POST['submit'])){
     if(!empty($_FILES['file']['name'])){
         echo "<script>console.log('masuk')</script>";
