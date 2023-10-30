@@ -13,7 +13,7 @@ $kiri = $_GET['lowRange'];
 $kanan = $_GET['highRange'];
 $sort = $_GET['sort'];
 $page = $_GET['page'];
-$page = ($page-1)*2;
+$page = ($page-1)*10;
 $show = $_GET['show'];
 
 

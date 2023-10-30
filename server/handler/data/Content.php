@@ -160,7 +160,7 @@ class Content
                             c.created_at as created_at,
                             c.updated_at as updated_at
                             FROM content c ORDER BY c.title ASC
-                            LIMIT 2 OFFSET $page");
+                            limit 10 OFFSET $page");
         }else if($select){
             $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
                             (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
@@ -169,7 +169,7 @@ class Content
                             c.created_at as created_at,
                             c.updated_at as updated_at
                             FROM content c ORDER BY c.created_at DESC
-                            LIMIT 2 OFFSET $page");
+                            LIMIT 10 OFFSET $page");
         }else{
             $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
                             (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
@@ -178,7 +178,7 @@ class Content
                             c.created_at as created_at,
                             c.updated_at as updated_at
                             FROM content c ORDER BY c.created_at ASC
-                            LIMIT 2 OFFSET $page");
+                            LIMIT 10 OFFSET $page");
         }
 
         // $exec = pg_query($conn, "SELECT * FROM content ORDER BY created_at");
@@ -252,7 +252,7 @@ class Content
                             c.created_at as created_at,
                             c.updated_at as updated_at
                             FROM content c WHERE c.title ILIKE '%$title%' ORDER BY c.title ASC
-                            LIMIT 2 OFFSET $page");
+                            LIMIT 10 OFFSET $page");
         }else if($select == 'Newest'){
             $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
                             (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
@@ -261,7 +261,7 @@ class Content
                             c.created_at as created_at,
                             c.updated_at as updated_at
                             FROM content c WHERE c.title ILIKE '%$title%' ORDER BY c.created_at DESC
-                            LIMIT 2 OFFSET $page");
+                            LIMIT 10 OFFSET $page");
         }else{
             $exec = pg_query($conn, "SELECT c.id id,c.title title,c.highlight highlight,c.body body,
                             (SELECT p.path FROM file p WHERE c.id_photo_highlight = p.id) as path_photo,
@@ -270,7 +270,7 @@ class Content
                             c.created_at as created_at,
                             c.updated_at as updated_at
                             FROM content c WHERE c.title ILIKE '%$title%' ORDER BY c.created_at ASC
-                            LIMIT 2 OFFSET $page");
+                            LIMIT 10 OFFSET $page");
         }
 
         $result = array();

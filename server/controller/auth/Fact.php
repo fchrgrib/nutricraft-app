@@ -10,7 +10,7 @@ $content = new Content();
 if(isset($_GET['select'])){
     $select = $_GET['select'];
     $page = $_GET['page'];
-    $page = ($page-1)*2;
+    $page = ($page-1)*10;
     if(isset($_GET['search'])){
         $search = $_GET['search'];
         $result = $content->FindByTitle($search, $select, $page);

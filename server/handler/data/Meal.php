@@ -118,18 +118,18 @@ class Meal
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' ORDER BY m.title ASC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }else if($sort == "Calories: low to high"){
             $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' ORDER BY m.calorie ASC 
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }else{
             $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' ORDER BY m.calorie DESC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }
         $result = array();
 
@@ -214,19 +214,19 @@ class Meal
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE (m.title ILIKE '%$title%' OR m.highlight ILIKE '%$title%') AND m.calorie <= '$right' AND m.calorie >= '$left' ORDER BY m.title ASC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }else if($sort == "Calories: low to high"){
             $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at 
                                             FROM meals m WHERE (m.title ILIKE '%$title%' OR m.highlight ILIKE '%$title%') AND m.calorie <= '$right' AND m.calorie >= '$left' ORDER BY m.calorie ASC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }else{
             $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE (m.title ILIKE '%$title%' OR m.highlight ILIKE '%$title%') AND m.calorie <= '$right' AND m.calorie >= '$left' ORDER BY m.calorie DESC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }
         $result = array();
 
@@ -319,19 +319,19 @@ class Meal
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE m.title ILIKE '%$title%' AND m.calorie <= '$right' AND m.calorie >= '$left' AND m.type = '$type' ORDER BY m.title ASC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }else if($sort == "Calories: low to high"){
             $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE m.title ILIKE '%$title%' AND m.calorie <= '$right' AND m.calorie >= '$left' AND m.type = '$type' ORDER BY m.calorie ASC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }else{
             $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE m.title ILIKE '%$title%' AND m.calorie <= '$right' AND m.calorie >= '$left' AND m.type = '$type' ORDER BY m.calorie DESC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }
 
         $result = array();
@@ -407,19 +407,19 @@ class Meal
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' AND m.type = '$type' ORDER BY m.title ASC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }else if($sort == "Calories: low to high"){
             $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' AND m.type = '$type' ORDER BY m.calorie ASC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }else{
             $exec = pg_query($conn, "SELECT m.id id, m.title title, m.highlight highlight, m.description description, m.type type, m.calorie calorie,
                                             (SELECT path FROM file f WHERE f.id = m.id_file) as path_photo,
                                             m.created_at created_at, m.updated_at updated_at
                                             FROM meals m WHERE m.calorie <= '$right' AND m.calorie >= '$left' AND m.type = '$type' ORDER BY m.calorie DESC
-                                            LIMIT 2 OFFSET $page");
+                                            LIMIT 10 OFFSET $page");
         }
 
 

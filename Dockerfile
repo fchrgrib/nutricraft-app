@@ -1,6 +1,6 @@
 FROM php:latest
 
-WORKDIR /app
+WORKDIR /app/nutricraft-app
 
 RUN apt-get update
 
@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD [ "php", "-S", "0.0.0.0:3000" ]
+CMD [ "php", "-S", "0.0.0.0:3001" ]
