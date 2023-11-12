@@ -69,11 +69,111 @@ body{
 
 }
 
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.profileContainer{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border-width: 1px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    
+}
+
+.photoProfile{
+    height: 15vw;
+    border-radius: 10px;
+    margin-right: 20px;
+    width: 12vw;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+}
+
+.overlay {
+    display: none; 
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000; /* Ensure it appears above other content */
+    justify-content: center;
+    align-items: center;
+    /* display: flex; */
+    
+}
+
+/* Styles for the confirmation dialog */
+.confirmation-dialog {
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    gap : 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 150px;
+    width: 350px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.confirmation-dialog p {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.confirmbtn button {
+    border: 1px solid #EF4800;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #EF4800;
+    width: 125px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#cancelButton {
+    background-color: #EF4800;
+    color: #FFFFFF;
+    margin-left: 10px;
+
+}
+
 .profileContainer{
     margin-top: 30px;
     display: flex;
     padding: 20px;
     justify-content: center;
+    margin-bottom: 30px;
 }
 
 .photoContainer{
@@ -86,9 +186,6 @@ body{
 
 }
 
-.photoProfile{
-    height: 20vw;
-}
 
 .editPhotoButton{
     background-color: #EF4800;
@@ -237,7 +334,7 @@ body{
     }
 
     .photoProfile{
-        height: 40vw;
+        height: 50vw;
     }
 
     .editPhotoButton{
@@ -266,3 +363,175 @@ body{
     margin-top: -10px;
     margin-bottom: 0px;
 }
+
+
+/*** IN PROGRESS ***/
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+
+:root {
+	--c1: #2187e7;
+	--b2: #222;
+	--b3: #333;
+	--w1: #fff;
+	--w2: #eee;
+	--t1: all 0.5s ease 0s;
+}
+
+.levelcontainer {
+    width: 80%;
+}
+
+.level {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.levelcircle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #EF4800;
+    padding: 5px;
+    padding-bottom: 5px;
+}
+
+.levelcircle p{
+    margin: 0;
+}
+
+.leveltext{
+    margin: 0;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+ul {
+    margin:0;
+    padding: 0;
+}
+
+ul.skills li {
+	--per: 50;
+	--dur: calc(calc(var(--per) / 100) * 1.5s);
+	margin: 0 0 5px 0;
+	list-style: none;
+	position: relative;
+	text-transform: uppercase;
+	font-size: 15px;
+	color: var(--w2);
+}
+
+ul.skills li:before {
+    content: "";
+    position: absolute;
+	background: #1c1c1c;
+	height: 16px;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	border-radius: 10px;
+	border: 1px solid #111;
+	border-color: #111 #323232 #323232 #111;
+	--track: #2292dd40;
+	background: linear-gradient(
+        90deg,
+		var(--track) calc(calc(var(--per) * 1%) + 4px),
+		#1c1c1c calc(calc(var(--per) * 1%) + 4px)
+        );
+    }
+    
+    
+    ul.skills li:after {
+        content: "";
+        height: 11px;
+        margin: 0 0 2px 0;
+        background: #2187e7;
+        position: absolute;
+        box-shadow: 0px 0px 10px 1px #00c6ff66;
+        left: 3px;
+        width: 0%;
+        bottom: 0;
+        transition: all var(--dur) ease 0s;
+        animation: start 1s ease 0s 2 alternate;
+    }
+    
+    
+    
+    ul.skills li:hover {
+        filter: brightness(1.5);
+        transition: var(--t1);
+    }
+    
+    ul.skills:hover li:after,
+    label:hover + ul.skills li:after,
+    input:checked + label + ul.skills li:after {
+        width: calc(calc(var(--per) * 1%) - 2px);
+    }
+    
+    @keyframes start {
+        100% {
+            width: calc(calc(var(--per) * 1%) - 2px);
+        }
+    }
+    
+    
+    ul.skills li span {
+        font-weight: 500;
+    }
+    
+    ul.skills li span:before {
+        position: absolute;
+        right: -25px;
+        top: 43px;
+        transition: var(--t1);
+        content: "";
+        opacity: 1;
+        border: 7px solid #fff0;
+    }
+    
+    ul.skills li:hover span:before,
+    .profile-skills input:checked + label + ul.skills li span:before {
+        transition: var(--t1);
+        right: calc(calc(calc(100 - var(--per)) * 1%) - 12px);
+        opacity: 1;
+        border-right-color: #2187e7;
+    }
+    
+    
+    ul.skills li span:after {
+        position: absolute;
+        right: -40px;
+        top: 38px;
+        transition: var(--t1);
+        counter-reset: percent var(--per);
+        /*content: counter(percent) "%";*/
+        content: counter(percent);
+        color: var(--b2);
+        opacity: 1 !important;
+        padding: 4px 6px;
+        border-radius: 1px;
+        font-weight: bold;
+        pointer-events: none;
+        display: none;
+    }
+    
+ul.skills li:hover span:after,
+.profile-skills input:checked + label + ul.skills li span:after {
+	transition: var(--t1);
+	right: calc(calc(85 - var(--per)) * 1%);
+	right: calc(calc(calc(100 - var(--per)) * 1%) - 40px);
+	opacity: 1;
+	background: var(--c1);
+    display:inline;
+}
+
+
+
+/* ini exp */
+ul.skills li.sk-cms { --per: 80; }
