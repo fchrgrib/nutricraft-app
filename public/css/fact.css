@@ -143,7 +143,10 @@ a {
     color: #EF4800;
 }
 
-
+.image{
+    max-height: 200px; /* Set the maximum height you want */
+    width: auto; /* Ensure that the width adjusts proportionally */   
+}
 
 
 

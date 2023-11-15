@@ -1,7 +1,7 @@
 function loadpage(id) {
     console.log(id);
     const xhttp = new XMLHttpRequest();
-    xhttp.open('POST', "../../server/controller/auth/DetailFact.php", true);
+    xhttp.open('POST', "../../server/controller/auth/EditFact.php", true);
     xhttp.onload = function() {
         let response = this.response;
         // console.log(response);
