@@ -56,8 +56,8 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
                     <div class="levelcontainer">
                         <div class="level">
                             <p class="leveltext">Level</p>
-                            <div class="levelcircle">
-                                <p class="leveltext">2</p>
+                            <div class="levelcircle" id="levelcirle">
+                                <!-- <p class="leveltext" id>2</p> -->
                             </div>
                         </div>
                         <ul class="skills skills1">

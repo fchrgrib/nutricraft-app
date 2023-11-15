@@ -118,7 +118,7 @@ if(isset($_GET['show'])){
     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
         <Body>
             <getExpUser xmlns="http://Services.nutricraft.org/">
-                <arg0 xmlns="">1</arg0>
+                <arg0 xmlns="">3</arg0>
             </getExpUser>
         </Body>
     </Envelope>';

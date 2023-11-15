@@ -89,13 +89,14 @@ function showExp(){
             // const jsonObject = JSON.parse(response);
             console.log(response);
             
-            const parentElement = document.getElementById("exp");
+            const parentElement = document.getElementById("levelcirle");
             let html = "";
+            const level = Math.floor(response/100)+1;
+            const exp = response%100;
+            document.querySelector('ul.skills li.sk-cms').style.setProperty('--per', exp);
 
             html += `
-            <div">
-                <h1>EXP : ${response}</h1>
-            </div>
+                <p class="leveltext" id>${level}</p>
             `;
             
             parentElement.innerHTML = html;        
