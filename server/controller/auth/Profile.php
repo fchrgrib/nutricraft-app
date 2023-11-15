@@ -111,6 +111,46 @@ if(isset($_POST['submit'])){
     echo "<script>window.location.href='/?profile'</script>";
 }
 
+if(isset($_GET['show'])){
+    $serviceUrl =  $_ENV['SOAP_URL_USER_LEVEL']."?APIkey=".$_ENV["SOAP_KEY"];
+   
+    $soapRequest = '
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+        <Body>
+            <getExpUser xmlns="http://Services.nutricraft.org/">
+                <arg0 xmlns="">1</arg0>
+            </getExpUser>
+        </Body>
+    </Envelope>';
+
+    $options = [
+        CURLOPT_URL            => $serviceUrl,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => $soapRequest,
+        CURLOPT_HTTPHEADER     => [
+            'Content-Type: text/xml; charset=utf-8',
+            'Content-Length: ' . strlen($soapRequest),
+        ],
+    ];
+
+    $curl = curl_init();
+    curl_setopt_array($curl, $options);
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+    if (curl_errno($curl)) {
+        echo 'cURL Error: ' . curl_error($curl);
+    } else {
+        $xml = new SimpleXMLElement($response);
+        $returnValue = (string)$xml->xpath('//return')[0];
+        echo $returnValue;
+    }
+}
+
+
 // if(isset($_POST['submit'])){
 //     if(isset($_POST['fullName'])){
 //         $fullName = $_POST['fullName'];

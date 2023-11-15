@@ -78,3 +78,29 @@ function showConfirmationdelete() {
         hideConfirmation();
     });
 }
+
+function showExp(){
+    const show = "exp";
+
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4){
+            let response = this.response;
+            // const jsonObject = JSON.parse(response);
+            console.log(response);
+            
+            const parentElement = document.getElementById("exp");
+            let html = "";
+
+            html += `
+            <div">
+                <h1>EXP : ${response}</h1>
+            </div>
+            `;
+            
+            parentElement.innerHTML = html;        
+        }
+    };  
+    xhttp.open('GET', `../../server/controller/auth/Profile.php?show=${show}`, true);
+    xhttp.send();
+}

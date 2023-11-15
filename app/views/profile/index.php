@@ -26,6 +26,7 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
     <!-- include js -->
     <script src="../../../public/js/profile.js"></script>
     <script src="../../../public/js/register.js"></script>
+    <script>window.onload = function() {showExp();};</script>
     <title>NutriCraft</title>
 </head>
 <body>
@@ -43,6 +44,7 @@ echo "<script>console.log('$id, $fullName, $email, $phone')</script>";
             <div class="boxKiri">
                 <div class="photoContainer">
                     <img src=<?php echo $photo?> alt="photoProfile" class="photoProfile" id="photoProfile">
+                    <div id="exp"></div>
                     <div class="editPhotoButton">
                         <label for="file" class="fileLabel">Choose a Photo</label>
                         <input type="file" name="file" id="file" class="file" accept="image/*" onchange="updatePhoto()">
