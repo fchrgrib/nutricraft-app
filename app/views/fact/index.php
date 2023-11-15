@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../public/css/fact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script defer src="../../../public/js/fact.js"></script>
+    <!-- <script defer src="../../../public/js/fact.js"></script> -->
     <script>window.onload = function() {showAll();};</script>
     <title>NutriCraft</title>
 </head>
@@ -27,14 +27,49 @@
                     </select>
                 </div>
             </div>
-            <div id="isicontent" class="content"></div>
-            <div id="pagination" class="pagination">
+            <div class="buttons">
+                <button type="button" class="all" id="selected" >All</button>
+                <button type="button" class="subscribed">Subscribed</button>
+            </div>
+            <div id="factContent" class="factcontent">
+                <a href="/?detailfact">
+                <div class="factcard">
+                    <img src="../../../assets/thumbnail.png" alt="">
+                        <div class="facttext">
+                            <h2>judul</h2>
+                            <p>lorem ipsum dolor sit amet lorem ipsum </p>
+                            <h4>Author</h4>
+                        </div>
+                    </div>
+                </a>
+                <a href="/?detailfact">
+                <div class="factcard">
+                    <img src="../../../assets/thumbnail.png" alt="">
+                        <div class="facttext">
+                            <h2>judul</h2>
+                            <p>lorem ipsum dolor sit amet lorem ipsum </p>
+                            <h4>Author</h4>
+                        </div>
+                    </div>
+                </a>
+                <a href="/?detailfact">
+                <div class="factcard">
+                    <img src="../../../assets/thumbnail.png" alt="">
+                        <div class="facttext">
+                            <h2>judul</h2>
+                            <p>lorem ipsum dolor sit amet lorem ipsum </p>
+                            <h4>Author</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- <div id="pagination" class="pagination">
                 <button class="prev" onclick=prevPage()>&laquo;</button>
                 <div id="numberpage" class="buttons">
                 </div>
                 
                 <button class="next" onclick=nextPage() >&raquo;</button>
-        </div>
+        </div> -->
     </div>
 </body>
 </html>
