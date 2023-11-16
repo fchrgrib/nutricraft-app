@@ -91,7 +91,7 @@ function showExp(){
             
             const parentElement = document.getElementById("levelcirle");
             let html = "";
-            const level = Math.floor(response/100)+1;
+            const level = Math.floor(response/100);
             const exp = response%100;
             document.querySelector('ul.skills li.sk-cms').style.setProperty('--per', exp);
 

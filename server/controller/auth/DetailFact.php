@@ -1,6 +1,9 @@
 <?php
 
 $API = $_ENV['USER_KEY'];
+$userCookie = $_COOKIE['user'];
+$userData = json_decode($userCookie);
+$idUser = $userData[0]->id;
 
 if(isset($_GET['subscribe'])){
     $subs  = $_GET['subscribe'];
@@ -75,6 +78,7 @@ if(isset($_GET['subscribe'])){
         
         
         if ($data) {
+            addExp($idUser);
             echo json_encode($data);
         } else {
             echo 'API request failed';
@@ -223,6 +227,46 @@ function unSubscribe(){
             </unsubscribe>
         </Body>
     </Envelope>';
+
+    $options = [
+        CURLOPT_URL            => $serviceUrl,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => $soapRequest,
+        CURLOPT_HTTPHEADER     => [
+            'Content-Type: text/xml; charset=utf-8',
+            'Content-Length: ' . strlen($soapRequest),
+        ],
+    ];
+
+    $curl = curl_init();
+    curl_setopt_array($curl, $options);
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+    if (curl_errno($curl)) {
+        echo 'cURL Error: ' . curl_error($curl);
+    } else {
+        $xml = simplexml_load_string($response);
+        return $xml->xpath('//return')[0];
+    }
+}
+
+
+function addExp($id){
+    $serviceUrl =  $_ENV['SOAP_URL_USER_LEVEL']."?APIkey=".$_ENV["SOAP_KEY"];
+
+    $soapRequest = '
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+    <Body>
+        <addExpUser xmlns="http://Services.nutricraft.org/">
+            <arg0 xmlns="">'.$id.'</arg0>
+            <arg1 xmlns="">10</arg1>
+        </addExpUser>
+    </Body>
+</Envelope>';
 
     $options = [
         CURLOPT_URL            => $serviceUrl,
