@@ -33,7 +33,7 @@ if (isset($_POST['uname']) && isset($_POST['psw']) && isset($_POST['email']) && 
     $phoneNumber = $_POST['phoneNumber'];
     $user->Insert($username, $email, $phoneNumber, $password, "user");
     $id = $user->FindIdByEmail($email);
-    addCoins($id);
+    newUser($id);
     if(is_dir("../../../assets/user/$id" == false)){
         echo "<script>('create folder')</script>";
         mkdir("../../../assets/user/$id",0777,true);    
@@ -43,7 +43,7 @@ if (isset($_POST['uname']) && isset($_POST['psw']) && isset($_POST['email']) && 
 }
 
       
-function addCoins($id){
+function newUser($id){
     $serviceUrl =  $_ENV['SOAP_URL_USER_LEVEL']."?APIkey=".$_ENV["SOAP_KEY"];
    
     $soapRequest = '

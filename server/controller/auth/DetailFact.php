@@ -73,7 +73,7 @@ if(isset($_GET['subscribe'])){
         $data['data'][0]['path_photo'] = $path_photo;
         $data['data'][0]['author'] = $author;
         $data['data'][0]['total_subscriber'] = count((getSubs($uuid)));
-        $data['data'][0]['is_subscribe'] = isSubscribe($uuid, 1);
+        $data['data'][0]['is_subscribe'] = isSubscribe($uuid, $idUser);
         $data['data'][0]['uuid'] = $uuid;
         
         
@@ -260,13 +260,13 @@ function addExp($id){
 
     $soapRequest = '
     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-    <Body>
-        <addExpUser xmlns="http://Services.nutricraft.org/">
-            <arg0 xmlns="">'.$id.'</arg0>
-            <arg1 xmlns="">10</arg1>
-        </addExpUser>
-    </Body>
-</Envelope>';
+        <Body>
+            <addExpUser xmlns="http://Services.nutricraft.org/">
+                <arg0 xmlns="">'.$id.'</arg0>
+                <arg1 xmlns="">10</arg1>
+            </addExpUser>
+        </Body>
+    </Envelope>';
 
     $options = [
         CURLOPT_URL            => $serviceUrl,

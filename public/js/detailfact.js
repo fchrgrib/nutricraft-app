@@ -14,6 +14,7 @@ const loadpage = (id) => {
             
             const parentElement = document.getElementById("content");
             const content = jsonObject['data'][0];
+            console.log(content.is_subscribe[0]);
             let subs = "";
             if(content.is_subscribe[0] == 'true'){
                 subs = "Unsubscribe";
