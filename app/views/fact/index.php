@@ -45,36 +45,6 @@
                 });
             </script>
             <div id="factContent" class="factcontent">
-                <a href="/?detailfact">
-                <div class="factcard">
-                    <img src="../../../assets/thumbnail.png" alt="">
-                        <div class="facttext">
-                            <h2>judul</h2>
-                            <p>lorem ipsum dolor sit amet lorem ipsum </p>
-                            <h4>Author</h4>
-                        </div>
-                    </div>
-                </a>
-                <a href="/?detailfact">
-                <div class="factcard">
-                    <img src="../../../assets/thumbnail.png" alt="">
-                        <div class="facttext">
-                            <h2>judul</h2>
-                            <p>lorem ipsum dolor sit amet lorem ipsum </p>
-                            <h4>Author</h4>
-                        </div>
-                    </div>
-                </a>
-                <a href="/?detailfact">
-                <div class="factcard">
-                    <img src="../../../assets/thumbnail.png" alt="">
-                        <div class="facttext">
-                            <h2>judul</h2>
-                            <p>lorem ipsum dolor sit amet lorem ipsum </p>
-                            <h4>Author</h4>
-                        </div>
-                    </div>
-                </a>
             </div>
             <!-- <div id="pagination" class="pagination">
                 <button class="prev" onclick=prevPage()>&laquo;</button>
