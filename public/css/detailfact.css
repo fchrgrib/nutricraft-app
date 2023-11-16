@@ -41,12 +41,12 @@
     margin-right: 20px;
 }
 
-.subscribe {
+.Subscribe {
     margin-left: 80px;
     background-color: #EF4800;
     color: white;
     border: none;
-    width: 100px;
+    width: 110px;
     border-radius: 20px;
     padding: 10px;
     font-size: 1rem;
@@ -54,7 +54,24 @@
     cursor: pointer;
 }
 
-.subscribe:hover {
+.Subscribe:hover {
+    background-color: #FF6A00;
+}
+
+.Unsubscribe{
+    margin-left: 80px;
+    background-color: #EF4800;
+    color: white;
+    border: none;
+    width: 110px;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Unsubscribe:hover {
     background-color: #FF6A00;
 }
 
