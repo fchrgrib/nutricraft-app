@@ -113,12 +113,14 @@ if(isset($_POST['submit'])){
 
 if(isset($_GET['show'])){
     $serviceUrl =  $_ENV['SOAP_URL_USER_LEVEL']."?APIkey=".$_ENV["SOAP_KEY"];
+    $userData = json_decode($_COOKIE['user'], true);
+    $id = $userData[0]['id'];
    
     $soapRequest = '
     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
         <Body>
             <getExpUser xmlns="http://Services.nutricraft.org/">
-                <arg0 xmlns="">3</arg0>
+                <arg0 xmlns="">'.$id.'</arg0>
             </getExpUser>
         </Body>
     </Envelope>';
