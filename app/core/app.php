@@ -16,8 +16,9 @@ class App {
       }
       else if ($url[0] == '') {
         $this->controller = 'home';
-      }
-      else {
+      }else if ($url[0] == 'ontent') {
+        $this->controller = 'content';
+      }else {
         $this->controller = 'error404';
       }
       // else {

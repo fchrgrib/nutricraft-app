@@ -128,6 +128,32 @@ body {
 
 }
 
+.contentnav{
+    /* transparent button */
+    background-color: transparent;
+    border: none;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transform: scale(1); /* Default scale */
+    transition: transform 0.3s; 
+    /* animation underline on hover home */
+    text-decoration: none;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    text-decoration-skip-ink: none;
+}
+
+/* animation underline on hover home */
+.contentnav:hover{
+    transform: scale(1.2); /* Increased scale */
+
+}
+
 .login{
     background-color: #EF4800;
     border: none;

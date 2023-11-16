@@ -22,6 +22,9 @@
                 <a href="/fact">
                     <button type="button" class="fact">Fact</button>
                 </a>
+                <a href="/content">
+                    <button type="button" class="contentnav">Content</button>
+                </a>
             </div>
             <div id="login">
             <?php
@@ -73,6 +76,7 @@ if (isset($_COOKIE['user'])) {
             <a href="/home">Home</a>
             <a href="/meals">Meals</a>
             <a href="/fact">Fact</a>
+            <a href="/content">Content</a>
         </div>
     </div>
 </body>
