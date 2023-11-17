@@ -290,7 +290,7 @@ Client-side
 * Profile : 13521011
 * CMS meal : 13521005, 13521031
 * CMS fact : 13521005, 13521031
-* Content : 13521011
+* Content : 13521011, 13521005
 
 
 
