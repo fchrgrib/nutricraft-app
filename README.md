@@ -156,11 +156,11 @@ NutriCraft adalah aplikasi berbasis web yang dibuat untuk memudahkan user dalam 
 ### Installation
 1. Clone the repo
    ```sh
-   git clone https://gitlab.informatika.org/IF3110-2023-01-K3/tugas-besar-1.git
+   git clone https://gitlab.informatika.org/if3110-2023-02-d/nutricraft-app.git
    ```
-2. Go to the repository root folder `tugas-besar-1`
+2. Go to the repository root folder `nutricraft-app`
    ```sh
-   cd tugas-besar-1
+   cd nutricraft-app
    ```
 3. Install Docker Desktop
    ```sh
@@ -276,6 +276,7 @@ Server-side
 * Profile : 13521011, 13521031
 * CMS meal : 13521005, 13521031, 13521011
 * CMS fact : 13521031
+* Content : 13521011
 
 
 Client-side
@@ -289,6 +290,7 @@ Client-side
 * Profile : 13521011
 * CMS meal : 13521005, 13521031
 * CMS fact : 13521005, 13521031
+* Content : 13521011
 
 
 
