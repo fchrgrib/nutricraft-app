@@ -34,6 +34,7 @@ if (isset($_POST['uname']) && isset($_POST['psw']) && isset($_POST['email']) && 
     $user->Insert($username, $email, $phoneNumber, $password, "user");
     $id = $user->FindIdByEmail($email);
     newUser($id);
+    // sentEmail($email);
     if(is_dir("../../../assets/user/$id" == false)){
         echo "<script>('create folder')</script>";
         mkdir("../../../assets/user/$id",0777,true);    
@@ -79,6 +80,51 @@ function newUser($id){
         $xml = new SimpleXMLElement($response);
         $returnValue = (string)$xml->xpath('//return')[0];
         echo $returnValue;
+    }
+}
+
+function sentEmail($email){
+    $serviceUrl =  $_ENV['SOAP_URL_EMAIL']."?APIkey=".$_ENV["SOAP_KEY"];
+
+    $from = $_ENV['EMAIL'];
+    $pass = $_ENV['PASSWORD_EMAIL'];
+    echo '<script>alert('.$from.')</script>';
+    echo '<script>alert('.$pass.')</script>';
+   
+    $soapRequest = '
+    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+        <Body>
+            <sendEmail xmlns="http://Services.nutricraft.org/">
+                <arg0 xmlns="">'.$email.'</arg0>
+                <arg1 xmlns="">'.$from.'</arg1>
+                <arg2 xmlns="">'.$pass.'</arg2>
+            </sendEmail>
+        </Body>
+    </Envelope>';
+
+    $options = [
+        CURLOPT_URL            => $serviceUrl,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => $soapRequest,
+        CURLOPT_HTTPHEADER     => [
+            'Content-Type: text/xml; charset=utf-8',
+            'Content-Length: ' . strlen($soapRequest),
+        ],
+    ];
+
+    $curl = curl_init();
+    curl_setopt_array($curl, $options);
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+    if (curl_errno($curl)) {
+        echo 'cURL Error: ' . curl_error($curl);
+    } else {
+        $xml = new SimpleXMLElement($response);
+        $returnValue = (string)$xml->xpath('//return')[0];
     }
 }
 
